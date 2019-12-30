@@ -1,26 +1,27 @@
 package com.bky.gateway;
 
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.client.RestTemplate;
 
-import com.bky.gateway.config.ServiceDefinitionsContext;
+import com.spring4all.swagger.EnableSwagger2Doc;
 
 import springfox.documentation.swagger.web.SwaggerResource;
 import springfox.documentation.swagger.web.SwaggerResourcesProvider;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableZuulProxy
-@EnableSwagger2
+@EnableSwagger2Doc
 @EnableDiscoveryClient
 @SpringBootApplication
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -30,20 +31,36 @@ public class InfraGatewayApplication {
 		SpringApplication.run(InfraGatewayApplication.class, args);
 	}
 
-	@Bean
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
-
 	@Autowired
-	private ServiceDefinitionsContext definitionContext;
+	private DiscoveryClient discoveryClient;
+
+	@Value("${spring.application.name}")
+	private String appName;
 
 	@Primary
 	@Component
 	class DocumentationConfig implements SwaggerResourcesProvider {
+
+		private Predicate<String> predicate = name -> name.equals(appName);
+
 		@Override
 		public List<SwaggerResource> get() {
-			return definitionContext.getDocumentationConfigs();
+			List<SwaggerResource> resources = discoveryClient.getServices().stream()
+					.filter(predicate.negate())
+					.map(this::createResource)
+					.collect(Collectors.toList());
+			if (resources.isEmpty()) {
+				resources.add(createResource("default"));
+			}
+			return resources;
+		}
+
+		private SwaggerResource createResource(String name) {
+			SwaggerResource resource = new SwaggerResource();
+			resource.setLocation(String.format("/%s/v2/api-docs", name));
+			resource.setName(name);
+			resource.setSwaggerVersion("2.0");
+			return resource;
 		}
 	}
 
