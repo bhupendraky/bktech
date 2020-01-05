@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bky.user.annotation.Traceble;
-import com.bky.user.config.UserDetailConfig.UserDetail;
 import com.bky.user.dto.UserDTO;
 import com.bky.user.entity.User;
 import com.bky.user.service.UserService;
+
+import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -28,97 +29,37 @@ public class UserController {
 	private UserService service;
 
 	@Traceble
-	@GetMapping("/rakesh")
-	public UserDetail getRakeshConfig() {
-		return service.getRakeshConfig();
+	@ApiOperation("Fetch all user details")
+	@GetMapping("/get-all")
+	public List<User> getAllUserJpa() {
+		return service.getAllUser();
 	}
 
 	@Traceble
-	@GetMapping("/bhupen")
-	public UserDetail getBhupenConfig() {
-		return service.getBhupenConfig();
-	}
-
-
-	@Traceble
-	@GetMapping("/get/jdbc")
-	public List<User> getAllPersonJdbc() {
-		return service.getAllPersonJdbc();
+	@ApiOperation("Fetch user details with the id")
+	@GetMapping("/get/{id}")
+	public User getUserJpa(@PathVariable Long id) {
+		return service.getUser(id);
 	}
 
 	@Traceble
-	@GetMapping("/get/em")
-	public List<User> getAllPersonEm() {
-		return service.getAllPersonEm();
+	@ApiOperation("Update a user")
+	@PutMapping("/update")
+	public User updateUserJpa(@RequestBody UserDTO dto) {
+		return service.updateUser(dto);
 	}
 
 	@Traceble
-	@GetMapping("/get/jpa")
-	public List<User> getAllPersonJpa() {
-		return service.getAllPersonJpa();
+	@ApiOperation("Add a user")
+	@PostMapping("/add")
+	public User addUserJpa(@RequestBody UserDTO dto) {
+		return service.addUser(dto);
 	}
 
 	@Traceble
-	@GetMapping("/get/jdbc/{id}")
-	public User getPersonJdbc(@PathVariable Long id) {
-		return service.getPersonJdbc(id);
-	}
-
-	@Traceble
-	@GetMapping("/get/em/{id}")
-	public User getPersonEm(@PathVariable Long id) {
-		return service.getPersonEm(id);
-	}
-
-	@Traceble
-	@GetMapping("/get/jpa/{id}")
-	public User getPersonJpa(@PathVariable Long id) {
-		return service.getPersonJpa(id);
-	}
-
-
-	@PutMapping("/update/jdbc")
-	public User updatePersionJdbc(@RequestBody UserDTO dto) {
-		return service.updatePersionJdbc(dto);
-	}
-
-	@PutMapping("/update/em")
-	public User updatePersionEm(@RequestBody UserDTO dto) {
-		return service.updatePersionEm(dto);
-	}
-
-	@PutMapping("/update/jpa")
-	public User updatePersionJpa(@RequestBody UserDTO dto) {
-		return service.updatePersionJpa(dto);
-	}
-
-	@PostMapping("/add/jdbc")
-	public User addPersionJdbc(@RequestBody UserDTO dto) {
-		return service.addPersionJdbc(dto);
-	}
-
-	@PostMapping("/add/em")
-	public User addPersionEm(@RequestBody UserDTO dto) {
-		return service.addPersionEm(dto);
-	}
-
-	@PostMapping("/add/jpa")
-	public User addPersionJpa(@RequestBody UserDTO dto) {
-		return service.addPersionJpa(dto);
-	}
-
-	@DeleteMapping ("/delete/jdbc/{id}")
-	public User deletePersionJdbc(@PathVariable Long id) {
-		return service.deletePersionJdbc(id);
-	}
-
-	@DeleteMapping("/delete/em/{id}")
-	public User deletePersionEm(@PathVariable Long id) {
-		return service.deletePersionEm(id);
-	}
-
-	@DeleteMapping("/delete/jpa/{id}")
-	public User deletePersionJpa(@PathVariable Long id) {
-		return service.deletePersionJpa(id);
+	@ApiOperation("Delete a user with the id")
+	@DeleteMapping("/delete")
+	public User deleteUserJpa(@PathVariable Long id) {
+		return service.deleteUser(id);
 	}
 }
