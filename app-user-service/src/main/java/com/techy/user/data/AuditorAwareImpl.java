@@ -1,4 +1,4 @@
-package com.bky.user.data;
+package com.techy.user.data;
 
 import java.util.Optional;
 
@@ -10,7 +10,7 @@ public class AuditorAwareImpl implements AuditorAware<String> {
 
 	@Override
 	public Optional<String> getCurrentAuditor() {
-		return Optional.of("BHUPEN");
+		return Optional.of("TECHY");
 	}
 
 }

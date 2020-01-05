@@ -1,4 +1,4 @@
-package com.bky.email;
+package com.techy.email;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;

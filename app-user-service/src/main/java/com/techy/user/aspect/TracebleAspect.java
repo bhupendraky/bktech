@@ -1,4 +1,4 @@
-package com.bky.user.aspect;
+package com.techy.user.aspect;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -17,7 +17,7 @@ public class TracebleAspect {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	private ObjectMapper mapper = new ObjectMapper();
 
-	@Around("@annotation(com.bky.user.annotation.Traceble)")
+	@Around("@annotation(com.techy.user.annotation.Traceble)")
 	public Object logExecutionTime(ProceedingJoinPoint pjp) throws Throwable {
 		if(!logger.isInfoEnabled()) {
 			return pjp.proceed();

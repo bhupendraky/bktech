@@ -1,13 +1,13 @@
-package com.bky.user.service;
+package com.techy.user.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bky.user.data.UserJpaRepository;
-import com.bky.user.domain.User;
-import com.bky.user.dto.UserDTO;
+import com.techy.user.data.UserJpaRepository;
+import com.techy.user.domain.User;
+import com.techy.user.dto.UserDTO;
 
 @Service
 public class UserService {

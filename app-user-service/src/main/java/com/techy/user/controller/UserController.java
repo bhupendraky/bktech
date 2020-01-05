@@ -1,4 +1,4 @@
-package com.bky.user.controller;
+package com.techy.user.controller;
 
 import java.util.List;
 
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bky.user.annotation.Traceble;
-import com.bky.user.domain.User;
-import com.bky.user.dto.UserDTO;
-import com.bky.user.service.UserService;
+import com.techy.user.annotation.Traceble;
+import com.techy.user.domain.User;
+import com.techy.user.dto.UserDTO;
+import com.techy.user.service.UserService;
 
 import io.swagger.annotations.ApiOperation;
 

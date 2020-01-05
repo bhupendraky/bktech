@@ -1,4 +1,4 @@
-package com.bky.user.domain;
+package com.techy.user.domain;
 
 import java.util.Date;
 

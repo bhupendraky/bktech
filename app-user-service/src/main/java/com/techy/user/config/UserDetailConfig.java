@@ -1,4 +1,4 @@
-package com.bky.user.config;
+package com.techy.user.config;
 
 import java.util.Map;
 

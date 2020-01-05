@@ -1,4 +1,4 @@
-package com.bky.user;
+package com.techy.user;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.bky.user.dto;
+package com.techy.user.dto;
 
 import lombok.Getter;
 import lombok.Setter;

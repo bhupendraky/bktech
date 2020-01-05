@@ -1,4 +1,4 @@
-package com.bky.user.annotation;
+package com.techy.user.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -1,4 +1,4 @@
-package com.bky.email;
+package com.techy.email;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

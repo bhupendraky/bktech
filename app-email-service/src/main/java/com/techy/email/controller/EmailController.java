@@ -1,4 +1,4 @@
-package com.bky.email.controller;
+package com.techy.email.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

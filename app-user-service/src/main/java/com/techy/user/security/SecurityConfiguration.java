@@ -1,4 +1,4 @@
-package com.bky.user.security;
+package com.techy.user.security;
 
 public class SecurityConfiguration {
 

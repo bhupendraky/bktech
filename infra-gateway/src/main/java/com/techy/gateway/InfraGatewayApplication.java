@@ -1,4 +1,4 @@
-package com.bky.gateway;
+package com.techy.gateway;
 
 import java.util.List;
 import java.util.function.Predicate;
