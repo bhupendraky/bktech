@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bky.user.data.UserJpaRepository;
+import com.bky.user.domain.User;
 import com.bky.user.dto.UserDTO;
-import com.bky.user.entity.User;
 
 @Service
 public class UserService {

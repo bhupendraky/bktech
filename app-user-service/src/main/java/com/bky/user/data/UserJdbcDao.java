@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.bky.user.entity.User;
+import com.bky.user.domain.User;
 
 @Repository
 public class UserJdbcDao {

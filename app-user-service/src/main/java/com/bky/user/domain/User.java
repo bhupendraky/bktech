@@ -1,4 +1,4 @@
-package com.bky.user.entity;
+package com.bky.user.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

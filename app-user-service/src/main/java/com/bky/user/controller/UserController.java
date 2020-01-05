@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bky.user.annotation.Traceble;
+import com.bky.user.domain.User;
 import com.bky.user.dto.UserDTO;
-import com.bky.user.entity.User;
 import com.bky.user.service.UserService;
 
 import io.swagger.annotations.ApiOperation;
