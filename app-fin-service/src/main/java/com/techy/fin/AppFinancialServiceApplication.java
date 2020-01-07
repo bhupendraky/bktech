@@ -1,10 +1,11 @@
-package com.techy.email;
+package com.techy.fin;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.util.CollectionUtils;
 
 import com.google.common.collect.Lists;
@@ -15,10 +16,11 @@ import com.spring4all.swagger.SwaggerProperties.GlobalOperationParameter;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableSwagger2Doc
-public class AppEmailServiceApplication implements InitializingBean {
+@EnableJpaAuditing(auditorAwareRef = "auditorAwareImpl")
+public class AppFinancialServiceApplication implements InitializingBean {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AppEmailServiceApplication.class, args);
+		SpringApplication.run(AppFinancialServiceApplication.class, args);
 	}
 
 	@Autowired
@@ -37,5 +39,4 @@ public class AppEmailServiceApplication implements InitializingBean {
 			swaggerProperties.getGlobalOperationParameters().add(userId);
 		}
 	}
-
 }
