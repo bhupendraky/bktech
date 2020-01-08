@@ -25,13 +25,13 @@ import lombok.ToString;
 @Entity
 @Table(name = "user")
 @EntityListeners(AuditingEntityListener.class)
-@NamedQuery(name = "findAll", query = "select p from User p")
+@NamedQuery(name = "findAll", query = "select u from User u")
 public class User extends AuditableEntity<String> {
 
 	@Id
 	@SequenceGenerator(
 			name = "seq-id-gen",
-			sequenceName = "longidseq",
+			sequenceName = "useridseq",
 			initialValue = 100001,
 			allocationSize = 1
 			)

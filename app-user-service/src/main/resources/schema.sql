@@ -8,4 +8,4 @@ create table user
    updatedon date
 );
 
-create sequence longidseq start with 100001 increment by 1;
+create sequence useridseq start with 100001 increment by 1;
