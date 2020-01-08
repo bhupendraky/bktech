@@ -1,6 +1,5 @@
 package com.techy.user.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
@@ -24,7 +23,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "USER")
+@Table(name = "user")
 @EntityListeners(AuditingEntityListener.class)
 @NamedQuery(name = "findAll", query = "select p from User p")
 public class User extends AuditableEntity<String> {
@@ -32,14 +31,13 @@ public class User extends AuditableEntity<String> {
 	@Id
 	@SequenceGenerator(
 			name = "seq-id-gen",
-			sequenceName = "LONG_ID_SEQ",
+			sequenceName = "longidseq",
 			initialValue = 100001,
 			allocationSize = 1
 			)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq-id-gen")
 	private Long id;
 
-	@Column(name = "NAME")
 	private String name;
 
 	public User(String name) {

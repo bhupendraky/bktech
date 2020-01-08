@@ -2,10 +2,10 @@ create table user
 (
    id long not null primary key,
    name varchar(50) not null,
-   created_by varchar(50),
-   created_on date,
-   updated_by varchar(50),
-   updated_on date
+   createdby varchar(50),
+   createdon date,
+   updatedby varchar(50),
+   updatedon date
 );
 
-create sequence LONG_ID_SEQ start with 100001 increment by 1;
+create sequence longidseq start with 100001 increment by 1;
