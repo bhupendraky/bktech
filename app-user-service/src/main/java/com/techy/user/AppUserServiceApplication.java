@@ -31,6 +31,7 @@ public class AppUserServiceApplication implements InitializingBean {
 	public void afterPropertiesSet() throws Exception {
 		GlobalOperationParameter userId = new GlobalOperationParameter();
 		userId.setName(Constants.HTTP_HEADER_ATTR_USER_ID.value());
+		userId.setDescription("User ID");
 		userId.setParameterType("header");
 		userId.setModelRef("string");
 		userId.setRequired("true");
