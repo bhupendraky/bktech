@@ -1,6 +1,5 @@
 package com.techy.user.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
@@ -32,15 +31,13 @@ public class User extends AuditableEntity<String> {
 	@Id
 	@SequenceGenerator(
 			name = "seq-id-gen",
-			sequenceName = "useridseq",
+			sequenceName = "user_id_seq",
 			initialValue = 100001,
 			allocationSize = 1
 			)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq-id-gen")
-	@Column(name="id")
 	private Long id;
 
-	@Column(name="name")
 	private String name;
 
 	public User(String name) {

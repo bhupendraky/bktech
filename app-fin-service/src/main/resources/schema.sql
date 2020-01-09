@@ -1,11 +1,11 @@
 create table useraccount
 (
    id long not null primary key,
-   userid varchar(50) not null,
-   createdby varchar(50),
-   createdon date,
-   updatedby varchar(50),
-   updatedon date
+   user_id varchar(50) not null,
+   created_by varchar(50),
+   created_on date,
+   updated_by varchar(50),
+   updated_on date
 );
 
-create sequence useraccountseq start with 100001 increment by 1;
+create sequence user_account_id_seq start with 100001 increment by 1;

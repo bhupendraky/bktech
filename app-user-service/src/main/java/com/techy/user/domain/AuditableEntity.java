@@ -2,7 +2,6 @@ package com.techy.user.domain;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 
@@ -22,18 +21,14 @@ import lombok.Setter;
 public abstract class AuditableEntity<U> {
 
 	@CreatedBy
-	@Column(name = "createdby")
 	protected U createdBy;
 
 	@CreatedDate
-	@Column(name = "createdon")
 	protected Date createdOn;
 
 	@LastModifiedBy
-	@Column(name = "updatedby")
 	protected U updatedBy;
 
 	@LastModifiedDate
-	@Column(name = "updatedon")
 	protected Date updatedOn;
 }
