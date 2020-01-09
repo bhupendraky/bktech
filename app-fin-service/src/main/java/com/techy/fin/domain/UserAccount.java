@@ -23,10 +23,10 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "financial")
+@Table(name = "user_account")
 @EntityListeners(AuditingEntityListener.class)
-@NamedQuery(name = "findAll", query = "select f from Financial f")
-public class Financial extends AuditableEntity<String> {
+@NamedQuery(name = "findAll", query = "select f from UserAccount f")
+public class UserAccount extends AuditableEntity<String> {
 
 	@Id
 	@SequenceGenerator(
@@ -38,10 +38,7 @@ public class Financial extends AuditableEntity<String> {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq-id-gen")
 	private Long id;
 
-	private String name;
+	private Long userId;
 
-	public Financial(String name) {
-		super();
-		this.name = name;
-	}
+	private Double accountBalance;
 }

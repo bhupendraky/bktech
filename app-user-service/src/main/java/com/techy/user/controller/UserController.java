@@ -31,35 +31,35 @@ public class UserController {
 	@Traceble
 	@ApiOperation("Fetch all user details")
 	@GetMapping("/get-all")
-	public List<User> getAllUserJpa() {
+	public List<User> getAllUser() {
 		return service.getAllUser();
 	}
 
 	@Traceble
 	@ApiOperation("Fetch user details with the id")
 	@GetMapping("/get/{id}")
-	public User getUserJpa(@PathVariable Long id) {
+	public User getUser(@PathVariable Long id) {
 		return service.getUser(id);
 	}
 
 	@Traceble
 	@ApiOperation("Update a user")
 	@PutMapping("/update")
-	public User updateUserJpa(@RequestBody UserDTO dto) {
+	public User updateUser(@RequestBody UserDTO dto) {
 		return service.updateUser(dto);
 	}
 
 	@Traceble
 	@ApiOperation("Add a user")
 	@PostMapping("/add")
-	public User addUserJpa(@RequestBody UserDTO dto) {
+	public User addUser(@RequestBody UserDTO dto) {
 		return service.addUser(dto);
 	}
 
 	@Traceble
 	@ApiOperation("Delete a user with the id")
 	@DeleteMapping("/delete")
-	public User deleteUserJpa(@PathVariable Long id) {
+	public User deleteUser(@PathVariable Long id) {
 		return service.deleteUser(id);
 	}
 }
