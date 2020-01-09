@@ -22,18 +22,18 @@ import lombok.Setter;
 public abstract class AuditableEntity<U> {
 
 	@CreatedBy
-	@Column(name = "CREATED_BY")
+	@Column(name = "createdby")
 	protected U createdBy;
 
 	@CreatedDate
-	@Column(name = "CREATED_ON")
+	@Column(name = "createdon")
 	protected Date createdOn;
 
 	@LastModifiedBy
-	@Column(name = "UPDATED_BY")
+	@Column(name = "updatedby")
 	protected U updatedBy;
 
 	@LastModifiedDate
-	@Column(name = "UPDATED_ON")
+	@Column(name = "updatedon")
 	protected Date updatedOn;
 }

@@ -12,6 +12,7 @@ import com.google.common.collect.Lists;
 import com.spring4all.swagger.EnableSwagger2Doc;
 import com.spring4all.swagger.SwaggerProperties;
 import com.spring4all.swagger.SwaggerProperties.GlobalOperationParameter;
+import com.techy.user.enums.Constants;
 
 @SpringBootApplication
 @EnableDiscoveryClient
@@ -29,9 +30,10 @@ public class AppUserServiceApplication implements InitializingBean {
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		GlobalOperationParameter userId = new GlobalOperationParameter();
-		userId.setName("UserId");
+		userId.setName(Constants.HTTP_HEADER_ATTR_USER_ID.value());
 		userId.setParameterType("header");
 		userId.setModelRef("string");
+		userId.setRequired("true");
 
 		if(CollectionUtils.isEmpty(swaggerProperties.getGlobalOperationParameters())){
 			swaggerProperties.setGlobalOperationParameters(Lists.newArrayList(userId));

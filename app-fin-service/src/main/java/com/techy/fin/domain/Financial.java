@@ -24,7 +24,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "FINANCIAL")
+@Table(name = "financial")
 @EntityListeners(AuditingEntityListener.class)
 @NamedQuery(name = "findAll", query = "select f from Financial f")
 public class Financial extends AuditableEntity<String> {
