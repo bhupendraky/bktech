@@ -19,14 +19,43 @@
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Hoxton.SR1</spring-cloud.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
-		<revision>0.0.1-SNAPSHOT</revision>
+		<revision>1.0.0</revision>
 		<main.basedir>${basedir}</main.basedir>
 	</properties>
 
 	<modules>
+		<module>infra-common</module>
 		<module>infra-eureka</module>
 		<module>infra-gateway</module>
 		<module>app-user-service</module>
  		<module>app-fin-service</module>
 	</modules>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.techy.smooth</groupId>
+				<artifactId>infra-common</artifactId>
+				<version>${revision}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+	    <pluginManagement>	
+	        <plugins>
+	            <plugin>
+	                <groupId>org.springframework.boot</groupId>
+	                <artifactId>spring-boot-maven-plugin</artifactId>
+	            </plugin>
+	        </plugins>
+	    </pluginManagement>
+	</build>
 </project>

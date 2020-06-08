@@ -1,12 +1,12 @@
-create table user_account
+create table USER_ACCOUNT
 (
-   id long not null primary key,
-   user_id varchar(50) not null,
-   account_balance double not null,
-   created_by varchar(50),
-   created_on date,
-   updated_by varchar(50),
-   updated_on date
+   ID long not null primary key,
+   USER_ID varchar(50) not null,
+   ACCOUNT_BALANCE double not null,
+   CREATED_BY varchar(50),
+   CREATED_ON date,
+   UPDATED_BY varchar(50),
+   UPDATED_ON date
 );
 
-create sequence user_account_id_seq start with 100001 increment by 1;
+create sequence USER_ACCOUNT_ID_SEQ start with 100001 increment by 1;

@@ -1,5 +1,7 @@
 package com.techy.user.errors;
 
+import com.techy.common.errors.IErrorCode;
+
 public enum ErrorCode implements IErrorCode {
 
 	TS_01_0001("User not found");

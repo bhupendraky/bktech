@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.techy.user.annotation.Traceble;
+import com.techy.common.annotation.Traceble;
 import com.techy.user.domain.User;
 import com.techy.user.dto.UserDTO;
 import com.techy.user.service.UserService;

@@ -1,13 +1,14 @@
 package com.techy.fin.errors;
 
-public class FinancialServiceException extends RuntimeException {
+import com.techy.common.errors.AppBaseException;
+import com.techy.common.errors.IErrorCode;
+
+public class FinancialServiceException extends AppBaseException {
 
 	private static final long serialVersionUID = 1L;
 
-	private IErrorCode errorCode;
-
 	public FinancialServiceException(IErrorCode errorCode) {
-		this(errorCode, errorCode == null ? null : errorCode.defaultMessage(), null);
+		this(errorCode, null, null);
 	}
 
 	public FinancialServiceException(IErrorCode errorCode, Throwable cause) {
@@ -19,12 +20,7 @@ public class FinancialServiceException extends RuntimeException {
 	}
 
 	public FinancialServiceException(IErrorCode errorCode, String message, Throwable cause) {
-		super(message, cause);
-		this.errorCode = errorCode;
-	}
+		super(errorCode, message, cause);
 
-	public IErrorCode errorCode() {
-		return this.errorCode;
 	}
-
 }

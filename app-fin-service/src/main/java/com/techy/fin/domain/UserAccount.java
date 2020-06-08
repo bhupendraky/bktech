@@ -11,6 +11,8 @@ import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.techy.common.domain.AuditableEntity;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +25,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "user_account")
+@Table(name = "USER_ACCOUNT")
 @EntityListeners(AuditingEntityListener.class)
 @NamedQuery(name = "findAll", query = "select f from UserAccount f")
 public class UserAccount extends AuditableEntity<String> {
@@ -31,7 +33,7 @@ public class UserAccount extends AuditableEntity<String> {
 	@Id
 	@SequenceGenerator(
 			name = "seq-id-gen",
-			sequenceName = "user_account_id_seq",
+			sequenceName = "USER_ACCOUNT_ID_SEQ",
 			initialValue = 100001,
 			allocationSize = 1
 			)

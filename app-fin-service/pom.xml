@@ -7,13 +7,13 @@
 		<groupId>com.techy.smooth</groupId>
 		<artifactId>techy-smooth</artifactId>
 		<version>${revision}</version>
+		<relativePath>../</relativePath>
 	</parent>
 	<artifactId>app-fin-service</artifactId>
 	<name>app-fin-service</name>
 	<description>BKY App Email Srvice</description>
 
 	<properties>
-		<main.basedir>${basedir}/..</main.basedir>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Hoxton.SR1</spring-cloud.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
@@ -60,6 +60,10 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.techy.smooth</groupId>
+			<artifactId>infra-common</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -79,18 +83,6 @@
 			</exclusions>
 		</dependency>
 	</dependencies>
-
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 
 	<build>
 		<plugins>

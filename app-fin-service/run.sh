@@ -1,3 +1,3 @@
 #!/bin/bash
 cd "$(dirname $0)"
-mvn spring-boot:run
+java -jar target/app-fin-service-1.0.0.jar

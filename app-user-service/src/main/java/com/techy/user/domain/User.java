@@ -11,19 +11,17 @@ import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import lombok.AllArgsConstructor;
+import com.techy.common.domain.AuditableEntity;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "USER")
 @EntityListeners(AuditingEntityListener.class)
 @NamedQuery(name = "findAll", query = "select u from User u")
 public class User extends AuditableEntity<String> {

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.techy.fin.annotation.Traceble;
+import com.techy.common.annotation.Traceble;
 import com.techy.fin.domain.UserAccount;
 import com.techy.fin.service.FincialService;
 

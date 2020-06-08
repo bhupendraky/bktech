@@ -1,13 +1,14 @@
 package com.techy.user.errors;
 
-public class UserServiceException extends RuntimeException {
+import com.techy.common.errors.AppBaseException;
+import com.techy.common.errors.IErrorCode;
+
+public class UserServiceException extends AppBaseException {
 
 	private static final long serialVersionUID = 1L;
 
-	private IErrorCode errorCode;
-
 	public UserServiceException(IErrorCode errorCode) {
-		this(errorCode, errorCode == null ? null : errorCode.defaultMessage(), null);
+		this(errorCode, null, null);
 	}
 
 	public UserServiceException(IErrorCode errorCode, Throwable cause) {
@@ -19,12 +20,7 @@ public class UserServiceException extends RuntimeException {
 	}
 
 	public UserServiceException(IErrorCode errorCode, String message, Throwable cause) {
-		super(message, cause);
-		this.errorCode = errorCode;
-	}
-
-	public IErrorCode errorCode() {
-		return this.errorCode;
+		super(errorCode, message, cause);
 	}
 
 }

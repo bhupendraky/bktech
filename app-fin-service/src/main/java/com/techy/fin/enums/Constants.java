@@ -2,7 +2,7 @@ package com.techy.fin.enums;
 
 public enum Constants {
 
-	HTTP_HEADER_ATTR_USER_ID("userId");
+	TEST("test");
 
 	private String value;
 
