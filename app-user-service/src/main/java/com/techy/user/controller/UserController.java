@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techy.common.annotation.Traceble;
+import com.techy.common.ctx.ExecutionContext;
 import com.techy.user.domain.User;
 import com.techy.user.dto.UserDTO;
 import com.techy.user.service.UserService;
@@ -61,5 +62,12 @@ public class UserController {
 	@DeleteMapping("/delete")
 	public User deleteUser(@PathVariable Long id) {
 		return service.deleteUser(id);
+	}
+
+	@Traceble
+	@ApiOperation("Get user id from context")
+	@GetMapping("/getUserId")
+	public String getUserId() {
+		return ExecutionContext.getUserContext().get().getUserId();
 	}
 }

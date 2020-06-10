@@ -41,6 +41,14 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
@@ -63,6 +71,11 @@
 		<dependency>
 			<groupId>com.techy.smooth</groupId>
 			<artifactId>infra-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.techy.smooth</groupId>
+			<artifactId>app-user-service</artifactId>
+			<classifier>client</classifier>
 		</dependency>
 
 		<dependency>
