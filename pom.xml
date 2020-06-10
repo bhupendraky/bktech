@@ -44,6 +44,14 @@
 				<groupId>com.techy.smooth</groupId>
 				<artifactId>infra-common</artifactId>
 				<version>${revision}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.techy.smooth</groupId>
+				<artifactId>app-user-service</artifactId>
+				<version>${revision}</version>
+				<classifier>client</classifier>
+				<scope>compile</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -51,11 +59,29 @@
 	<build>
 	    <pluginManagement>	
 	        <plugins>
-	            <plugin>
-	                <groupId>org.springframework.boot</groupId>
-	                <artifactId>spring-boot-maven-plugin</artifactId>
-	            </plugin>
-	        </plugins>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<executions>
+						<execution>
+							<phase>package</phase>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+							<configuration>
+								<classifier>client</classifier>
+								<includes>
+									<include>com/techy/**/proxy/*</include>
+								</includes>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
 	    </pluginManagement>
 	</build>
 </project>

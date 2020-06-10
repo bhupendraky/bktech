@@ -28,4 +28,11 @@ public class FinancialController {
 	public List<UserAccount> getAllAccounts() {
 		return service.getAllAccounts();
 	}
+
+	@Traceble
+	@ApiOperation("Get User ID from user proxy")
+	@GetMapping("/getUserId")
+	public String getUserId() {
+		return service.getUserId();
+	}
 }
