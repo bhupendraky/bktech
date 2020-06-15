@@ -14,16 +14,14 @@ import com.spring4all.swagger.SwaggerProperties;
 import com.techy.common.config.InMemoryConfig;
 import com.techy.common.config.SwaggerPropertiesInitializer;
 import com.techy.common.ctx.AuditorAwareImpl;
-import com.techy.common.ctx.ExecutionContext;
+import com.techy.common.ctx.RequestInterceptorImpl;
 
 import feign.RequestInterceptor;
 
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableSwagger2Doc
-@EnableFeignClients(basePackages = {
-		"com.techy.user.proxy"
-})
+@EnableFeignClients(basePackages = { "com.techy.user.proxy" })
 @EnableJpaAuditing(auditorAwareRef = "auditorAwareImpl")
 public class AppFinancialServiceApplication implements InitializingBean {
 
@@ -51,8 +49,6 @@ public class AppFinancialServiceApplication implements InitializingBean {
 
 	@Bean
 	public RequestInterceptor requestInterceptor() {
-		return template -> {
-			template.header("userId", ExecutionContext.getUserContext().get().getUserId());
-		};
+		return new RequestInterceptorImpl();
 	}
 }
