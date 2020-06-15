@@ -14,6 +14,9 @@ import com.spring4all.swagger.SwaggerProperties;
 import com.techy.common.config.InMemoryConfig;
 import com.techy.common.config.SwaggerPropertiesInitializer;
 import com.techy.common.ctx.AuditorAwareImpl;
+import com.techy.common.ctx.ExecutionContext;
+
+import feign.RequestInterceptor;
 
 @SpringBootApplication
 @EnableDiscoveryClient
@@ -42,5 +45,12 @@ public class AppUserServiceApplication implements InitializingBean {
 	@Bean
 	public InMemoryConfig loadStartupData() {
 		return new InMemoryConfig("classpath:h2-in-memory-data.sql");
+	}
+
+	@Bean
+	public RequestInterceptor requestInterceptor() {
+		return template -> {
+			template.header("userId", ExecutionContext.getUserContext().get().getUserId());
+		};
 	}
 }

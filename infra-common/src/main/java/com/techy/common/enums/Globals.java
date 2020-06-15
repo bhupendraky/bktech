@@ -2,7 +2,7 @@ package com.techy.common.enums;
 
 public enum Globals {
 
-	HTTP_HEADER_ATTR_USER_ID("userId");
+	HTTP_HEADER_USER_ID("userId");
 
 	private String value;
 
