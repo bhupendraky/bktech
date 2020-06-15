@@ -14,7 +14,7 @@ import com.spring4all.swagger.SwaggerProperties;
 import com.techy.common.config.InMemoryConfig;
 import com.techy.common.config.SwaggerPropertiesInitializer;
 import com.techy.common.ctx.AuditorAwareImpl;
-import com.techy.common.ctx.ExecutionContext;
+import com.techy.common.ctx.RequestInterceptorImpl;
 
 import feign.RequestInterceptor;
 
@@ -49,8 +49,6 @@ public class AppUserServiceApplication implements InitializingBean {
 
 	@Bean
 	public RequestInterceptor requestInterceptor() {
-		return template -> {
-			template.header("userId", ExecutionContext.getUserContext().get().getUserId());
-		};
+		return new RequestInterceptorImpl();
 	}
 }
