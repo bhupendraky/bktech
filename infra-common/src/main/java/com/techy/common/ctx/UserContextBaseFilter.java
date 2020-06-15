@@ -22,11 +22,9 @@ public class UserContextBaseFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		try {
-			HttpServletRequest servletRequest = (HttpServletRequest) request;
-			String userId = servletRequest.getHeader(Globals.HTTP_HEADER_ATTR_USER_ID.value());
-			UserContext userContext = new UserContext();
-			userContext.setUserId(userId);
-			ExecutionContext.getUserContext().set(userContext);
+			ExecutionContext.getUserContext()
+			.set(new UserContext(((HttpServletRequest) request)
+					.getHeader(Globals.HTTP_HEADER_USER_ID.value())));
 			chain.doFilter(request, response);
 		} finally {
 			ExecutionContext.removeUserContext();
