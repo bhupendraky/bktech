@@ -1,6 +1,6 @@
 package com.techy.common.errors;
 
-public enum ErrorCode implements IErrorCode {
+public enum CommonErrorCode implements IErrorCode {
 
 	TS_00_0001("Unexpected service exception"),
 	TS_00_0002("Proxy call failed"),
@@ -9,7 +9,7 @@ public enum ErrorCode implements IErrorCode {
 
 	private String defaultMessage;
 
-	ErrorCode(String defaultMessage) {
+	CommonErrorCode(String defaultMessage) {
 		this.defaultMessage = defaultMessage;
 	}
 

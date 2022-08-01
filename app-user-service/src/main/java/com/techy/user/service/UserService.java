@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.techy.user.data.UserJpaRepository;
 import com.techy.user.domain.User;
 import com.techy.user.dto.UserDTO;
-import com.techy.user.errors.ErrorCode;
+import com.techy.user.errors.UserErrorCode;
 import com.techy.user.errors.UserServiceException;
 
 @Service
@@ -20,7 +20,7 @@ public class UserService {
 	public User getUser(Long id) {
 
 		return repo.findById(id).orElseThrow(
-				() -> new UserServiceException(ErrorCode.TS_01_0001));
+				() -> new UserServiceException(UserErrorCode.TS_01_0001));
 	}
 
 	public User updateUser(UserDTO dto) {
