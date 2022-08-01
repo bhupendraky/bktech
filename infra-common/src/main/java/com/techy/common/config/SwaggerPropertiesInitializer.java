@@ -1,7 +1,5 @@
 package com.techy.common.config;
 
-import org.springframework.util.CollectionUtils;
-
 import com.google.common.collect.Lists;
 import com.spring4all.swagger.SwaggerProperties;
 import com.spring4all.swagger.SwaggerProperties.GlobalOperationParameter;
@@ -17,7 +15,7 @@ public class SwaggerPropertiesInitializer {
 		userId.setModelRef("string");
 		userId.setRequired("true");
 
-		if(CollectionUtils.isEmpty(swaggerProperties.getGlobalOperationParameters())){
+		if(swaggerProperties.getGlobalOperationParameters() == null){
 			swaggerProperties.setGlobalOperationParameters(Lists.newArrayList(userId));
 		} else {
 			swaggerProperties.getGlobalOperationParameters().add(userId);
