@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,12 +17,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import com.netflix.hystrix.exception.HystrixRuntimeException;
 
 import feign.FeignException;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 public class CommonExceptionHandler extends ResponseEntityExceptionHandler {
 
-
+	private Logger log = LoggerFactory.getLogger(getClass());
 
 	/**
 	 * Create a exception response body.

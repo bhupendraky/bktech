@@ -6,12 +6,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@Getter
-@Setter
 @Configuration
 public class UserDetailConfig {
 
@@ -27,13 +21,40 @@ public class UserDetailConfig {
 		return new UserDetail();
 	}
 
-	@Getter
-	@Setter
-	@ToString
 	public class UserDetail {
 		private String name;
 		private String address;
 		private Map<String, Integer> phone;
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public String getAddress() {
+			return address;
+		}
+
+		public void setAddress(String address) {
+			this.address = address;
+		}
+
+		public Map<String, Integer> getPhone() {
+			return phone;
+		}
+
+		public void setPhone(Map<String, Integer> phone) {
+			this.phone = phone;
+		}
+
+		@Override
+		public String toString() {
+			return "UserDetail [name=" + name + ", address=" + address + ", phone=" + phone + "]";
+		}
+
 	}
 
 }
