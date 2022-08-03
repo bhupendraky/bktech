@@ -13,13 +13,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.techy.common.domain.AuditableEntity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@NoArgsConstructor
 @Entity
 @Table(name = "USER")
 @EntityListeners(AuditingEntityListener.class)
@@ -38,8 +31,28 @@ public class User extends AuditableEntity<String> {
 
 	private String name;
 
+	public User() {
+		super();
+	}
+
 	public User(String name) {
 		super();
+		this.name = name;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
 		this.name = name;
 	}
 }

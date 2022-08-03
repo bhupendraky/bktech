@@ -12,7 +12,6 @@ import com.techy.user.proxy.UserServiceProxy;
 @Service
 public class FincialService {
 
-
 	@Autowired
 	private FinancialRepository repo;
 
