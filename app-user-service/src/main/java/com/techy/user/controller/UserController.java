@@ -39,7 +39,7 @@ public class UserController {
 	@Traceble
 	@ApiOperation("Fetch user details with the id")
 	@GetMapping("/get/{id}")
-	public User getUser(@PathVariable Long id) {
+	public User getUser(@PathVariable String id) {
 		return service.getUser(id);
 	}
 
@@ -60,7 +60,7 @@ public class UserController {
 	@Traceble
 	@ApiOperation("Delete a user with the id")
 	@DeleteMapping("/delete")
-	public User deleteUser(@PathVariable Long id) {
+	public User deleteUser(@PathVariable String id) {
 		return service.deleteUser(id);
 	}
 
