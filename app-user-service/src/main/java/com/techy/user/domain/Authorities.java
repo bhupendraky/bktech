@@ -2,8 +2,11 @@ package com.techy.user.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -11,19 +14,16 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import com.techy.common.domain.AuditableEntity;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "AUTHORITIES")
 @EntityListeners(AuditingEntityListener.class)
-@NamedQuery(name = "findAllUser", query = "select u from User u")
-public class User extends AuditableEntity<String> {
+public class Authorities extends AuditableEntity<String> {
 
 	@Id
 	private String userName;
 	
-	private String password;
-	
-	private Boolean enabled;
+	private String authority;
 
-	public User() {
+	public Authorities() {
 		super();
 	}
 
@@ -35,20 +35,12 @@ public class User extends AuditableEntity<String> {
 		this.userName = userName;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getAuthority() {
+		return authority;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Boolean getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(Boolean enabled) {
-		this.enabled = enabled;
+	public void setAuthority(String authority) {
+		this.authority = authority;
 	}
 
 }
