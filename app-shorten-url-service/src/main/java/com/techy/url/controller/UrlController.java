@@ -25,7 +25,7 @@ public class UrlController {
 	@Traceble
 	@ApiOperation("Get the URL")
 	@GetMapping("/{hashCode}")
-	public String getAllUser(@PathVariable String hashCode) {
+	public String getUrl(@PathVariable String hashCode) {
 		return service.getUrl(hashCode);
 	}
 
@@ -34,6 +34,12 @@ public class UrlController {
 	@PostMapping()
 	public String shortenUrl(@RequestBody String url) {
 		return service.shortenUrl(url);
+	}
+	
+	@ApiOperation("Get the next counter value")
+	@GetMapping("/next/counter")
+	public Long getNextCounterValue() {
+		return service.getNextCounterValue();
 	}
 
 }
