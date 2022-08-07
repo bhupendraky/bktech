@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.techy.url.domain.Counter;
 
 @Repository
-public interface CounterJpaRepository extends JpaRepository<Counter, Integer> {
+public interface CounterRepository extends JpaRepository<Counter, Integer> {
 	
 	@Query(value = "update COUNTER set value = LAST_INSERT_ID(value+1); ", nativeQuery = true)
 	void updateCounterValue();

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.techy.url.domain.WebUrl;
 
 @Repository
-public interface WebUrlJpaRepository extends JpaRepository<WebUrl, String> {
+public interface WebUrlRepository extends JpaRepository<WebUrl, String> {
 
 }
