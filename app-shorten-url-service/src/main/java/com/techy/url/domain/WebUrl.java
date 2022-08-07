@@ -15,6 +15,7 @@ import com.techy.common.domain.AuditableEntity;
 public class WebUrl extends AuditableEntity<String> {
 
 	@Id
+	private Long id;
 	private String hashCode;
 	private String url;
 
