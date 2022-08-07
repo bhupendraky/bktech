@@ -22,6 +22,10 @@ public class AppUserDetails implements UserDetails {
 		this.password = user.getPassword();
 		this.enabled = user.getEnabled();
 	}
+	
+	public AppUserDetails() {
+		
+	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

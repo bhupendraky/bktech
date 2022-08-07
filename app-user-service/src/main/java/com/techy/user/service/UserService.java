@@ -19,11 +19,11 @@ import com.techy.user.errors.UserServiceException;
 public class UserService implements UserDetailsService {
 
 	@Autowired
-	private UserJpaRepository repo;
+	private UserJpaRepository userRepository;
 
 	public User getUser(String userName) {
 
-		return repo.findById(userName).orElseThrow(
+		return userRepository.findById(userName).orElseThrow(
 				() -> new UserServiceException(UserErrorCode.TS_01_0001));
 	}
 
@@ -32,16 +32,16 @@ public class UserService implements UserDetailsService {
 		user.setUserName(dto.getUserName());
 		user.setPassword(dto.getPassword());
 		user.setEnabled(dto.getEnabled());
-		return repo.save(user);
+		return userRepository.save(user);
 	}
 
 	public List<User> getAllUser() {
-		return repo.findAll();
+		return userRepository.findAll();
 	}
 
 	public User deleteUser(String id) {
-		User user = repo.findById(id).orElse(null);
-		repo.deleteById(id);
+		User user = userRepository.findById(id).orElse(null);
+		userRepository.deleteById(id);
 		return user;
 	}
 
@@ -51,11 +51,13 @@ public class UserService implements UserDetailsService {
 		user.setPassword(dto.getPassword());
 		user.setEnabled(dto.getEnabled());
 		
-		return repo.save(user);
+		return userRepository.save(user);
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-		return new AppUserDetails(getUser(userName));
+		return userRepository.findByUserName(userName)
+				.map(AppUserDetails::new)
+				.orElseThrow(() -> new UsernameNotFoundException("Not found: " + userName));
 	}
 }
