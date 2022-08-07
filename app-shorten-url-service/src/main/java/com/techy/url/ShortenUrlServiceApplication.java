@@ -24,10 +24,10 @@ import feign.RequestInterceptor;
 @EnableJpaRepositories
 @EnableFeignClients
 @EnableJpaAuditing(auditorAwareRef = "auditorAwareImpl")
-public class AppUrlServiceApplication implements InitializingBean {
+public class ShortenUrlServiceApplication implements InitializingBean {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AppUrlServiceApplication.class, args);
+		SpringApplication.run(ShortenUrlServiceApplication.class, args);
 	}
 
 	@Autowired

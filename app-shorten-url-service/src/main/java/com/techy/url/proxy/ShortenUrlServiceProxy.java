@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @FeignClient(name = "${spring.application.name}", url = "${infra.gateway.url}")
 @RibbonClient(name = "${spring.application.name}")
-public interface UrlServiceProxy {
+public interface ShortenUrlServiceProxy {
 
 	@GetMapping(value = "/app-shorten-url-service/url/{hashCode}")
 	String getUrl(String hashCode);

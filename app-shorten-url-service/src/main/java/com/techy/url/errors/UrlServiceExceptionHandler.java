@@ -11,8 +11,8 @@ import com.techy.common.errors.CommonExceptionHandler;
 @ControllerAdvice
 public class UrlServiceExceptionHandler extends CommonExceptionHandler {
 
-	@ExceptionHandler(value = UrlServiceException.class)
-	public ResponseEntity<Object> handleUserServiceException(UrlServiceException ex, WebRequest request) {
+	@ExceptionHandler(value = ShortenUrlServiceException.class)
+	public ResponseEntity<Object> handleUserServiceException(ShortenUrlServiceException ex, WebRequest request) {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 				.body(createBody(ex, request));
 	}

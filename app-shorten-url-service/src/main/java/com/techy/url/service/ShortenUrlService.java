@@ -7,11 +7,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.techy.url.data.CounterJpaRepository;
 import com.techy.url.data.WebUrlJpaRepository;
 import com.techy.url.domain.Counter;
-import com.techy.url.errors.UrlErrorCode;
-import com.techy.url.errors.UrlServiceException;
+import com.techy.url.errors.ShortenUrlErrorCode;
+import com.techy.url.errors.ShortenUrlServiceException;
 
 @Service
-public class UrlService {
+public class ShortenUrlService {
 
 	@Autowired
 	private WebUrlJpaRepository urlRepository;
@@ -22,7 +22,7 @@ public class UrlService {
 	public String getUrl(String hashCode) {
 		return urlRepository.findById(hashCode)
 		.map(e -> e.getUrl())
-		.orElseThrow(() -> new UrlServiceException(UrlErrorCode.TS_03_0001));
+		.orElseThrow(() -> new ShortenUrlServiceException(ShortenUrlErrorCode.TS_03_0001));
 	}
 
 	public String shortenUrl(String url) {

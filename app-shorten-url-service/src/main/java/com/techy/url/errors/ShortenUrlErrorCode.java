@@ -2,13 +2,13 @@ package com.techy.url.errors;
 
 import com.techy.common.errors.IErrorCode;
 
-public enum UrlErrorCode implements IErrorCode {
+public enum ShortenUrlErrorCode implements IErrorCode {
 
 	TS_03_0001("URL not found");
 
 	private String defaultMessage;
 
-	UrlErrorCode(String defaultMessage) {
+	ShortenUrlErrorCode(String defaultMessage) {
 		this.defaultMessage = defaultMessage;
 	}
 

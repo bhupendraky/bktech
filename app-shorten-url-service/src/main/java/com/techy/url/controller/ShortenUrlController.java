@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techy.common.annotation.Traceble;
-import com.techy.url.service.UrlService;
+import com.techy.url.service.ShortenUrlService;
 
 import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/url")
-public class UrlController {
+public class ShortenUrlController {
 
 	@Autowired
-	private UrlService service;
+	private ShortenUrlService service;
 
 	@Traceble
 	@ApiOperation("Get the URL")
