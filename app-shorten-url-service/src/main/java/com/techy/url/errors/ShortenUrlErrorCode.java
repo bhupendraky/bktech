@@ -4,7 +4,8 @@ import com.techy.common.errors.IErrorCode;
 
 public enum ShortenUrlErrorCode implements IErrorCode {
 
-	TS_03_0001("URL not found");
+	TS_03_0001("URL not found"),
+	TS_03_0002("Long URL not valid");
 
 	private String defaultMessage;
 

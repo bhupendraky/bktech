@@ -20,26 +20,26 @@ import io.swagger.annotations.ApiOperation;
 public class ShortenUrlController {
 
 	@Autowired
-	private ShortenUrlService ShortenUrlService;
+	private ShortenUrlService shortenUrlService;
 
 	@Traceble
 	@ApiOperation("Get the URL")
 	@GetMapping("/{hashCode}")
 	public String getUrl(@PathVariable String hashCode) {
-		return ShortenUrlService.getUrl(hashCode);
+		return shortenUrlService.getUrl(hashCode);
 	}
 
 	@Traceble
 	@ApiOperation("Shorten URL")
 	@PostMapping()
 	public String shortenUrl(@RequestBody String url) {
-		return ShortenUrlService.shortenUrl(url);
+		return shortenUrlService.shortenUrl(url);
 	}
 	
 	@ApiOperation("Get the next counter value")
 	@GetMapping("/next/counter")
 	public Long getNextCounterValue() {
-		return ShortenUrlService.getNextCounterValue();
+		return shortenUrlService.getNextCounterValue();
 	}
 
 }
