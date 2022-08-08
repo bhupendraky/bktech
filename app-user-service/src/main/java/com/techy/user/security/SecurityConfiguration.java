@@ -38,7 +38,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		auth.jdbcAuthentication()
 		.dataSource(dataSource)
 		.usersByUsernameQuery("select user_name as username, password, enabled "
-				+ " from user where user_name=?")
+				+ " from techy_user where user_name=?")
 		.authoritiesByUsernameQuery("select user_name as username, authority "
 				+ " from authorities where user_name=?");
 	}
