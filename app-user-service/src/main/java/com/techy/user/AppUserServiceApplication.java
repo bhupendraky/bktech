@@ -23,7 +23,7 @@ import feign.RequestInterceptor;
 @EnableDiscoveryClient
 @EnableSwagger2Doc
 @EnableJpaRepositories
-@EnableFeignClients
+@EnableFeignClients(basePackages = {"com.techy.user.proxy"})
 @EnableJpaAuditing(auditorAwareRef = "auditorAwareImpl")
 public class AppUserServiceApplication implements InitializingBean {
 

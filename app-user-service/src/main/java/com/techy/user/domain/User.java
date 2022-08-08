@@ -11,7 +11,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import com.techy.common.domain.AuditableEntity;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "TECHY_USER")
 @EntityListeners(AuditingEntityListener.class)
 @NamedQuery(name = "findAllUser", query = "select u from User u")
 public class User extends AuditableEntity<String> {
