@@ -24,12 +24,12 @@ public class CustomerService {
 
 	@Autowired
 	private CustomerRepository customerRepo;
-	
+
 	@Autowired
-    private JobLauncher jobLauncher;
-	
-    @Autowired
-    private Job job;
+	private JobLauncher jobLauncher;
+
+	@Autowired
+	private Job job;
 
 	public List<Customer> getAllCustomers() {
 		return customerRepo.findAll();
@@ -42,12 +42,15 @@ public class CustomerService {
 
 	public String loadCustomerData() {
 		JobParameters jobParameters = new JobParametersBuilder()
-                .addLong("startAt", System.currentTimeMillis()).toJobParameters();
-        try {
-            jobLauncher.run(job, jobParameters);
-        } catch (JobExecutionAlreadyRunningException | JobRestartException | JobInstanceAlreadyCompleteException | JobParametersInvalidException e) {
-            e.printStackTrace();
-        }
+				.addLong("startAt", System.currentTimeMillis())
+				.toJobParameters();
+		customerRepo.deleteAll();
+		try {
+			jobLauncher.run(job, jobParameters);
+		} catch (JobExecutionAlreadyRunningException | JobRestartException | JobInstanceAlreadyCompleteException
+				| JobParametersInvalidException e) {
+			e.printStackTrace();
+		}
 		return Constants.SUCCESS.value();
 	}
 
