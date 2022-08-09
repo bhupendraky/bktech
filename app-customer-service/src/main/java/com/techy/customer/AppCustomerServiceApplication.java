@@ -12,7 +12,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.spring4all.swagger.EnableSwagger2Doc;
 import com.spring4all.swagger.SwaggerProperties;
-import com.techy.common.config.InMemoryConfig;
 import com.techy.common.config.SwaggerPropertiesInitializer;
 import com.techy.common.ctx.AuditorAwareImpl;
 import com.techy.common.ctx.RequestInterceptorImpl;
@@ -42,11 +41,6 @@ public class AppCustomerServiceApplication implements InitializingBean {
 	@Bean
 	public AuditorAwareImpl auditorAwareImpl() {
 		return new AuditorAwareImpl();
-	}
-
-	@Bean
-	public InMemoryConfig loadStartupData() {
-		return new InMemoryConfig("classpath:h2-in-memory-data.sql");
 	}
 
 	@Bean
