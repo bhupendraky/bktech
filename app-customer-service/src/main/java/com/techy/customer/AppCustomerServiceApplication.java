@@ -1,4 +1,4 @@
-package com.techy.fin;
+package com.techy.customer;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +23,12 @@ import feign.RequestInterceptor;
 @EnableDiscoveryClient
 @EnableSwagger2Doc
 @EnableJpaRepositories
-@EnableFeignClients(basePackages = { "com.techy.fin.proxy" })
+@EnableFeignClients(basePackages = { "com.techy.customer.proxy" })
 @EnableJpaAuditing(auditorAwareRef = "auditorAwareImpl")
-public class AppFinancialServiceApplication implements InitializingBean {
+public class AppCustomerServiceApplication implements InitializingBean {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AppFinancialServiceApplication.class, args);
+		SpringApplication.run(AppCustomerServiceApplication.class, args);
 	}
 
 	@Autowired

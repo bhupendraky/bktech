@@ -58,11 +58,11 @@
 			<artifactId>swagger-spring-boot-starter</artifactId>
 			<version>1.7.0.RELEASE</version>
 		</dependency>
-		<dependency>
+		<!--dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
-		</dependency>
+		</dependency-->
 		<dependency>
 			<groupId>com.techy.smooth</groupId>
 			<artifactId>infra-common</artifactId>
