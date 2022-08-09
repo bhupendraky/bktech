@@ -13,9 +13,9 @@ import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.techy.common.enums.Globals;
 import com.techy.customer.data.CustomerRepository;
 import com.techy.customer.domain.Customer;
-import com.techy.customer.enums.Constants;
 import com.techy.customer.errors.CustomerErrorCode;
 import com.techy.customer.errors.CustomerServiceException;
 
@@ -51,7 +51,7 @@ public class CustomerService {
 				| JobParametersInvalidException e) {
 			e.printStackTrace();
 		}
-		return Constants.SUCCESS.value();
+		return Globals.SUCCESS.value();
 	}
 
 }
