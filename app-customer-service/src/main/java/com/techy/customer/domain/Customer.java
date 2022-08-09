@@ -1,7 +1,5 @@
 package com.techy.customer.domain;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
@@ -27,7 +25,7 @@ public class Customer extends AuditableEntity<String> {
 	private String gender;
 	private String contactNumber;
 	private String country;
-	private Date dateOfBirth;
+	private String dateOfBirth;
 
 	public Long getId() {
 		return id;
@@ -93,11 +91,11 @@ public class Customer extends AuditableEntity<String> {
 		this.country = country;
 	}
 
-	public Date getDateOfBirth() {
+	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
