@@ -2,6 +2,8 @@ package com.techy.user.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techy.common.annotation.Traceble;
-import com.techy.common.ctx.ExecutionContext;
 import com.techy.user.domain.User;
 import com.techy.user.dto.UserDTO;
 import com.techy.user.service.UserService;
@@ -46,15 +47,15 @@ public class UserController {
 	@Traceble
 	@ApiOperation("Update a user")
 	@PutMapping("/update")
-	public User updateUser(@RequestBody UserDTO dto) {
+	public User updateUser(@Valid @RequestBody UserDTO dto) {
 		return service.updateUser(dto);
 	}
 
 	@Traceble
-	@ApiOperation("Add a user")
-	@PostMapping("/add")
-	public User addUser(@RequestBody UserDTO dto) {
-		return service.addUser(dto);
+	@ApiOperation("Create a user")
+	@PostMapping("/create")
+	public User addUser(@Valid @RequestBody UserDTO dto) {
+		return service.createUser(dto);
 	}
 
 	@Traceble
@@ -64,10 +65,4 @@ public class UserController {
 		return service.deleteUser(id);
 	}
 
-	@Traceble
-	@ApiOperation("Get user id from context")
-	@GetMapping("/getUserId")
-	public String getUserId() {
-		return ExecutionContext.getUserContext().get().getUserId();
-	}
 }

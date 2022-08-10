@@ -14,6 +14,7 @@ import com.techy.user.dto.AppUserDetails;
 import com.techy.user.dto.UserDTO;
 import com.techy.user.errors.UserErrorCode;
 import com.techy.user.errors.UserServiceException;
+import com.techy.user.mapper.UserMapper;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -28,10 +29,7 @@ public class UserService implements UserDetailsService {
 	}
 
 	public User updateUser(UserDTO dto) {
-		User user = getUser(dto.getUserName());
-		user.setUserName(dto.getUserName());
-		user.setPassword(dto.getPassword());
-		user.setEnabled(dto.getEnabled());
+		User user = UserMapper.getMapper().userDtoToUserMapper(dto);
 		return userRepository.save(user);
 	}
 
@@ -45,12 +43,8 @@ public class UserService implements UserDetailsService {
 		return user;
 	}
 
-	public User addUser(UserDTO dto) {
-		User user = new User();
-		user.setUserName(dto.getUserName());
-		user.setPassword(dto.getPassword());
-		user.setEnabled(dto.getEnabled());
-		
+	public User createUser(UserDTO dto) {
+		User user = UserMapper.getMapper().userDtoToUserMapper(dto);
 		return userRepository.save(user);
 	}
 
