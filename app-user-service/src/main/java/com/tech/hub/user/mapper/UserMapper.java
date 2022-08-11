@@ -8,7 +8,8 @@ import com.tech.hub.user.dto.UserDTO;
 @Mapper
 public interface UserMapper {
 
-	User userDtoToUserMapper(UserDTO dto);
+	User mapToUser(UserDTO dto);
 
-	UserDTO userToUserDtoMapper(User user);
+	UserDTO mapToUserDTO(User user);
+
 }

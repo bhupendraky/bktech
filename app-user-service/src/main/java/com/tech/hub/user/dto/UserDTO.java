@@ -1,5 +1,7 @@
 package com.tech.hub.user.dto;
 
+import java.util.Set;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -18,6 +20,7 @@ public class UserDTO {
 	@NotEmpty
 	private String email;
 	private Boolean enabled = false;
+	private Set<AuthorityDTO> authorities;
 
 	public String getUserName() {
 		return userName;
@@ -49,6 +52,14 @@ public class UserDTO {
 
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public Set<AuthorityDTO> getAuthorities() {
+		return authorities;
+	}
+
+	public void setAuthorities(Set<AuthorityDTO> authorities) {
+		this.authorities = authorities;
 	}
 
 }
