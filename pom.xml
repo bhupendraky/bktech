@@ -9,12 +9,12 @@
 		<version>2.2.2.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.techy.smooth</groupId>
-	<artifactId>techy-smooth</artifactId>
+	<groupId>com.tech.hub</groupId>
+	<artifactId>tech-hub</artifactId>
 	<version>${revision}</version>
 	<packaging>pom</packaging>
-	<name>techy-smoth-project</name>
-	<description>BKY Techy Smooth Project</description>
+	<name>tech-hub-project</name>
+	<description>BKY Tech Hub Project</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -44,13 +44,13 @@
 				<scope>import</scope>
 			</dependency>
 			<dependency>
-				<groupId>com.techy.smooth</groupId>
+				<groupId>com.tech.hub</groupId>
 				<artifactId>infra-common</artifactId>
 				<version>${revision}</version>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
-				<groupId>com.techy.smooth</groupId>
+				<groupId>com.tech.hub</groupId>
 				<artifactId>app-user-service</artifactId>
 				<version>${revision}</version>
 				<classifier>client</classifier>
