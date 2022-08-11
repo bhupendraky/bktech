@@ -1,5 +1,6 @@
 package com.tech.hub.common.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.EntityListeners;
@@ -13,7 +14,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class AuditableEntity<U> {
+public abstract class AuditableEntity<U> implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@CreatedBy
 	protected U createdBy;
@@ -58,5 +61,5 @@ public abstract class AuditableEntity<U> {
 	public void setUpdatedOn(Date updatedOn) {
 		this.updatedOn = updatedOn;
 	}
-	
+
 }
