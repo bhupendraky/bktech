@@ -30,20 +30,20 @@ public class UserService implements UserDetailsService {
 	public UserDTO getUser(String userName) {
 
 		return userRepository.findByUserName(userName)
-				.map(userMapper::userToUserDtoMapper)
+				.map(userMapper::mapToUserDTO)
 				.orElseThrow(() -> new UserServiceException(UserErrorCode.TS_01_0001));
 	}
 
 	public UserDTO updateUser(UserDTO dto) {
-		User newUuser = userMapper.userDtoToUserMapper(dto);
+		User newUuser = userMapper.mapToUser(dto);
 		User savedUser = userRepository.save(newUuser);
-		return userMapper.userToUserDtoMapper(savedUser);
+		return userMapper.mapToUserDTO(savedUser);
 	}
 
 	public List<UserDTO> getAllUser() {
 		return userRepository.findAll()
 				.stream()
-				.map(userMapper::userToUserDtoMapper)
+				.map(userMapper::mapToUserDTO)
 				.collect(Collectors.toList());
 	}
 
@@ -53,9 +53,9 @@ public class UserService implements UserDetailsService {
 	}
 
 	public UserDTO createUser(UserDTO dto) {
-		User newUser = userMapper.userDtoToUserMapper(dto);
+		User newUser = userMapper.mapToUser(dto);
 		User savedUser = userRepository.save(newUser);
-		return userMapper.userToUserDtoMapper(savedUser);
+		return userMapper.mapToUserDTO(savedUser);
 	}
 
 	@Override

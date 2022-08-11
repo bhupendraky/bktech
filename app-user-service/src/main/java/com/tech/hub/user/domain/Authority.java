@@ -16,7 +16,7 @@ import com.tech.hub.common.domain.AuditableEntity;
 @Entity
 @Table(name = "AUTHORITIES")
 @EntityListeners(AuditingEntityListener.class)
-public class Authorities extends AuditableEntity<String> {
+public class Authority extends AuditableEntity<String> {
 
 	private static final long serialVersionUID = 1L;
 
