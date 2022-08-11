@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tech.hub.common.annotation.Traceble;
-import com.tech.hub.user.domain.User;
 import com.tech.hub.user.dto.UserDTO;
 import com.tech.hub.user.service.UserService;
 
@@ -33,28 +32,28 @@ public class UserController {
 	@Traceble
 	@ApiOperation("Fetch all user details")
 	@GetMapping("/get-all")
-	public List<User> getAllUser() {
+	public List<UserDTO> getAllUser() {
 		return service.getAllUser();
 	}
 
 	@Traceble
 	@ApiOperation("Fetch user details with the id")
 	@GetMapping("/get/{id}")
-	public User getUser(@PathVariable String id) {
+	public UserDTO getUser(@PathVariable String id) {
 		return service.getUser(id);
 	}
 
 	@Traceble
 	@ApiOperation("Update a user")
 	@PutMapping("/update")
-	public User updateUser(@Valid @RequestBody UserDTO dto) {
+	public UserDTO updateUser(@Valid @RequestBody UserDTO dto) {
 		return service.updateUser(dto);
 	}
 
 	@Traceble
 	@ApiOperation("Create a user")
 	@PostMapping("/create")
-	public User addUser(@Valid @RequestBody UserDTO dto) {
+	public UserDTO addUser(@Valid @RequestBody UserDTO dto) {
 		return service.createUser(dto);
 	}
 

@@ -1,7 +1,9 @@
 package com.tech.hub.user.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -23,19 +25,26 @@ public class UserService implements UserDetailsService {
 	@Autowired
 	private UserJpaRepository userRepository;
 
-	public User getUser(String userName) {
+	private UserMapper userMapper = Mappers.getMapper(UserMapper.class);
 
-		return userRepository.findByUserName(userName).orElseThrow(
-				() -> new UserServiceException(UserErrorCode.TS_01_0001));
+	public UserDTO getUser(String userName) {
+
+		return userRepository.findByUserName(userName)
+				.map(userMapper::userToUserDtoMapper)
+				.orElseThrow(() -> new UserServiceException(UserErrorCode.TS_01_0001));
 	}
 
-	public User updateUser(UserDTO dto) {
-		User user = UserMapper.getMapper().userDtoToUserMapper(dto);
-		return userRepository.save(user);
+	public UserDTO updateUser(UserDTO dto) {
+		User newUuser = userMapper.userDtoToUserMapper(dto);
+		User savedUser = userRepository.save(newUuser);
+		return userMapper.userToUserDtoMapper(savedUser);
 	}
 
-	public List<User> getAllUser() {
-		return userRepository.findAll();
+	public List<UserDTO> getAllUser() {
+		return userRepository.findAll()
+				.stream()
+				.map(userMapper::userToUserDtoMapper)
+				.collect(Collectors.toList());
 	}
 
 	public String deleteUser(String userName) {
@@ -43,15 +52,15 @@ public class UserService implements UserDetailsService {
 		return Globals.SUCCESS.value();
 	}
 
-	public User createUser(UserDTO dto) {
-		User user = UserMapper.getMapper().userDtoToUserMapper(dto);
-		return userRepository.save(user);
+	public UserDTO createUser(UserDTO dto) {
+		User newUser = userMapper.userDtoToUserMapper(dto);
+		User savedUser = userRepository.save(newUser);
+		return userMapper.userToUserDtoMapper(savedUser);
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-		return userRepository.findByUserName(userName)
-				.map(AppUserDetails::new)
+		return userRepository.findByUserName(userName).map(AppUserDetails::new)
 				.orElseThrow(() -> new UsernameNotFoundException("Not found: " + userName));
 	}
 }

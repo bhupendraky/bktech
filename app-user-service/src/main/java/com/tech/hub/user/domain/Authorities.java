@@ -18,6 +18,8 @@ import com.tech.hub.common.domain.AuditableEntity;
 @EntityListeners(AuditingEntityListener.class)
 public class Authorities extends AuditableEntity<String> {
 
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue
 	private Long id;
