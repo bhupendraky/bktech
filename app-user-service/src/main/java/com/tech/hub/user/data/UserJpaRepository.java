@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 import com.tech.hub.user.domain.User;
 
 @Repository
-public interface UserJpaRepository extends JpaRepository<User, String> {
+public interface UserJpaRepository extends JpaRepository<User, Long> {
+
 	Optional<User> findByUserName(String userName);
+
+	void deleteByUserName(String userName);
 }

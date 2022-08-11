@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.tech.hub.common.enums.Globals;
 import com.tech.hub.user.data.UserJpaRepository;
 import com.tech.hub.user.domain.User;
 import com.tech.hub.user.dto.AppUserDetails;
@@ -24,7 +25,7 @@ public class UserService implements UserDetailsService {
 
 	public User getUser(String userName) {
 
-		return userRepository.findById(userName).orElseThrow(
+		return userRepository.findByUserName(userName).orElseThrow(
 				() -> new UserServiceException(UserErrorCode.TS_01_0001));
 	}
 
@@ -37,10 +38,9 @@ public class UserService implements UserDetailsService {
 		return userRepository.findAll();
 	}
 
-	public User deleteUser(String id) {
-		User user = userRepository.findById(id).orElse(null);
-		userRepository.deleteById(id);
-		return user;
+	public String deleteUser(String userName) {
+		userRepository.deleteByUserName(userName);
+		return Globals.SUCCESS.value();
 	}
 
 	public User createUser(UserDTO dto) {

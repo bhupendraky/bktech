@@ -61,8 +61,8 @@ public class UserController {
 	@Traceble
 	@ApiOperation("Delete a user with the id")
 	@DeleteMapping("/delete")
-	public User deleteUser(@PathVariable String id) {
-		return service.deleteUser(id);
+	public String deleteUser(@PathVariable String userName) {
+		return service.deleteUser(userName);
 	}
 
 }
