@@ -78,7 +78,7 @@
 							<configuration>
 								<classifier>client</classifier>
 								<includes>
-									<include>com/techy/**/proxy/*</include>
+									<include>com/tech/**/proxy/*</include>
 								</includes>
 							</configuration>
 						</execution>
