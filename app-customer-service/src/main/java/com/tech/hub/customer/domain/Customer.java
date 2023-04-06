@@ -15,6 +15,8 @@ import com.tech.hub.common.domain.AuditableEntity;
 @EntityListeners(AuditingEntityListener.class)
 public class Customer extends AuditableEntity<String> {
 
+	private static final long serialVersionUID = -7761789872746333319L;
+
 	@Id
 	@GeneratedValue
 	private Long id;

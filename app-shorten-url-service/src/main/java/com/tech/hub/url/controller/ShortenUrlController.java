@@ -1,5 +1,7 @@
 package com.tech.hub.url.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,12 +32,19 @@ public class ShortenUrlController {
 	}
 
 	@Traceble
+	@ApiOperation("Get All URL")
+	@GetMapping("/get-all")
+	public List<String> getAllUrl() {
+		return shortenUrlService.getAllUrl();
+	}
+
+	@Traceble
 	@ApiOperation("Shorten URL")
 	@PostMapping()
 	public String shortenUrl(@RequestBody String url) {
 		return shortenUrlService.shortenUrl(url);
 	}
-	
+
 	@ApiOperation("Get the next counter value")
 	@GetMapping("/next/counter")
 	public Long getNextCounterValue() {

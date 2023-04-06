@@ -23,7 +23,8 @@ import com.tech.hub.common.domain.AuditableEntity;
 @NamedQuery(name = "findAllUser", query = "select u from User u")
 public class User extends AuditableEntity<String> {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 3169342467018768748L;
+
 	@Id
 	@GeneratedValue
 	private Long id;

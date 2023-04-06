@@ -19,6 +19,8 @@ import com.tech.hub.common.domain.AuditableEntity;
 @NamedQuery(name = "findAll", query = "select f from UserAccount f")
 public class UserAccount extends AuditableEntity<String> {
 
+	private static final long serialVersionUID = -3222077379473577760L;
+
 	@Id
 	@SequenceGenerator(
 			name = "seq-id-gen",
@@ -72,5 +74,5 @@ public class UserAccount extends AuditableEntity<String> {
 		this.userId = userId;
 		this.accountBalance = accountBalance;
 	}
-	
+
 }

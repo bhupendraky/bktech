@@ -1,5 +1,8 @@
 package com.tech.hub.url.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.apache.commons.validator.routines.UrlValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +30,13 @@ public class ShortenUrlService {
 		return webUrlRepository.findByHashCode(hashCode)
 				.map(e -> e.getUrl())
 				.orElseThrow(() -> new ShortenUrlServiceException(ShortenUrlErrorCode.TS_03_0001));
+	}
+
+	public List<String> getAllUrl() {
+		return webUrlRepository.findAll()
+				.stream()
+				.map(e -> e.getUrl())
+				.collect(Collectors.toList());
 	}
 
 	@Transactional

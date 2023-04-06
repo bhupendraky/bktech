@@ -6,7 +6,11 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-public class UserDTO {
+import com.tech.hub.common.domain.AuditableDTO;
+
+public class UserDTO extends AuditableDTO<String> {
+
+	private static final long serialVersionUID = 1L;
 
 	@Size(min = 5, message = "User name too short")
 	@Size(max = 25, message = "User name too long")

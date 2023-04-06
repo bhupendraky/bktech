@@ -1,6 +1,10 @@
 package com.tech.hub.user.dto;
 
-public class AuthorityDTO {
+import com.tech.hub.common.domain.AuditableDTO;
+
+public class AuthorityDTO extends AuditableDTO<String> {
+
+	private static final long serialVersionUID = 1L;
 
 	private String userName;
 	private String authority;

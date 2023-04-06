@@ -18,7 +18,7 @@ import com.tech.hub.common.domain.AuditableEntity;
 @EntityListeners(AuditingEntityListener.class)
 public class Authority extends AuditableEntity<String> {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -3619515111023708280L;
 
 	@Id
 	@GeneratedValue
