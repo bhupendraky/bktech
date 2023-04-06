@@ -3,7 +3,6 @@ package com.tech.hub.user.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -25,25 +24,23 @@ public class UserService implements UserDetailsService {
 	@Autowired
 	private UserJpaRepository userRepository;
 
-	private UserMapper userMapper = Mappers.getMapper(UserMapper.class);
-
 	public UserDTO getUser(String userName) {
 
 		return userRepository.findByUserName(userName)
-				.map(userMapper::mapToUserDTO)
+				.map(UserMapper::mapToUserDTO)
 				.orElseThrow(() -> new UserServiceException(UserErrorCode.TS_01_0001));
 	}
 
 	public UserDTO updateUser(UserDTO dto) {
-		User newUuser = userMapper.mapToUser(dto);
+		User newUuser = UserMapper.mapToUser(dto);
 		User savedUser = userRepository.save(newUuser);
-		return userMapper.mapToUserDTO(savedUser);
+		return UserMapper.mapToUserDTO(savedUser);
 	}
 
 	public List<UserDTO> getAllUser() {
 		return userRepository.findAll()
 				.stream()
-				.map(userMapper::mapToUserDTO)
+				.map(UserMapper::mapToUserDTO)
 				.collect(Collectors.toList());
 	}
 
@@ -53,9 +50,9 @@ public class UserService implements UserDetailsService {
 	}
 
 	public UserDTO createUser(UserDTO dto) {
-		User newUser = userMapper.mapToUser(dto);
+		User newUser = UserMapper.mapToUser(dto);
 		User savedUser = userRepository.save(newUser);
-		return userMapper.mapToUserDTO(savedUser);
+		return UserMapper.mapToUserDTO(savedUser);
 	}
 
 	@Override

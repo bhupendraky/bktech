@@ -13,41 +13,39 @@ public class AppUserDetails implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 
-	private String userName;
+	private String username;
 	private String password;
-	private Boolean enabled;
+	private boolean enabled;
 
 	public AppUserDetails(User user) {
-		this.userName = user.getUserName();
+		this.username = user.getUserName();
 		this.password = user.getPassword();
-		this.enabled = user.getEnabled();
+		this.enabled = user.isEnabled();
 	}
-	
+
 	public AppUserDetails() {
-		
+
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		//TODO fetch all distinct authorities from data base;
-		return Arrays.asList(
-				new SimpleGrantedAuthority("ADMIN"),
-				new SimpleGrantedAuthority("USER"));
-	}
-
-	@Override
-	public String getUsername() {
-		return userName;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return enabled;
+		// TODO fetch all distinct authorities from data base;
+		return Arrays.asList(new SimpleGrantedAuthority("ADMIN"), new SimpleGrantedAuthority("USER"));
 	}
 
 	@Override
 	public String getPassword() {
 		return password;
+	}
+
+	@Override
+	public String getUsername() {
+		return username;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return enabled;
 	}
 
 	@Override

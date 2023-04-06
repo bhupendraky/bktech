@@ -13,6 +13,11 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.tech.hub.common.domain.AuditableEntity;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "AUTHORITIES")
 @EntityListeners(AuditingEntityListener.class)
@@ -27,29 +32,5 @@ public class Authority extends AuditableEntity<String> {
 	@JoinColumn(name="userName", referencedColumnName = "userName")
 	private User user;
 	private String authority;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public String getAuthority() {
-		return authority;
-	}
-
-	public void setAuthority(String authority) {
-		this.authority = authority;
-	}
 
 }

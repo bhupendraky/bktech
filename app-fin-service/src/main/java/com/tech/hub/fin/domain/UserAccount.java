@@ -13,6 +13,13 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.tech.hub.common.domain.AuditableEntity;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "USER_ACCOUNT")
 @EntityListeners(AuditingEntityListener.class)
@@ -34,35 +41,6 @@ public class UserAccount extends AuditableEntity<String> {
 	private Long userId;
 
 	private Double accountBalance;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-
-	public Double getAccountBalance() {
-		return accountBalance;
-	}
-
-	public void setAccountBalance(Double accountBalance) {
-		this.accountBalance = accountBalance;
-	}
-
-	@Override
-	public String toString() {
-		return "UserAccount [id=" + id + ", userId=" + userId + ", accountBalance=" + accountBalance + "]";
-	}
 
 	public UserAccount() {
 		super();
