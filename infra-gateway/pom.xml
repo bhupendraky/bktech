@@ -4,20 +4,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.tech.hub</groupId>
-		<artifactId>tech-hub</artifactId>
+		<groupId>com.bktech</groupId>
+		<artifactId>bktech</artifactId>
 		<version>${revision}</version>
 		<relativePath>../</relativePath>
 	</parent>
 	<artifactId>infra-gateway</artifactId>
 	<name>infra-gateway</name>
 	<description>BKY Infra Gateway Srvice</description>
-
-	<properties>
-		<java.version>1.8</java.version>
-		<spring-cloud.version>Hoxton.SR1</spring-cloud.version>
-		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
-	</properties>
 
 	<dependencies>
 		<dependency>
@@ -40,19 +34,6 @@
 		<dependency>
 			<groupId>com.spring4all</groupId>
 			<artifactId>swagger-spring-boot-starter</artifactId>
-			<version>1.7.0.RELEASE</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 	</dependencies>
 
