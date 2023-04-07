@@ -1,0 +1,63 @@
+package com.bktech.user.service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.bktech.common.enums.Globals;
+import com.bktech.user.data.UserJpaRepository;
+import com.bktech.user.domain.User;
+import com.bktech.user.dto.AppUserDetails;
+import com.bktech.user.dto.UserDTO;
+import com.bktech.user.errors.UserErrorCode;
+import com.bktech.user.errors.UserServiceException;
+import com.bktech.user.mapper.UserMapper;
+
+@Service
+public class UserService implements UserDetailsService {
+
+	@Autowired
+	private UserJpaRepository userRepository;
+
+	public UserDTO getUser(String userName) {
+
+		return userRepository.findByUserName(userName)
+				.map(UserMapper::mapToUserDTO)
+				.orElseThrow(() -> new UserServiceException(UserErrorCode.TS_01_0001));
+	}
+
+	public UserDTO updateUser(UserDTO dto) {
+		User newUuser = UserMapper.mapToUser(dto);
+		User savedUser = userRepository.save(newUuser);
+		return UserMapper.mapToUserDTO(savedUser);
+	}
+
+	public List<UserDTO> getAllUser() {
+		return userRepository.findAll()
+				.stream()
+				.map(UserMapper::mapToUserDTO)
+				.collect(Collectors.toList());
+	}
+
+	public String deleteUser(String userName) {
+		userRepository.deleteByUserName(userName);
+		return Globals.SUCCESS.value();
+	}
+
+	public UserDTO createUser(UserDTO dto) {
+		User newUser = UserMapper.mapToUser(dto);
+		User savedUser = userRepository.save(newUser);
+		return UserMapper.mapToUserDTO(savedUser);
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+		return userRepository.findByUserName(userName).map(AppUserDetails::new)
+				.orElseThrow(() -> new UsernameNotFoundException("Not found: " + userName));
+	}
+}

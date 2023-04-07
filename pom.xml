@@ -7,11 +7,11 @@
 		<version>2.2.2.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.tech.hub</groupId>
-	<artifactId>tech-hub</artifactId>
+	<groupId>com.bktech</groupId>
+	<artifactId>bktech</artifactId>
 	<version>${revision}</version>
 	<packaging>pom</packaging>
-	<name>tech-hub-project</name>
+	<name>bktech-project</name>
 	<description>BKY Tech Hub Project</description>
 
 	<properties>
@@ -109,13 +109,13 @@
 				<version>1.7</version>
 			</dependency>
 			<dependency>
-				<groupId>com.tech.hub</groupId>
+				<groupId>com.bktech</groupId>
 				<artifactId>infra-common</artifactId>
 				<version>${revision}</version>
 				<scope>compile</scope>
 			</dependency>
 			<dependency>
-				<groupId>com.tech.hub</groupId>
+				<groupId>com.bktech</groupId>
 				<artifactId>app-user-service</artifactId>
 				<version>${revision}</version>
 				<classifier>client</classifier>
