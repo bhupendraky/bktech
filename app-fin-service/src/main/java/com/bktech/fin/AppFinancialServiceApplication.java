@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import com.bktech.common.config.InMemoryConfig;
 import com.bktech.common.config.SwaggerPropertiesInitializer;
 import com.bktech.common.ctx.AuditorAwareImpl;
 import com.bktech.common.ctx.RequestInterceptorImpl;
@@ -23,7 +22,7 @@ import feign.RequestInterceptor;
 @EnableDiscoveryClient
 @EnableSwagger2Doc
 @EnableJpaRepositories
-@EnableFeignClients(basePackages = { "com.bktech.fin.proxy" })
+@EnableFeignClients(basePackages = { "com.bktech.fin.proxy", "com.bktech.user.proxy" })
 @EnableJpaAuditing(auditorAwareRef = "auditorAwareImpl")
 public class AppFinancialServiceApplication implements InitializingBean {
 
@@ -42,11 +41,6 @@ public class AppFinancialServiceApplication implements InitializingBean {
 	@Bean
 	public AuditorAwareImpl auditorAwareImpl() {
 		return new AuditorAwareImpl();
-	}
-
-	@Bean
-	public InMemoryConfig loadStartupData() {
-		return new InMemoryConfig("classpath:h2-in-memory-data.sql");
 	}
 
 	@Bean
