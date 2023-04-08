@@ -9,7 +9,7 @@
 	</parent>
 	<artifactId>app-shorten-url-service</artifactId>
 	<name>app-shorten-url-service</name>
-	<description>BKY App Shorten URL Srvice</description>
+	<description>BKTECH App Shorten URL Srvice</description>
 
 	<dependencies>
 		<dependency>

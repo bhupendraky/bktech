@@ -11,7 +11,7 @@
 	</parent>
 	<artifactId>app-user-service</artifactId>
 	<name>app-user-service</name>
-	<description>BKY App User Srvice</description>
+	<description>BKTECH App User Srvice</description>
 
 	<dependencies>
 		<dependency>

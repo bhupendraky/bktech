@@ -9,7 +9,7 @@
 	</parent>
 	<artifactId>app-customer-service</artifactId>
 	<name>app-customer-service</name>
-	<description>BKY App Email Srvice</description>
+	<description>BKTECH App Email Srvice</description>
 
 	<dependencies>
 		<dependency>

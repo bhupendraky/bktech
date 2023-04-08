@@ -6,14 +6,14 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-import com.bktech.common.domain.AuditableDTO;
+import com.bktech.common.domain.AuditableEntity;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class UserDTO extends AuditableDTO<String> {
+public class UserDTO extends AuditableEntity<String> {
 
 	private static final long serialVersionUID = 1L;
 

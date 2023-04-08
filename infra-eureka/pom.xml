@@ -11,7 +11,7 @@
 	</parent>
 	<artifactId>infra-eureka</artifactId>
 	<name>infra-eureka</name>
-	<description>BKY Infra Eureka Srvice</description>
+	<description>BKTECH Infra Eureka Srvice</description>
 
 	<dependencies>
 		<dependency>

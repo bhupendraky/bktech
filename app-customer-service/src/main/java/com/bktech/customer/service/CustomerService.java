@@ -13,7 +13,7 @@ import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bktech.common.enums.Globals;
+import com.bktech.common.Globals;
 import com.bktech.customer.data.CustomerRepository;
 import com.bktech.customer.domain.Customer;
 import com.bktech.customer.errors.CustomerErrorCode;
@@ -51,7 +51,7 @@ public class CustomerService {
 				| JobParametersInvalidException e) {
 			e.printStackTrace();
 		}
-		return Globals.SUCCESS.value();
+		return Globals.SUCCESS;
 	}
 
 }

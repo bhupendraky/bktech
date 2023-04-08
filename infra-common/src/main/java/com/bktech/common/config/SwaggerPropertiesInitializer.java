@@ -1,6 +1,6 @@
 package com.bktech.common.config;
 
-import com.bktech.common.enums.Globals;
+import com.bktech.common.Globals;
 import com.google.common.collect.Lists;
 import com.spring4all.swagger.SwaggerProperties;
 import com.spring4all.swagger.SwaggerProperties.GlobalOperationParameter;
@@ -9,7 +9,7 @@ public class SwaggerPropertiesInitializer {
 
 	public static void configureSwaggerHeader(SwaggerProperties swaggerProperties) throws Exception {
 		GlobalOperationParameter userId = new GlobalOperationParameter();
-		userId.setName(Globals.HTTP_HEADER_USER_ID.value());
+		userId.setName(Globals.HTTP_HEADER_USER_ID);
 		userId.setDescription("User ID");
 		userId.setParameterType("header");
 		userId.setModelRef("string");

@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.bktech.common.enums.Globals;
+import com.bktech.common.Globals;
 import com.bktech.user.data.UserJpaRepository;
 import com.bktech.user.domain.User;
 import com.bktech.user.dto.AppUserDetails;
@@ -46,7 +46,7 @@ public class UserService implements UserDetailsService {
 
 	public String deleteUser(String userName) {
 		userRepository.deleteByUserName(userName);
-		return Globals.SUCCESS.value();
+		return Globals.SUCCESS;
 	}
 
 	public UserDTO createUser(UserDTO dto) {
@@ -57,7 +57,8 @@ public class UserService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-		return userRepository.findByUserName(userName).map(AppUserDetails::new)
+		return userRepository.findByUserName(userName)
+				.map(AppUserDetails::new)
 				.orElseThrow(() -> new UsernameNotFoundException("Not found: " + userName));
 	}
 }

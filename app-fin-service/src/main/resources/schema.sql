@@ -1,3 +1,4 @@
+/*
 create table USER_ACCOUNT
 (
    ID long not null primary key,
@@ -10,3 +11,5 @@ create table USER_ACCOUNT
 );
 
 create sequence USER_ACCOUNT_ID_SEQ start with 100001 increment by 1;
+
+*/
