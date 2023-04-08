@@ -1,13 +1,13 @@
 package com.bktech.user.dto;
 
-import com.bktech.common.domain.AuditableDTO;
+import com.bktech.common.domain.AuditableEntity;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class AuthorityDTO extends AuditableDTO<String> {
+public class AuthorityDTO extends AuditableEntity<String> {
 
 	private static final long serialVersionUID = 1L;
 

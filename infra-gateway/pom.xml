@@ -11,7 +11,7 @@
 	</parent>
 	<artifactId>infra-gateway</artifactId>
 	<name>infra-gateway</name>
-	<description>BKY Infra Gateway Srvice</description>
+	<description>BKTECH Infra Gateway Srvice</description>
 
 	<dependencies>
 		<dependency>

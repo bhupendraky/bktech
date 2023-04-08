@@ -14,8 +14,8 @@ import lombok.Setter;
 public class Counter {
 
 	@Id
-	private Integer id;
+	private Integer id = 1;
 
-	private Long value;
+	private Long value = 1L;
 
 }

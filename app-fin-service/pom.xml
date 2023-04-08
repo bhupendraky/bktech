@@ -11,7 +11,7 @@
 	</parent>
 	<artifactId>app-fin-service</artifactId>
 	<name>app-fin-service</name>
-	<description>BKY App Email Srvice</description>
+	<description>BKTECH App Email Srvice</description>
 
 	<dependencies>
 		<dependency>

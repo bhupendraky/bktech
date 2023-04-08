@@ -1,13 +1,17 @@
 package com.bktech.url.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
+import javax.annotation.PostConstruct;
 
 import org.apache.commons.validator.routines.UrlValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.bktech.common.Globals;
 import com.bktech.url.data.CounterRepository;
 import com.bktech.url.data.WebUrlRepository;
 import com.bktech.url.domain.Counter;
@@ -65,10 +69,23 @@ public class ShortenUrlService {
 
 	@Transactional
 	public Long getNextCounterValue() {
-		Counter counter = counterRepository.getOne(1);
-		counter.setValue(counter.getValue() + 1);
-		counterRepository.save(counter);
-		return counter.getValue();
+		counterRepository.updateCounterValue();
+		return counterRepository.getOne(1).getValue();
+	}
+
+	@Transactional
+	public String deleteAllUrl() {
+		webUrlRepository.deleteAll();
+		counterRepository.resetCounterValue();
+		return Globals.SUCCESS;
+	}
+
+	@PostConstruct
+	public void postConstruct() {
+		Optional<Counter> counter = counterRepository.findById(1);
+		if(!counter.isPresent()) {
+			counterRepository.save(new Counter());
+		}
 	}
 
 }

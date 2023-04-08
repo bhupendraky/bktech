@@ -11,7 +11,7 @@
 	</parent>
 	<artifactId>infra-common</artifactId>
 	<name>infra-common</name>
-	<description>BKY App Commons</description>
+	<description>BKTECH App Commons</description>
 
 	<dependencies>
 		<dependency>

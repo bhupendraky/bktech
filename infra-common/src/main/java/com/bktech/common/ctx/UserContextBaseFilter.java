@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import com.bktech.common.enums.Globals;
+import com.bktech.common.Globals;
 
 @Component
 @Order(1)
@@ -24,7 +24,7 @@ public class UserContextBaseFilter implements Filter {
 		try {
 			ExecutionContext.getUserContext()
 			.set(new UserContext(((HttpServletRequest) request)
-					.getHeader(Globals.HTTP_HEADER_USER_ID.value())));
+					.getHeader(Globals.HTTP_HEADER_USER_ID)));
 			chain.doFilter(request, response);
 		} finally {
 			ExecutionContext.removeUserContext();

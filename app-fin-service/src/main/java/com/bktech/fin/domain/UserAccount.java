@@ -3,10 +3,8 @@ package com.bktech.fin.domain;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -29,13 +27,7 @@ public class UserAccount extends AuditableEntity<String> {
 	private static final long serialVersionUID = -3222077379473577760L;
 
 	@Id
-	@SequenceGenerator(
-			name = "seq-id-gen",
-			sequenceName = "USER_ACCOUNT_ID_SEQ",
-			initialValue = 100001,
-			allocationSize = 1
-			)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq-id-gen")
+	@GeneratedValue
 	private Long id;
 
 	private Long userId;
