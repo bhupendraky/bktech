@@ -22,7 +22,7 @@ import feign.RequestInterceptor;
 @EnableDiscoveryClient
 @EnableSwagger2Doc
 @EnableJpaRepositories
-@EnableFeignClients(basePackages = {"com.bktech.url.proxy"})
+@EnableFeignClients(basePackages = {"com.bktech.*.proxy"})
 @EnableJpaAuditing(auditorAwareRef = "auditorAwareImpl")
 public class ShortenUrlServiceApplication implements InitializingBean {
 
