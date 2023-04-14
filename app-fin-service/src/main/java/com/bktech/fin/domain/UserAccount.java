@@ -9,8 +9,6 @@ import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import com.bktech.common.domain.AuditableEntity;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

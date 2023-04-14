@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
-import com.bktech.common.errors.CommonExceptionHandler;
-
 @ControllerAdvice
 public class CustomerServiceExceptionHandler extends CommonExceptionHandler {
 

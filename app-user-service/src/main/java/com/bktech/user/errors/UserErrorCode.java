@@ -1,7 +1,5 @@
 package com.bktech.user.errors;
 
-import com.bktech.common.errors.IErrorCode;
-
 public enum UserErrorCode implements IErrorCode {
 
 	TS_01_0001("User not found");

@@ -1,8 +1,5 @@
 package com.bktech.fin.errors;
 
-import com.bktech.common.errors.AppBaseException;
-import com.bktech.common.errors.IErrorCode;
-
 public class FinancialServiceException extends AppBaseException {
 
 	private static final long serialVersionUID = 1L;

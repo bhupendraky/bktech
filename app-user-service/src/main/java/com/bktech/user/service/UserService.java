@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.bktech.common.Globals;
+import com.bktech.user.Constants;
 import com.bktech.user.data.UserJpaRepository;
 import com.bktech.user.domain.User;
 import com.bktech.user.dto.AppUserDetails;
@@ -46,7 +46,7 @@ public class UserService implements UserDetailsService {
 
 	public String deleteUser(String userName) {
 		userRepository.deleteByUserName(userName);
-		return Globals.SUCCESS;
+		return Constants.SUCCESS;
 	}
 
 	public UserDTO createUser(UserDTO dto) {

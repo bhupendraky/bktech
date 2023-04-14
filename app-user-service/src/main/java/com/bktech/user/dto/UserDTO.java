@@ -6,7 +6,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-import com.bktech.common.domain.AuditableEntity;
+import com.bktech.user.domain.AuditableEntity;
 
 import lombok.Getter;
 import lombok.Setter;

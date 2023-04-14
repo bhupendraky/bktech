@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bktech.common.annotation.Traceble;
+import com.bktech.user.Traceble;
 import com.bktech.user.dto.UserDTO;
 import com.bktech.user.service.UserService;
 

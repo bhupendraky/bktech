@@ -10,9 +10,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import com.bktech.common.config.SwaggerPropertiesInitializer;
-import com.bktech.common.ctx.AuditorAwareImpl;
-import com.bktech.common.ctx.RequestInterceptorImpl;
+import com.bktech.url.config.SwaggerPropertiesInitializer;
+import com.bktech.url.ctx.AuditorAwareImpl;
+import com.bktech.url.ctx.RequestInterceptorImpl;
 import com.spring4all.swagger.EnableSwagger2Doc;
 import com.spring4all.swagger.SwaggerProperties;
 

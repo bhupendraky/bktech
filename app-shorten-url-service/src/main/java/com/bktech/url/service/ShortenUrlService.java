@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bktech.common.Globals;
+import com.bktech.url.Constants;
 import com.bktech.url.data.CounterRepository;
 import com.bktech.url.data.WebUrlRepository;
 import com.bktech.url.domain.Counter;
@@ -77,7 +77,7 @@ public class ShortenUrlService {
 	public String deleteAllUrl() {
 		webUrlRepository.deleteAll();
 		counterRepository.resetCounterValue();
-		return Globals.SUCCESS;
+		return Constants.SUCCESS;
 	}
 
 	@PostConstruct

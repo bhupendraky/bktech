@@ -1,7 +1,5 @@
 package com.bktech.url.errors;
 
-import com.bktech.common.errors.IErrorCode;
-
 public enum ShortenUrlErrorCode implements IErrorCode {
 
 	TS_03_0001("URL not found"),

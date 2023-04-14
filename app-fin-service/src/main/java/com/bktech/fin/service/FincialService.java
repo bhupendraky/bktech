@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.bktech.fin.data.FinancialRepository;
 import com.bktech.fin.domain.UserAccount;
-import com.bktech.user.proxy.UserServiceProxy;
+import com.bktech.fin.proxy.UserServiceProxy;
 
 @Service
 public class FincialService {

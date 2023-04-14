@@ -1,7 +1,5 @@
 package com.bktech.customer.errors;
 
-import com.bktech.common.errors.IErrorCode;
-
 public enum CustomerErrorCode implements IErrorCode {
 
 	TS_04_0001("Customer not found");

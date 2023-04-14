@@ -1,7 +1,5 @@
 package com.bktech.fin.errors;
 
-import com.bktech.common.errors.IErrorCode;
-
 public enum FinErrorCode implements IErrorCode {
 
 	TS_02_0001("User account not found");
