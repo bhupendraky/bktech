@@ -1,16 +1,19 @@
 package com.bktech.customer;
 
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.bktech.customer.config.SwaggerPropertiesInitializer;
+import com.bktech.customer.ctx.AppContext;
 import com.bktech.customer.ctx.AuditorAwareImpl;
 import com.bktech.customer.ctx.RequestInterceptorImpl;
 import com.spring4all.swagger.EnableSwagger2Doc;
@@ -22,12 +25,20 @@ import feign.RequestInterceptor;
 @EnableDiscoveryClient
 @EnableSwagger2Doc
 @EnableJpaRepositories
-@EnableFeignClients(basePackages = { "com.bktech.*.proxy" })
+@EnableFeignClients(basePackages = {"com.bktech.customer.proxy"})
 @EnableJpaAuditing(auditorAwareRef = "auditorAwareImpl")
-public class AppCustomerServiceApplication implements InitializingBean {
+public class Application implements InitializingBean, DisposableBean {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AppCustomerServiceApplication.class, args);
+		SpringApplication.run(Application.class, args);
+	}
+
+	@Autowired
+	private ApplicationContext appCtx;
+	private static ThreadLocal<ApplicationContext> context = new ThreadLocal<>();
+
+	public static AppContext getContext() {
+		return context.get().getBean(AppContext.class);
 	}
 
 	@Autowired
@@ -36,7 +47,14 @@ public class AppCustomerServiceApplication implements InitializingBean {
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		SwaggerPropertiesInitializer.configureSwaggerHeader(swaggerProperties);
+		context.set(appCtx);
 	}
+
+	@Override
+	public void destroy() throws Exception {
+		context.remove();
+	}
+
 
 	@Bean
 	public AuditorAwareImpl auditorAwareImpl() {

@@ -16,8 +16,8 @@ import org.springframework.stereotype.Service;
 import com.bktech.customer.Constants;
 import com.bktech.customer.data.CustomerRepository;
 import com.bktech.customer.domain.Customer;
-import com.bktech.customer.errors.CustomerErrorCode;
-import com.bktech.customer.errors.CustomerServiceException;
+import com.bktech.customer.errors.AppException;
+import com.bktech.customer.errors.ExceptionCode;
 
 @Service
 public class CustomerService {
@@ -37,7 +37,7 @@ public class CustomerService {
 
 	public Customer getCustomer(Long customerId) {
 		return customerRepo.findByCustomerId(customerId)
-				.orElseThrow(() -> new CustomerServiceException(CustomerErrorCode.TS_04_0001));
+				.orElseThrow(() -> new AppException(ExceptionCode.CUSSVC_0005));
 	}
 
 	public String loadCustomerData() {
