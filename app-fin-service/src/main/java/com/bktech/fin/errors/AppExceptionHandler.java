@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -18,7 +19,8 @@ import com.netflix.hystrix.exception.HystrixRuntimeException;
 
 import feign.FeignException;
 
-public class CommonExceptionHandler extends ResponseEntityExceptionHandler {
+@ControllerAdvice
+public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 
 	private Logger log = LoggerFactory.getLogger(getClass());
 
@@ -29,13 +31,13 @@ public class CommonExceptionHandler extends ResponseEntityExceptionHandler {
 	 * @param request
 	 * @return
 	 */
-	protected Object createBody(AppBaseException e, WebRequest request) {
-		log.error("{} - {}", e.errorCode(), e.errorMessage(), e);
+	protected Object createBody(AppException e, WebRequest request) {
+		log.error("{} - {}", e.exceptionCode(), e.getMessage(), e);
 		return ExceptionResponse.builder()
 				.timestamp(new Timestamp(new Date().getTime()))
-				.message(e.errorMessage())
+				.message(e.getMessage())
 				.details(request.getDescription(false))
-				.errorCode(e.errorCode())
+				.errorCode(e.exceptionCode())
 				.build();
 	}
 
@@ -48,26 +50,26 @@ public class CommonExceptionHandler extends ResponseEntityExceptionHandler {
 	 */
 	@ExceptionHandler(Exception.class)
 	protected final ResponseEntity<Object> unhandledExceptionHandler(Exception e, WebRequest request) {
-		AppBaseException ex = new AppBaseException(CommonErrorCode.TS_00_0001, e);
+		AppException ex = new AppException(ExceptionCode.FINSVC_0001, e);
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 				.body(createBody(ex, request));
 	}
 
 	/**
-	 * Handler for exception <? extends {@link AppBaseException}>.
+	 * Handler for exception <? extends {@link AppException}>.
 	 *
 	 * @param e
 	 * @param request
 	 * @return
 	 */
-	@ExceptionHandler(AppBaseException.class)
-	protected final ResponseEntity<Object> handleAppBaseException(AppBaseException e, WebRequest request) {
+	@ExceptionHandler(AppException.class)
+	protected final ResponseEntity<Object> handleAppBaseException(AppException e, WebRequest request) {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 				.body(createBody(e, request));
 	}
 
 	/**
-	 * Exception handler for {@link FeignException} wrapping the actual exception <? extends {@link AppBaseException}>.
+	 * Exception handler for {@link FeignException} wrapping the actual exception <? extends {@link AppException}>.
 	 * @param e
 	 * @param request
 	 * @return
@@ -75,11 +77,11 @@ public class CommonExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(FeignException.class)
 	protected final ResponseEntity<Object> handleProxyException(FeignException e, WebRequest request) {
 		Optional<HttpStatus> status = Optional.ofNullable(HttpStatus.resolve(e.status()));
-		AppBaseException ex = null;
-		if(e.getCause() instanceof AppBaseException) {
-			ex = (AppBaseException)e.getCause();
+		AppException ex = null;
+		if(e.getCause() instanceof AppException) {
+			ex = (AppException)e.getCause();
 		} else {
-			ex = new AppBaseException(CommonErrorCode.TS_00_0002, e);
+			ex = new AppException(ExceptionCode.FINSVC_0002, e);
 		}
 		return ResponseEntity.status(status.orElse(HttpStatus.SERVICE_UNAVAILABLE))
 				.body(createBody(ex, request));
@@ -98,7 +100,7 @@ public class CommonExceptionHandler extends ResponseEntityExceptionHandler {
 		if(e.getCause() instanceof FeignException) {
 			return handleProxyException((FeignException)e.getCause(), request);
 		}
-		AppBaseException ex = new AppBaseException(CommonErrorCode.TS_00_0003, e);
+		AppException ex = new AppException(ExceptionCode.FINSVC_0003, e);
 		return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
 				.body(createBody(ex, request));
 	}
@@ -109,9 +111,8 @@ public class CommonExceptionHandler extends ResponseEntityExceptionHandler {
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException e,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
-		AppBaseException ex = new AppBaseException(CommonErrorCode.TS_00_0004, e);
+		AppException ex = new AppException(ExceptionCode.FINSVC_0004, e);
 		return ResponseEntity.status(status).body(createBody(ex, request));
 	}
-
 
 }
