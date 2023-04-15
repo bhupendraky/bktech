@@ -1,4 +1,4 @@
-package com.bktech.url.errors;
+package com.bktech.url.execp;
 
 public interface IExceptionCode {
 

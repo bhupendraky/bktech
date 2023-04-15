@@ -1,8 +1,8 @@
-package com.bktech.fin.errors;
+package com.bktech.user.execp;
 
 import java.util.Optional;
 
-import com.bktech.fin.Application;
+import com.bktech.user.Application;
 
 public class AppException extends RuntimeException {
 

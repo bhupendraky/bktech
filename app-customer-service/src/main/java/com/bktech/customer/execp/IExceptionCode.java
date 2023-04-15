@@ -1,4 +1,4 @@
-package com.bktech.user.errors;
+package com.bktech.customer.execp;
 
 public interface IExceptionCode {
 

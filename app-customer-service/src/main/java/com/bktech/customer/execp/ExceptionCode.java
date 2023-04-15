@@ -1,4 +1,4 @@
-package com.bktech.customer.errors;
+package com.bktech.customer.execp;
 
 public enum ExceptionCode implements IExceptionCode {
 	CUSSVC_0001("app.customer.error.unexpected"),

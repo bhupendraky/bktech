@@ -1,4 +1,4 @@
-package com.bktech.url.errors;
+package com.bktech.fin.execp;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -50,7 +50,7 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 	 */
 	@ExceptionHandler(Exception.class)
 	protected final ResponseEntity<Object> unhandledExceptionHandler(Exception e, WebRequest request) {
-		AppException ex = new AppException(ExceptionCode.URLSVC_0001, e);
+		AppException ex = new AppException(ExceptionCode.FINSVC_0001, e);
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 				.body(createBody(ex, request));
 	}
@@ -81,7 +81,7 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 		if(e.getCause() instanceof AppException) {
 			ex = (AppException)e.getCause();
 		} else {
-			ex = new AppException(ExceptionCode.URLSVC_0002, e);
+			ex = new AppException(ExceptionCode.FINSVC_0002, e);
 		}
 		return ResponseEntity.status(status.orElse(HttpStatus.SERVICE_UNAVAILABLE))
 				.body(createBody(ex, request));
@@ -100,7 +100,7 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 		if(e.getCause() instanceof FeignException) {
 			return handleProxyException((FeignException)e.getCause(), request);
 		}
-		AppException ex = new AppException(ExceptionCode.URLSVC_0003, e);
+		AppException ex = new AppException(ExceptionCode.FINSVC_0003, e);
 		return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
 				.body(createBody(ex, request));
 	}
@@ -111,7 +111,7 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException e,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
-		AppException ex = new AppException(ExceptionCode.URLSVC_0004, e);
+		AppException ex = new AppException(ExceptionCode.FINSVC_0004, e);
 		return ResponseEntity.status(status).body(createBody(ex, request));
 	}
 

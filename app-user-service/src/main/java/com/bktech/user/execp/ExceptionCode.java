@@ -1,10 +1,11 @@
-package com.bktech.fin.errors;
+package com.bktech.user.execp;
 
 public enum ExceptionCode implements IExceptionCode {
-	FINSVC_0001("app.fin.error.unexpected"),
-	FINSVC_0002("app.fin.error.proxy.call"),
-	FINSVC_0003("app.fin.error.hystrix"),
-	FINSVC_0004("app.fin.error.invalid.arg");
+	USRSVC_0001("app.user.error.unexpected"),
+	USRSVC_0002("app.user.error.proxy.call"),
+	USRSVC_0003("app.user.error.hystrix"),
+	USRSVC_0004("app.user.error.invalid.arg"),
+	USRSVC_0005("app.user.error.not.found");
 
 	private String key;
 

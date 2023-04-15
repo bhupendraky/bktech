@@ -16,8 +16,8 @@ import com.bktech.url.data.CounterRepository;
 import com.bktech.url.data.WebUrlRepository;
 import com.bktech.url.domain.Counter;
 import com.bktech.url.domain.WebUrl;
-import com.bktech.url.errors.AppException;
-import com.bktech.url.errors.ExceptionCode;
+import com.bktech.url.execp.AppException;
+import com.bktech.url.execp.ExceptionCode;
 
 @Service
 public class ShortenUrlService {

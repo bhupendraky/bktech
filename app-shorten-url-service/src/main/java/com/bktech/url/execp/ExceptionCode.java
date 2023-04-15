@@ -1,4 +1,4 @@
-package com.bktech.url.errors;
+package com.bktech.url.execp;
 
 public enum ExceptionCode implements IExceptionCode {
 	URLSVC_0001("app.url.error.unexpected"),

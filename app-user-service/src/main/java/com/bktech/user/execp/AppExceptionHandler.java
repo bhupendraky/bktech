@@ -1,4 +1,4 @@
-package com.bktech.user.errors;
+package com.bktech.user.execp;
 
 import java.sql.Timestamp;
 import java.util.Date;

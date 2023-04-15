@@ -14,8 +14,8 @@ import com.bktech.user.data.UserJpaRepository;
 import com.bktech.user.domain.User;
 import com.bktech.user.dto.AppUserDetails;
 import com.bktech.user.dto.UserDTO;
-import com.bktech.user.errors.AppException;
-import com.bktech.user.errors.ExceptionCode;
+import com.bktech.user.execp.AppException;
+import com.bktech.user.execp.ExceptionCode;
 import com.bktech.user.mapper.UserMapper;
 
 @Service

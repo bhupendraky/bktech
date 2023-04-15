@@ -16,8 +16,8 @@ import org.springframework.stereotype.Service;
 import com.bktech.customer.Constants;
 import com.bktech.customer.data.CustomerRepository;
 import com.bktech.customer.domain.Customer;
-import com.bktech.customer.errors.AppException;
-import com.bktech.customer.errors.ExceptionCode;
+import com.bktech.customer.execp.AppException;
+import com.bktech.customer.execp.ExceptionCode;
 
 @Service
 public class CustomerService {

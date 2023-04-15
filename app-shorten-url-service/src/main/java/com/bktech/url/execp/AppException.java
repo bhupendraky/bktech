@@ -1,8 +1,8 @@
-package com.bktech.customer.errors;
+package com.bktech.url.execp;
 
 import java.util.Optional;
 
-import com.bktech.customer.Application;
+import com.bktech.url.Application;
 
 public class AppException extends RuntimeException {
 
@@ -69,6 +69,7 @@ public class AppException extends RuntimeException {
 		return Optional.ofNullable(Application.getContext().getErrorConfig()
 				.getProperty(key, args))
 				.orElse(key);
+
 	}
 
 	/**

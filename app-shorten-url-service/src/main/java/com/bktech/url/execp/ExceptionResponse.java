@@ -1,4 +1,4 @@
-package com.bktech.customer.errors;
+package com.bktech.url.execp;
 
 import java.sql.Timestamp;
 
