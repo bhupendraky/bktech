@@ -1,12 +1,12 @@
 package com.bktech.url.errors;
 
 public enum ExceptionCode implements IExceptionCode {
-	URLSVC_0001("Unexpected service exception"),
-	URLSVC_0002("Proxy call failed"),
-	URLSVC_0003("Unhandled hystrix exception"),
-	URLSVC_0004("Method argument not valid"),
-	URLSVC_0005("URL not found"),
-	URLSVC_0006("Long URL not valid");
+	URLSVC_0001("app.url.error.unexpected"),
+	URLSVC_0002("app.url.error.proxy.call"),
+	URLSVC_0003("app.url.error.hystrix"),
+	URLSVC_0004("app.url.error.invalid.arg"),
+	URLSVC_0005("app.url.error.short.not.valid"),
+	URLSVC_0006("app.url.error.long.not.valid");
 
 	private String key;
 

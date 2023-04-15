@@ -1,11 +1,10 @@
 package com.bktech.fin.errors;
 
 public enum ExceptionCode implements IExceptionCode {
-	FINSVC_0001("Unexpected service exception"),
-	FINSVC_0002("Proxy call failed"),
-	FINSVC_0003("Unhandled hystrix exception"),
-	FINSVC_0004("Method argument not valid"),
-	;
+	FINSVC_0001("app.fin.error.unexpected"),
+	FINSVC_0002("app.fin.error.proxy.call"),
+	FINSVC_0003("app.fin.error.hystrix"),
+	FINSVC_0004("app.fin.error.invalid.arg");
 
 	private String key;
 

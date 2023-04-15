@@ -1,11 +1,11 @@
 package com.bktech.user.errors;
 
 public enum ExceptionCode implements IExceptionCode {
-	USRSVC_0001("Unexpected service exception"),
-	USRSVC_0002("Proxy call failed"),
-	USRSVC_0003("Unhandled hystrix exception"),
-	USRSVC_0004("Method argument not valid"),
-	USRSVC_0005("app.user.not.found");
+	USRSVC_0001("app.user.error.unexpected"),
+	USRSVC_0002("app.user.error.proxy.call"),
+	USRSVC_0003("app.user.error.hystrix"),
+	USRSVC_0004("app.user.error.invalid.arg"),
+	USRSVC_0005("app.user.error.not.found");
 
 	private String key;
 

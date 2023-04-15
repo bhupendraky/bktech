@@ -28,7 +28,7 @@ public class UserService implements UserDetailsService {
 
 		return userRepository.findByUserName(userName)
 				.map(UserMapper::mapToUserDTO)
-				.orElseThrow(() -> new AppException(ExceptionCode.USRSVC_0005));
+				.orElseThrow(() -> new AppException(ExceptionCode.USRSVC_0005, userName));
 	}
 
 	public UserDTO updateUser(UserDTO dto) {

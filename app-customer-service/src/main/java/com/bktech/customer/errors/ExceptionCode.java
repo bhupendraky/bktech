@@ -1,12 +1,11 @@
 package com.bktech.customer.errors;
 
 public enum ExceptionCode implements IExceptionCode {
-	CUSSVC_0001("Unexpected service exception"),
-	CUSSVC_0002("Proxy call failed"),
-	CUSSVC_0003("Unhandled hystrix exception"),
-	CUSSVC_0004("Method argument not valid"),
-	CUSSVC_0005("Customer not found")
-	;
+	CUSSVC_0001("app.customer.error.unexpected"),
+	CUSSVC_0002("app.customer.error.proxy.call"),
+	CUSSVC_0003("app.customer.error.hystrix"),
+	CUSSVC_0004("app.customer.error.invalid.arg"),
+	CUSSVC_0005("app.customer.error.customer.not.found");
 
 	private String key;
 
