@@ -8,7 +8,7 @@ public class ExceptionResponse {
 	private Timestamp timestamp;
 	private String message;
 	private String details;
-	private IErrorCode errorCode;
+	private IExceptionCode errorCode;
 
 	private ExceptionResponse(ExceptionResponseBuilder builder) {
 		this.status = builder.status;
@@ -54,11 +54,11 @@ public class ExceptionResponse {
 		this.details = details;
 	}
 
-	public IErrorCode getErrorCode() {
+	public IExceptionCode getErrorCode() {
 		return errorCode;
 	}
 
-	public void setErrorCode(IErrorCode errorCode) {
+	public void setErrorCode(IExceptionCode errorCode) {
 		this.errorCode = errorCode;
 	}
 
@@ -68,7 +68,7 @@ public class ExceptionResponse {
 		private Timestamp timestamp;
 		private String message;
 		private String details;
-		private IErrorCode errorCode;
+		private IExceptionCode errorCode;
 
 		public ExceptionResponseBuilder status(Integer status) {
 			this.status = status;
@@ -90,7 +90,7 @@ public class ExceptionResponse {
 			return this;
 		}
 
-		public ExceptionResponseBuilder errorCode(IErrorCode errorCode) {
+		public ExceptionResponseBuilder errorCode(IExceptionCode errorCode) {
 			this.errorCode = errorCode;
 			return this;
 		}

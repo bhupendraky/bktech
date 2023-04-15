@@ -1,5 +1,7 @@
 package com.bktech.user.errors;
 
+import java.util.Optional;
+
 import com.bktech.user.Application;
 
 public class AppException extends RuntimeException {
@@ -64,7 +66,9 @@ public class AppException extends RuntimeException {
 	}
 
 	private static String format(String key, Object... args) {
-		return Application.getContext().getErrorConfig().getProperty(key, args);
+		return Optional.ofNullable(Application.getContext().getErrorConfig()
+				.getProperty(key, args))
+				.orElse(key);
 	}
 
 	/**

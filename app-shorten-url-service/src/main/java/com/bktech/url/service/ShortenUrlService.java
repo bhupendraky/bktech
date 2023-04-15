@@ -16,8 +16,8 @@ import com.bktech.url.data.CounterRepository;
 import com.bktech.url.data.WebUrlRepository;
 import com.bktech.url.domain.Counter;
 import com.bktech.url.domain.WebUrl;
-import com.bktech.url.errors.ShortenUrlErrorCode;
-import com.bktech.url.errors.ShortenUrlServiceException;
+import com.bktech.url.errors.AppException;
+import com.bktech.url.errors.ExceptionCode;
 
 @Service
 public class ShortenUrlService {
@@ -33,7 +33,7 @@ public class ShortenUrlService {
 	public String getUrl(String hashCode) {
 		return webUrlRepository.findByHashCode(hashCode)
 				.map(e -> e.getUrl())
-				.orElseThrow(() -> new ShortenUrlServiceException(ShortenUrlErrorCode.TS_03_0001));
+				.orElseThrow(() -> new AppException(ExceptionCode.URLSVC_0005));
 	}
 
 	public List<String> getAllUrl() {
@@ -47,7 +47,7 @@ public class ShortenUrlService {
 	public String shortenUrl(String url) {
 		UrlValidator urlValidator = new UrlValidator(new String[] { "http", "https" });
 		if(!urlValidator.isValid(url)) {
-			throw new ShortenUrlServiceException(ShortenUrlErrorCode.TS_03_0002);
+			throw new AppException(ExceptionCode.URLSVC_0006);
 		}
 		Long nextCouterValue = getNextCounterValue();
 		String hashCode = generateBase62Hash(nextCouterValue);
