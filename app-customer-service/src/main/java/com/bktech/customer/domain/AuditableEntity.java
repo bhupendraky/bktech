@@ -3,7 +3,9 @@ package com.bktech.customer.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.NotBlank;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -20,23 +22,31 @@ public abstract class AuditableEntity<U> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@NotBlank
 	@CreatedBy
+	@Column(name = "CREATED_BY", nullable = false)
 	protected U createdBy;
 
+	@NotBlank
 	@CreatedDate
-	protected Date createdOn;
+	@Column(name = "CREATED_DATE", nullable = false)
+	protected Date createdDate;
 
+	@NotBlank
 	@LastModifiedBy
-	protected U updatedBy;
+	@Column(name = "LAST_MODIFIED_BY", nullable = false)
+	protected U lastModifiedBy;
 
+	@NotBlank
 	@LastModifiedDate
-	protected Date updatedOn;
+	@Column(name = "LAST_MODIFIED_DATE", nullable = false)
+	protected Date lastModifiedDate;
 
 	public <T> void setAuditFields(AuditableEntity<U> entity) {
 		this.setCreatedBy(entity.getCreatedBy());
-		this.setCreatedOn(entity.getCreatedOn());
-		this.setUpdatedBy(entity.getUpdatedBy());
-		this.setUpdatedOn(entity.getUpdatedOn());
+		this.setCreatedDate(entity.getCreatedDate());
+		this.setLastModifiedBy(entity.getLastModifiedBy());
+		this.setLastModifiedDate(entity.getLastModifiedDate());
 	}
 
 }

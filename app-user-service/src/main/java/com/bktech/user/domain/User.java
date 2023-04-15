@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
@@ -32,10 +33,20 @@ public class User extends AuditableEntity<String> {
 	@Id
 	@GeneratedValue
 	private Long id;
+
+	@Column(name = "USER_NAME", nullable = false, unique = true)
 	private String userName;
+
+	@Column(name = "USER_PWD", nullable = false)
 	private String password;
+
+	@Column(name = "EMAIL")
 	private String email;
+
+	@Column(name = "AGE")
 	private Integer age;
+
+	@Column(name = "ENABLED", nullable = false)
 	private boolean enabled;
 
 	@JsonManagedReference

@@ -1,5 +1,6 @@
 package com.bktech.url.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
@@ -22,8 +23,13 @@ public class WebUrl extends AuditableEntity<String> {
 
 	@Id
 	@GeneratedValue
+	@Column(name = "ID")
 	private Long id;
+
+	@Column(name = "HASH_CODE", nullable = false)
 	private String hashCode;
+
+	@Column(name = "URL", nullable = false)
 	private String url;
 
 	public WebUrl() {

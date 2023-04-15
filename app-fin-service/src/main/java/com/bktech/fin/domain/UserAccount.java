@@ -1,5 +1,6 @@
 package com.bktech.fin.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
@@ -26,10 +27,13 @@ public class UserAccount extends AuditableEntity<String> {
 
 	@Id
 	@GeneratedValue
+	@Column(name = "ID")
 	private Long id;
 
+	@Column(name = "USER_ID", nullable = false)
 	private Long userId;
 
+	@Column(name = "ACCOUNT_BALANCE", nullable = false)
 	private Double accountBalance;
 
 	public UserAccount() {

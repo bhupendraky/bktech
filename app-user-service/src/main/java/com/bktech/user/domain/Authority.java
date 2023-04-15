@@ -1,6 +1,7 @@
 package com.bktech.user.domain;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
@@ -26,9 +27,12 @@ public class Authority extends AuditableEntity<String> {
 	@Id
 	@GeneratedValue
 	private Long id;
+
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="userName", referencedColumnName = "userName")
+	@JoinColumn(name = "USER_NAME", referencedColumnName = "USER_NAME", nullable = false)
 	private User user;
+
+	@Column(name = "AUTHORITY", nullable = false)
 	private String authority;
 
 }
