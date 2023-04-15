@@ -14,8 +14,8 @@ import com.bktech.user.data.UserJpaRepository;
 import com.bktech.user.domain.User;
 import com.bktech.user.dto.AppUserDetails;
 import com.bktech.user.dto.UserDTO;
-import com.bktech.user.errors.UserErrorCode;
-import com.bktech.user.errors.UserServiceException;
+import com.bktech.user.errors.AppException;
+import com.bktech.user.errors.ExceptionCode;
 import com.bktech.user.mapper.UserMapper;
 
 @Service
@@ -28,7 +28,7 @@ public class UserService implements UserDetailsService {
 
 		return userRepository.findByUserName(userName)
 				.map(UserMapper::mapToUserDTO)
-				.orElseThrow(() -> new UserServiceException(UserErrorCode.TS_01_0001));
+				.orElseThrow(() -> new AppException(ExceptionCode.USRSVC_0005));
 	}
 
 	public UserDTO updateUser(UserDTO dto) {
