@@ -21,14 +21,20 @@ public class UserDTO extends AuditableEntity<String> {
 	@Size(max = 25, message = "User name too long")
 	@NotEmpty
 	private String userName;
+
 	@NotEmpty
 	@Size(min = 5, message = "Password too short")
 	@Size(max = 25, message = "Password too long")
 	private String password;
+
 	@Email(regexp = "^([A-Za-z]|[0-9]|(\\.))+@{1}([a-zA-Z])+(\\.){1}[a-zA-Z]+")
 	@NotEmpty
 	private String email;
+
+	private Integer age;
+
 	private boolean enabled = false;
+
 	private Set<AuthorityDTO> authorities;
 
 }

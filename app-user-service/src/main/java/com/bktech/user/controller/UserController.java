@@ -1,6 +1,7 @@
 package com.bktech.user.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -62,6 +63,13 @@ public class UserController {
 	@DeleteMapping("/delete")
 	public String deleteUser(@PathVariable String userName) {
 		return service.deleteUser(userName);
+	}
+
+	@Traceble
+	@ApiOperation("Fetch user details grouped by age")
+	@GetMapping("/grouped-by-age")
+	public Map<Integer, List<UserDTO>> getUsersGroupedByAge () {
+		return service.getUsersGroupedByAge();
 	}
 
 }

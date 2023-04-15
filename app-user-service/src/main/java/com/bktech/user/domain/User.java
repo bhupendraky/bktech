@@ -35,6 +35,7 @@ public class User extends AuditableEntity<String> {
 	private String userName;
 	private String password;
 	private String email;
+	private Integer age;
 	private boolean enabled;
 
 	@JsonManagedReference

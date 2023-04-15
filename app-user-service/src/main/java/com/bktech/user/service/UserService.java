@@ -1,6 +1,8 @@
 package com.bktech.user.service;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,5 +62,15 @@ public class UserService implements UserDetailsService {
 		return userRepository.findByUserName(userName)
 				.map(AppUserDetails::new)
 				.orElseThrow(() -> new UsernameNotFoundException("Not found: " + userName));
+	}
+
+	public Map<Integer, List<UserDTO>> getUsersGroupedByAge() {
+		return userRepository.findAll()
+				.stream()
+				.collect(Collectors.groupingBy(
+						User::getAge,
+						LinkedHashMap::new,
+						Collectors.mapping(UserMapper::mapToUserDTO, Collectors.toList()))
+						);
 	}
 }

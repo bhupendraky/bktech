@@ -19,6 +19,7 @@ public class UserMapper {
 		user.setEnabled(userDto.isEnabled());
 		user.setPassword(userDto.getPassword());
 		user.setUserName(userDto.getUserName());
+		user.setAge(userDto.getAge());
 
 		user.setAuditFields(userDto);
 
@@ -44,6 +45,7 @@ public class UserMapper {
 		userDto.setEnabled(user.isEnabled());
 		userDto.setPassword(user.getPassword());
 		userDto.setUserName(user.getUserName());
+		userDto.setAge(user.getAge());
 
 		userDto.setAuditFields(user);
 
