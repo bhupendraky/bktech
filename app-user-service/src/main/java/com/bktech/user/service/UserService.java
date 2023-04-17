@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.bktech.user.Constants;
-import com.bktech.user.data.UserJpaRepository;
+import com.bktech.user.data.UserRepository;
 import com.bktech.user.domain.User;
 import com.bktech.user.dto.AppUserDetails;
 import com.bktech.user.dto.UserDTO;
@@ -24,7 +24,7 @@ import com.bktech.user.mapper.UserMapper;
 public class UserService implements UserDetailsService {
 
 	@Autowired
-	private UserJpaRepository userRepository;
+	private UserRepository userRepository;
 
 	public UserDTO getUser(String userName) {
 

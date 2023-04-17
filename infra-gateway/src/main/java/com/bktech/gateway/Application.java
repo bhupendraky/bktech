@@ -25,10 +25,10 @@ import springfox.documentation.swagger.web.SwaggerResourcesProvider;
 @EnableDiscoveryClient
 @SpringBootApplication
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-public class InfraGatewayApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(InfraGatewayApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 	@Autowired
