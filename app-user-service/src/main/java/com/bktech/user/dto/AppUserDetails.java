@@ -7,7 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.bktech.user.domain.User;
+import com.bktech.user.domain.UserEntity;
 
 public class AppUserDetails implements UserDetails {
 
@@ -17,7 +17,7 @@ public class AppUserDetails implements UserDetails {
 	private String password;
 	private boolean enabled;
 
-	public AppUserDetails(User user) {
+	public AppUserDetails(UserEntity user) {
 		this.username = user.getUserName();
 		this.password = user.getPassword();
 		this.enabled = user.isEnabled();

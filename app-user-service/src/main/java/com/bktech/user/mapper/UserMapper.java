@@ -5,15 +5,14 @@ import java.util.stream.Collectors;
 
 import org.springframework.util.CollectionUtils;
 
-import com.bktech.user.domain.Authority;
-import com.bktech.user.domain.User;
-import com.bktech.user.dto.AuthorityDTO;
+import com.bktech.user.domain.Role;
+import com.bktech.user.domain.UserEntity;
 import com.bktech.user.dto.UserDTO;
 
 public class UserMapper {
 
-	public static User mapToUser(UserDTO userDto) {
-		User user = new User();
+	public static UserEntity mapToUser(UserDTO userDto) {
+		UserEntity user = new UserEntity();
 
 		user.setEmail(userDto.getEmail());
 		user.setEnabled(userDto.isEnabled());
@@ -23,22 +22,17 @@ public class UserMapper {
 
 		user.setAuditFields(userDto);
 
-		if(!CollectionUtils.isEmpty(userDto.getAuthorities())) {
-			Set<Authority> auths = userDto.getAuthorities().stream()
-					.map(authDto -> {
-						Authority auth = new Authority();
-						auth.setAuthority(authDto.getAuthority());
-						auth.setUser(user);
-						auth.setAuditFields(authDto);
-						return auth;
-					}).collect(Collectors.toSet());
-			user.setAuthorities(auths);
+		if(!CollectionUtils.isEmpty(userDto.getRoles())) {
+			Set<Role> roles = userDto.getRoles().stream()
+					.map(Role::new)
+					.collect(Collectors.toSet());
+			user.setRoles(roles);
 		}
 
 		return user;
 	}
 
-	public static UserDTO mapToUserDTO(User user) {
+	public static UserDTO mapToUserDTO(UserEntity user) {
 		UserDTO userDto = new UserDTO();
 
 		userDto.setEmail(user.getEmail());
@@ -49,15 +43,11 @@ public class UserMapper {
 
 		userDto.setAuditFields(user);
 
-		if(!CollectionUtils.isEmpty(user.getAuthorities())) {
-			Set<AuthorityDTO> auths = user.getAuthorities().stream()
-					.map(auth -> {
-						AuthorityDTO authDto = new AuthorityDTO();
-						authDto.setAuthority(auth.getAuthority());
-						authDto.setAuditFields(auth);
-						return authDto;
-					}).collect(Collectors.toSet());
-			userDto.setAuthorities(auths);
+		if(!CollectionUtils.isEmpty(user.getRoles())) {
+			Set<String> roles = user.getRoles().stream()
+					.map(Role::getName)
+					.collect(Collectors.toSet());
+			userDto.setRoles(roles);
 		}
 
 		return userDto;

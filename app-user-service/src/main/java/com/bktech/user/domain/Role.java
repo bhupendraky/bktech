@@ -1,38 +1,38 @@
 package com.bktech.user.domain;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "AUTHORITIES")
+@NoArgsConstructor
+@Table(name = "ROLES")
 @EntityListeners(AuditingEntityListener.class)
-public class Authority extends AuditableEntity<String> {
+public class Role extends AuditableEntity<String> {
 
 	private static final long serialVersionUID = -3619515111023708280L;
 
+	public Role(String name) {
+		this.name = name;
+	}
+
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "USER_NAME", referencedColumnName = "USER_NAME", nullable = false)
-	private User user;
-
-	@Column(name = "AUTHORITY", nullable = false)
-	private String authority;
+	@Column(name = "NAME", nullable = false)
+	private String name;
 
 }

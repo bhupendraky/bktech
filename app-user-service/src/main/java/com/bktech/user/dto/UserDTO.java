@@ -28,13 +28,12 @@ public class UserDTO extends AuditableEntity<String> {
 	private String password;
 
 	@Email(regexp = "^([A-Za-z]|[0-9]|(\\.))+@{1}([a-zA-Z])+(\\.){1}[a-zA-Z]+")
-	@NotEmpty
 	private String email;
 
 	private Integer age;
 
 	private boolean enabled = false;
 
-	private Set<AuthorityDTO> authorities;
+	private Set<String> roles;
 
 }

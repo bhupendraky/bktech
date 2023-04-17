@@ -5,7 +5,10 @@ public enum ExceptionCode implements IExceptionCode {
 	USRSVC_0002("app.user.error.proxy.call"),
 	USRSVC_0003("app.user.error.hystrix"),
 	USRSVC_0004("app.user.error.invalid.arg"),
-	USRSVC_0005("app.user.error.not.found");
+	USRSVC_0005("app.user.error.not.found"),
+	USRSVC_0006("app.user.error.role.exist"),
+	USRSVC_0007("app.user.error.exist"),
+	USRSVC_0008("app.user.error.invalid.role");
 
 	private String key;
 

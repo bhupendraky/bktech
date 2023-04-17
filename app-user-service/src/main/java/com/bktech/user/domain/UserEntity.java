@@ -7,15 +7,16 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -23,15 +24,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "APP_USERS")
+@Table(name = "USERS")
 @EntityListeners(AuditingEntityListener.class)
-@NamedQuery(name = "findAllUser", query = "select u from User u")
-public class User extends AuditableEntity<String> {
+public class UserEntity extends AuditableEntity<String> {
 
 	private static final long serialVersionUID = 3169342467018768748L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(name = "USER_NAME", nullable = false, unique = true)
@@ -49,8 +49,10 @@ public class User extends AuditableEntity<String> {
 	@Column(name = "ENABLED", nullable = false)
 	private boolean enabled;
 
-	@JsonManagedReference
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<Authority> authorities = new HashSet<>();
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "USER_ROLES",
+	joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"),
+	inverseJoinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID"))
+	private Set<Role> roles = new HashSet<>();
 
 }

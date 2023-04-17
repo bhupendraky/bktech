@@ -3,6 +3,7 @@ package com.bktech.user.service;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +13,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.bktech.user.Constants;
+import com.bktech.user.data.AdminRepository;
 import com.bktech.user.data.UserRepository;
-import com.bktech.user.domain.User;
+import com.bktech.user.domain.Role;
+import com.bktech.user.domain.UserEntity;
 import com.bktech.user.dto.AppUserDetails;
 import com.bktech.user.dto.UserDTO;
 import com.bktech.user.execp.AppException;
@@ -26,6 +29,9 @@ public class UserService implements UserDetailsService {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private AdminRepository adminRepository;
+
 	public UserDTO getUser(String userName) {
 
 		return userRepository.findByUserName(userName)
@@ -34,8 +40,8 @@ public class UserService implements UserDetailsService {
 	}
 
 	public UserDTO updateUser(UserDTO dto) {
-		User newUuser = UserMapper.mapToUser(dto);
-		User savedUser = userRepository.save(newUuser);
+		UserEntity newUuser = UserMapper.mapToUser(dto);
+		UserEntity savedUser = userRepository.save(newUuser);
 		return UserMapper.mapToUserDTO(savedUser);
 	}
 
@@ -51,24 +57,35 @@ public class UserService implements UserDetailsService {
 		return Constants.SUCCESS;
 	}
 
-	public UserDTO createUser(UserDTO dto) {
-		User newUser = UserMapper.mapToUser(dto);
-		User savedUser = userRepository.save(newUser);
-		return UserMapper.mapToUserDTO(savedUser);
+	public UserDTO registerUser(UserDTO dto) {
+		if(userRepository.existsByUserName(dto.getUserName())) {
+			throw new AppException(ExceptionCode.USRSVC_0007, dto.getUserName());
+		}
+		Set<Role> matchingRoles = adminRepository.findAll().stream()
+				.filter(r -> dto.getRoles().contains(r.getName()))
+				.collect(Collectors.toSet());
+		if(matchingRoles.size() != dto.getRoles().size()) {
+			throw new AppException(ExceptionCode.USRSVC_0008);
+		}
+
+		UserEntity user = UserMapper.mapToUser(dto);
+		user.setRoles(matchingRoles);
+		user = userRepository.save(user);
+		return UserMapper.mapToUserDTO(user);
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 		return userRepository.findByUserName(userName)
 				.map(AppUserDetails::new)
-				.orElseThrow(() -> new UsernameNotFoundException("Not found: " + userName));
+				.orElseThrow(() -> new UsernameNotFoundException("User not found: " + userName));
 	}
 
 	public Map<Integer, List<UserDTO>> getUsersGroupedByAge() {
 		return userRepository.findAll()
 				.stream()
 				.collect(Collectors.groupingBy(
-						User::getAge,
+						UserEntity::getAge,
 						LinkedHashMap::new,
 						Collectors.mapping(UserMapper::mapToUserDTO, Collectors.toList()))
 						);

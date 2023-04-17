@@ -28,48 +28,48 @@ import io.swagger.annotations.ApiOperation;
 public class UserController {
 
 	@Autowired
-	private UserService service;
+	private UserService userService;
 
 	@Traceble
 	@ApiOperation("Fetch all user details")
 	@GetMapping("/get-all")
 	public List<UserDTO> getAllUser() {
-		return service.getAllUser();
+		return userService.getAllUser();
 	}
 
 	@Traceble
-	@ApiOperation("Fetch user details with the id")
-	@GetMapping("/get/{id}")
-	public UserDTO getUser(@PathVariable String id) {
-		return service.getUser(id);
+	@ApiOperation("Fetch user details with the userName")
+	@GetMapping("/get/{userName}")
+	public UserDTO getUser(@PathVariable String userName) {
+		return userService.getUser(userName);
 	}
 
 	@Traceble
 	@ApiOperation("Update a user")
 	@PutMapping("/update")
 	public UserDTO updateUser(@Valid @RequestBody UserDTO dto) {
-		return service.updateUser(dto);
+		return userService.updateUser(dto);
 	}
 
 	@Traceble
-	@ApiOperation("Create a user")
-	@PostMapping("/create")
-	public UserDTO addUser(@Valid @RequestBody UserDTO dto) {
-		return service.createUser(dto);
+	@ApiOperation("Register a user")
+	@PostMapping("/register")
+	public UserDTO registerUser(@Valid @RequestBody UserDTO dto) {
+		return userService.registerUser(dto);
 	}
 
 	@Traceble
 	@ApiOperation("Delete a user with the id")
 	@DeleteMapping("/delete")
 	public String deleteUser(@PathVariable String userName) {
-		return service.deleteUser(userName);
+		return userService.deleteUser(userName);
 	}
 
 	@Traceble
 	@ApiOperation("Fetch user details grouped by age")
 	@GetMapping("/grouped-by-age")
 	public Map<Integer, List<UserDTO>> getUsersGroupedByAge () {
-		return service.getUsersGroupedByAge();
+		return userService.getUsersGroupedByAge();
 	}
 
 }

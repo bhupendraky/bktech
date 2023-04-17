@@ -61,7 +61,7 @@ public class AppException extends RuntimeException {
 	 * @param cause
 	 */
 	public AppException(IExceptionCode code, Throwable cause, Object... args) {
-		this(format(code.value(), args), cause);
+		this(format(code.key(), args), cause);
 		this.code = code;
 	}
 
