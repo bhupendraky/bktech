@@ -3,51 +3,40 @@ package com.bktech.customer.ctx;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.beans.factory.DisposableBean;
-import org.springframework.beans.factory.InitializingBean;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
+import com.bktech.customer.Application;
 import com.bktech.customer.config.ErrorResourceConfig;
 
 @Component
-public class AppContext implements InitializingBean, DisposableBean {
+public class AppContext {
 
-	private static final Map<CacheKey, Object> ctx = new HashMap<>();
-
-	private enum CacheKey {
-		SPRING_CTX, SPRING_ENV;
-	}
-
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		ctx.put(CacheKey.SPRING_CTX, springCtx);
-		ctx.put(CacheKey.SPRING_ENV, env);
-	}
-
-	@Autowired
-	private ApplicationContext springCtx;
+	private static final Map<CacheKey, Object> contextMap = new HashMap<>();
 
 	@Autowired
 	private Environment env;
 
-	public ErrorResourceConfig getErrorConfig() {
-		return getSpringCtx().getBean(ErrorResourceConfig.class);
+	@PostConstruct
+	public void postConstruct() throws Exception {
+		contextMap.put(CacheKey.SPRING_ENV, env);
 	}
 
-	public ApplicationContext getSpringCtx() {
-		return (ApplicationContext) ctx.get(CacheKey.SPRING_CTX);
+	public ErrorResourceConfig getErrorConfig() {
+		return Application.getSpringCtx().getBean(ErrorResourceConfig.class);
 	}
 
 	public Environment getEnv() {
-		return (Environment) ctx.get(CacheKey.SPRING_ENV);
+		return (Environment) contextMap.get(CacheKey.SPRING_ENV);
 	}
 
-	@Override
+	@PreDestroy
 	public void destroy() throws Exception {
-		ctx.clear();
+		contextMap.clear();
 	}
 
 }

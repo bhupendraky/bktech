@@ -33,14 +33,14 @@ import feign.RequestInterceptor;
 @EnableJpaAuditing(auditorAwareRef = "auditorAwareImpl")
 public class Application {
 
-	private static final Map<CacheKey, ApplicationContext> contextMap = new HashMap<>();
-
-	@Autowired
-	private ApplicationContext appCtx;
-
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
 	}
+
+
+	@Autowired
+	private ApplicationContext appCtx;
+	private static final Map<CacheKey, ApplicationContext> contextMap = new HashMap<>();
 
 	public static AppContext getContext() {
 		return getSpringCtx().getBean(AppContext.class);
