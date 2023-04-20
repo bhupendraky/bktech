@@ -1,8 +1,8 @@
 package com.bktech.user.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -14,9 +14,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.bktech.user.Constants;
 import com.bktech.user.service.UserService;
 
-@Profile("prod")
 @EnableWebSecurity
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+@ConditionalOnProperty(name = "spring.security.type", havingValue = "BASIC")
+public class RoleBasedBasicSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserService userService;
@@ -39,8 +39,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http
 		.csrf().disable()
 		.authorizeRequests()
-		.antMatchers("/user/*").hasAnyAuthority(Constants.ROLE_ADMIN, Constants.ROLE_USER)
-		.antMatchers("/user/register").hasAuthority(Constants.ROLE_ADMIN)
+		.antMatchers("/api/user/*").hasAnyAuthority(Constants.ROLE_ADMIN, Constants.ROLE_USER)
+		.antMatchers("/api/admin/*").hasAuthority(Constants.ROLE_ADMIN)
 		.anyRequest().authenticated()
 		.and()
 		.httpBasic();

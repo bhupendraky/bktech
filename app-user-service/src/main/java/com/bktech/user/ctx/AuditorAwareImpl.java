@@ -12,7 +12,7 @@ public class AuditorAwareImpl implements AuditorAware<String> {
 	public Optional<String> getCurrentAuditor() {
 		String userId = ExecutionContext.getUserContext().get().getUserId();
 		Optional<String> userOp = Optional.ofNullable(userId);
-		return Optional.of(userOp.orElse(Constants.ADMIN_USER));
+		return Optional.of(userOp.orElse(Constants.APP_USER));
 	}
 
 }

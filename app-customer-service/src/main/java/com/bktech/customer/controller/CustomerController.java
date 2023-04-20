@@ -18,7 +18,7 @@ import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/api/customer")
 public class CustomerController {
 
 	@Autowired
@@ -37,7 +37,7 @@ public class CustomerController {
 	public Customer getCustomer(@PathVariable Long customerId) {
 		return customerService.getCustomer(customerId);
 	}
-	
+
 	@Traceble
 	@ApiOperation("Load customer data")
 	@PostMapping("/load")

@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/url")
+@RequestMapping("/api/url")
 public class ShortenUrlController {
 
 	@Autowired

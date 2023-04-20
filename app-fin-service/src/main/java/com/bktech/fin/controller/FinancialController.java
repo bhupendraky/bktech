@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/financial")
+@RequestMapping("/api/financial")
 public class FinancialController {
 
 	@Autowired

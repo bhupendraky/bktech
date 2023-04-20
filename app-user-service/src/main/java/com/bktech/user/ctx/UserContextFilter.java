@@ -10,6 +10,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.core.annotation.Order;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import com.bktech.user.Constants;
@@ -21,9 +22,15 @@ public class UserContextFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		try {
-			ExecutionContext.getUserContext()
-			.set(new UserContext(((HttpServletRequest) request)
-					.getHeader(Constants.HTTP_HEADER_USER_ID)));
+			String userId = null;
+			String authUserId = SecurityContextHolder.getContext().getAuthentication().getName();
+			if(!Constants.ANONYMOUS_USER.equals(authUserId)) {
+				userId = authUserId;
+			} else {
+				userId = ((HttpServletRequest) request)
+						.getHeader(Constants.HTTP_HEADER_USER_ID);
+			}
+			ExecutionContext.getUserContext().set(new UserContext(userId));
 			chain.doFilter(request, response);
 		} finally {
 			ExecutionContext.removeUserContext();
