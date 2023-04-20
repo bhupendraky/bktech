@@ -8,6 +8,7 @@ import org.springframework.util.CollectionUtils;
 import com.bktech.user.domain.Role;
 import com.bktech.user.domain.UserEntity;
 import com.bktech.user.dto.UserDTO;
+import com.bktech.user.vo.UserVO;
 
 public class UserMapper {
 
@@ -15,12 +16,9 @@ public class UserMapper {
 		UserEntity user = new UserEntity();
 
 		user.setEmail(userDto.getEmail());
-		user.setEnabled(userDto.isEnabled());
 		user.setPassword(userDto.getPassword());
-		user.setUserName(userDto.getUserName());
+		user.setUsername(userDto.getUsername());
 		user.setAge(userDto.getAge());
-
-		user.setAuditFields(userDto);
 
 		if(!CollectionUtils.isEmpty(userDto.getRoles())) {
 			Set<Role> roles = userDto.getRoles().stream()
@@ -32,25 +30,28 @@ public class UserMapper {
 		return user;
 	}
 
-	public static UserDTO mapToUserDTO(UserEntity user) {
-		UserDTO userDto = new UserDTO();
+	public static UserVO mapToUserVO(UserEntity user) {
+		UserVO userVO = new UserVO();
 
-		userDto.setEmail(user.getEmail());
-		userDto.setEnabled(user.isEnabled());
-		userDto.setPassword(user.getPassword());
-		userDto.setUserName(user.getUserName());
-		userDto.setAge(user.getAge());
+		userVO.setEmail(user.getEmail());
+		userVO.setPassword(user.getPassword());
+		userVO.setUsername(user.getUsername());
+		userVO.setAge(user.getAge());
+		userVO.setEnabled(user.isEnabled());
+		userVO.setAccountNonExpired(user.isAccountNonExpired());
+		userVO.setAccountNonLocked(user.isAccountNonLocked());
+		userVO.setCredentialsNonExpired(user.isCredentialsNonExpired());
 
-		userDto.setAuditFields(user);
+		userVO.setAuditFields(user);
 
 		if(!CollectionUtils.isEmpty(user.getRoles())) {
 			Set<String> roles = user.getRoles().stream()
 					.map(Role::getName)
 					.collect(Collectors.toSet());
-			userDto.setRoles(roles);
+			userVO.setRoles(roles);
 		}
 
-		return userDto;
+		return userVO;
 	}
 
 }

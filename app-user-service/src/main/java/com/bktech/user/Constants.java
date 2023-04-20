@@ -6,5 +6,7 @@ public class Constants {
 	public static final String SUCCESS = "success";
 	public static final String FAILURE = "failure";
 	public static final String ADMIN_USER="BKTECH";
+	public static final String ROLE_ADMIN="ADMIN";
+	public static final String ROLE_USER="USER";
 
 }

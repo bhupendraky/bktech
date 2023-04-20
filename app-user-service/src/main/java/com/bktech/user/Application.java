@@ -14,6 +14,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.bktech.user.config.SwaggerPropertiesInitializer;
 import com.bktech.user.ctx.AppContext;
@@ -67,5 +69,11 @@ public class Application {
 	@Bean
 	public RequestInterceptor requestInterceptor() {
 		return new RequestInterceptorImpl();
+	}
+
+
+	@Bean
+	public PasswordEncoder getPasswordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
 }

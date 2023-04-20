@@ -10,9 +10,9 @@ import com.bktech.user.domain.UserEntity;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
-	Optional<UserEntity> findByUserName(String userName);
+	Optional<UserEntity> findByUsername(String userName);
 
-	void deleteByUserName(String userName);
+	void deleteByUsername(String userName);
 
-	boolean existsByUserName(String userName);
+	boolean existsByUsername(String userName);
 }

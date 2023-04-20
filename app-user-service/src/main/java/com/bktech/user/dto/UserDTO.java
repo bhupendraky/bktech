@@ -1,29 +1,26 @@
 package com.bktech.user.dto;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-import com.bktech.user.domain.AuditableEntity;
-
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class UserDTO extends AuditableEntity<String> {
+public class UserDTO {
 
-	private static final long serialVersionUID = 1L;
-
-	@Size(min = 5, message = "User name too short")
+	@Size(min = 2, message = "User name too short")
 	@Size(max = 25, message = "User name too long")
 	@NotEmpty
-	private String userName;
+	private String username;
 
 	@NotEmpty
-	@Size(min = 5, message = "Password too short")
+	@Size(min = 2, message = "Password too short")
 	@Size(max = 25, message = "Password too long")
 	private String password;
 
@@ -32,8 +29,6 @@ public class UserDTO extends AuditableEntity<String> {
 
 	private Integer age;
 
-	private boolean enabled = false;
-
-	private Set<String> roles;
+	private Set<String> roles = new HashSet<>();
 
 }

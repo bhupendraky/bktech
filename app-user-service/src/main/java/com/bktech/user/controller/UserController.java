@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bktech.user.Traceble;
 import com.bktech.user.dto.UserDTO;
 import com.bktech.user.service.UserService;
+import com.bktech.user.vo.UserVO;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -33,28 +34,28 @@ public class UserController {
 	@Traceble
 	@ApiOperation("Fetch all user details")
 	@GetMapping("/get-all")
-	public List<UserDTO> getAllUser() {
+	public List<UserVO> getAllUser() {
 		return userService.getAllUser();
 	}
 
 	@Traceble
 	@ApiOperation("Fetch user details with the userName")
 	@GetMapping("/get/{userName}")
-	public UserDTO getUser(@PathVariable String userName) {
+	public UserVO getUser(@PathVariable String userName) {
 		return userService.getUser(userName);
 	}
 
 	@Traceble
 	@ApiOperation("Update a user")
 	@PutMapping("/update")
-	public UserDTO updateUser(@Valid @RequestBody UserDTO dto) {
+	public UserVO updateUser(@Valid @RequestBody UserDTO dto) {
 		return userService.updateUser(dto);
 	}
 
 	@Traceble
 	@ApiOperation("Register a user")
 	@PostMapping("/register")
-	public UserDTO registerUser(@Valid @RequestBody UserDTO dto) {
+	public UserVO registerUser(@Valid @RequestBody UserDTO dto) {
 		return userService.registerUser(dto);
 	}
 
@@ -68,7 +69,7 @@ public class UserController {
 	@Traceble
 	@ApiOperation("Fetch user details grouped by age")
 	@GetMapping("/grouped-by-age")
-	public Map<Integer, List<UserDTO>> getUsersGroupedByAge () {
+	public Map<Integer, List<UserVO>> getUsersGroupedByAge () {
 		return userService.getUsersGroupedByAge();
 	}
 
