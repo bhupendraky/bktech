@@ -16,9 +16,6 @@ public class JdbcAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private DataSource dataSource;
 
-	/**
-	 * Get the user details from data source
-	 */
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication()
@@ -29,11 +26,6 @@ public class JdbcAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 				+ " from authorities where user_name=?");
 	}
 
-	/**
-	 * Configure runtime user data in default schema provided by Spring
-	 * @param auth
-	 * @throws Exception
-	 */
 	protected void configure2(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication()
 		.dataSource(dataSource)

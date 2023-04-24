@@ -16,8 +16,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.bktech.user.constants.RoleType;
 
 @EnableWebSecurity
-@ConditionalOnProperty(name = "spring.security.type", havingValue = "BASIC")
-public class RoleBasedBasicSecurityConfig extends WebSecurityConfigurerAdapter {
+@ConditionalOnProperty(name = "spring.security.type", havingValue = "JWT")
+public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
+
+	@Autowired
+	private AuthEntryPoint authEntryPoint;
+
+	@Autowired
+	private JwtAuthFilter authFilter;
 
 	@Autowired
 	private UserDetailsService userDetailsService;
@@ -25,17 +31,11 @@ public class RoleBasedBasicSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	@Autowired
-	private BasicAuthFilter authFilter;
-
-	@Autowired
-	private AuthEntryPoint authEntryPoint;
-
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http
-		.csrf().disable()
+		http.csrf().disable()
 		.authorizeRequests()
+		.antMatchers("/api/jwt/user/login").permitAll()
 		.antMatchers("/api/user/**").hasAuthority(RoleType.USER.name())
 		.antMatchers("/api/admin/**").hasAuthority(RoleType.ADMIN.name())
 		.anyRequest().authenticated()
@@ -47,8 +47,7 @@ public class RoleBasedBasicSecurityConfig extends WebSecurityConfigurerAdapter {
 		.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 		.and()
 		.authenticationProvider(authenticationProvider())
-		.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
-		.httpBasic();
+		.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 
 	@Bean

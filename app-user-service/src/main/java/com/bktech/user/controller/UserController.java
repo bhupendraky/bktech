@@ -34,8 +34,8 @@ public class UserController {
 	@Traceble
 	@ApiOperation("Fetch user details with the userName")
 	@GetMapping("/get/{userName}")
-	public UserVO getUser(@PathVariable String userName) {
-		return userService.getUser(userName);
+	public UserVO getUser(@PathVariable String username) {
+		return userService.getUser(username);
 	}
 
 	@Traceble

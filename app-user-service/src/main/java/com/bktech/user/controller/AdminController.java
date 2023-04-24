@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bktech.user.Traceble;
-import com.bktech.user.domain.Role;
 import com.bktech.user.dto.UserDTO;
-import com.bktech.user.service.AdminService;
 import com.bktech.user.service.UserService;
 import com.bktech.user.vo.UserVO;
 
@@ -27,17 +25,7 @@ import io.swagger.annotations.ApiOperation;
 public class AdminController {
 
 	@Autowired
-	private AdminService adminService;
-
-	@Autowired
 	private UserService userService;
-
-	@Traceble
-	@ApiOperation("Create a role")
-	@PostMapping("/create-role/{role}")
-	public Role createRole(@PathVariable String role) {
-		return adminService.createRole(role);
-	}
 
 	@Traceble
 	@ApiOperation("Register admin user")
@@ -55,7 +43,7 @@ public class AdminController {
 
 	@Traceble
 	@ApiOperation("Delete a user with the id")
-	@DeleteMapping("/delete-user")
+	@DeleteMapping("/deregister-user/{username}")
 	public String deleteUser(@PathVariable String username) {
 		return userService.deleteUser(username);
 	}

@@ -9,27 +9,20 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.core.annotation.Order;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
-import com.bktech.user.Constants;
+import com.bktech.user.constants.Constants;
 
 @Component
-@Order(1)
+@ConditionalOnProperty(name = "spring.security.type", havingValue = "NONE")
 public class UserContextFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		try {
-			String userId = null;
-			String authUserId = SecurityContextHolder.getContext().getAuthentication().getName();
-			if(!Constants.ANONYMOUS_USER.equals(authUserId)) {
-				userId = authUserId;
-			} else {
-				userId = ((HttpServletRequest) request)
-						.getHeader(Constants.HTTP_HEADER_USER_ID);
-			}
+			String userId = ((HttpServletRequest) request)
+					.getHeader(Constants.REQ_HEADER_USER_ID);
 			ExecutionContext.getUserContext().set(new UserContext(userId));
 			chain.doFilter(request, response);
 		} finally {

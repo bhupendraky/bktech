@@ -5,12 +5,12 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -35,7 +35,7 @@ public class UserEntity extends AuditableEntity<String> implements UserDetails {
 	private static final long serialVersionUID = 3169342467018768748L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	private Long id;
 
 	@Column(name = "USER_NAME", nullable = false, unique = true)
@@ -55,7 +55,7 @@ public class UserEntity extends AuditableEntity<String> implements UserDetails {
 	private transient boolean accountNonLocked = true;
 	private transient boolean credentialsNonExpired = true;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
 	@JoinTable(name = "USER_ROLES",
 	joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"),
 	inverseJoinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID"))

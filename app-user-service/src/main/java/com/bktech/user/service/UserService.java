@@ -3,19 +3,20 @@ package com.bktech.user.service;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import com.bktech.user.Constants;
-import com.bktech.user.data.AdminRepository;
+import com.bktech.user.constants.Constants;
+import com.bktech.user.constants.RoleType;
+import com.bktech.user.data.RoleRepository;
 import com.bktech.user.data.UserRepository;
 import com.bktech.user.domain.Role;
 import com.bktech.user.domain.UserEntity;
@@ -26,27 +27,35 @@ import com.bktech.user.mapper.UserMapper;
 import com.bktech.user.vo.UserVO;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
 
 	@Autowired
-	private AdminRepository adminRepository;
+	private RoleRepository roleRepository;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	public UserVO getUser(String userName) {
-
-		return userRepository.findByUsername(userName)
+		return getUserEntity(userName)
 				.map(UserMapper::mapToUserVO)
-				.orElseThrow(() -> new AppException(ExceptionCode.USRSVC_0005, userName));
+				.orElse(null);
 	}
 
+	private Optional<UserEntity> getUserEntity(String username) {
+		UserEntity userEntity = userRepository.findByUsername(username)
+				.orElseThrow(() -> new AppException(ExceptionCode.USRSVC_0005, username));
+		return Optional.of(userEntity);
+	}
+
+	@Transactional
 	public UserVO updateUser(UserDTO dto) {
-		UserEntity newUuser = UserMapper.mapToUser(dto);
-		UserEntity savedUser = userRepository.save(newUuser);
+		UserEntity savedUser = userRepository.findByUsername(dto.getUsername())
+				.orElseThrow(() -> new AppException(ExceptionCode.USRSVC_0005, dto.getUsername()));
+		UserEntity updateUser = UserMapper.mapValues(savedUser, dto);
+		savedUser= userRepository.save(updateUser);
 		return UserMapper.mapToUserVO(savedUser);
 	}
 
@@ -57,35 +66,38 @@ public class UserService implements UserDetailsService {
 				.collect(Collectors.toList());
 	}
 
-	public String deleteUser(String userName) {
-		userRepository.deleteByUsername(userName);
+	@Transactional
+	public String deleteUser(String username) {
+		if(!userRepository.existsByUsername(username)) {
+			throw new AppException(ExceptionCode.USRSVC_0005, username);
+		}
+		userRepository.deleteByUsername(username);
 		return Constants.SUCCESS;
 	}
 
+	@Transactional
 	public UserVO registerUser(UserDTO dto) {
 		if(userRepository.existsByUsername(dto.getUsername())) {
 			throw new AppException(ExceptionCode.USRSVC_0007, dto.getUsername());
 		}
 		Set<Role> roles = null;
 		if(!CollectionUtils.isEmpty(dto.getRoles())) {
-			roles = adminRepository.findAll().stream()
-					.filter(r -> dto.getRoles().contains(r.getName()))
+			// Validate role
+			dto.getRoles().forEach(RoleType::valueOf);
+			// merge role
+			List<Role> validRoles = roleRepository.findAll();
+			roles = dto.getRoles().stream()
+					.map(r -> validRoles.stream()
+							.filter(sr -> sr.getName().equals(r))
+							.findAny().orElse(new Role(r))
+							)
 					.collect(Collectors.toSet());
-			if(roles.size() != dto.getRoles().size()) {
-				throw new AppException(ExceptionCode.USRSVC_0008);
-			}
 		}
 		UserEntity user = UserMapper.mapToUser(dto);
 		user.setRoles(roles);
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user = userRepository.save(user);
 		return UserMapper.mapToUserVO(user);
-	}
-
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		return userRepository.findByUsername(username)
-				.orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
 	}
 
 	public Map<Integer, List<UserVO>> getUsersGroupedByAge() {
@@ -97,4 +109,5 @@ public class UserService implements UserDetailsService {
 						Collectors.mapping(UserMapper::mapToUserVO, Collectors.toList()))
 						);
 	}
+
 }

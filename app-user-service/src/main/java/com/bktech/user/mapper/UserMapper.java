@@ -3,8 +3,10 @@ package com.bktech.user.mapper;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.CollectionUtils;
 
+import com.bktech.user.Application;
 import com.bktech.user.domain.Role;
 import com.bktech.user.domain.UserEntity;
 import com.bktech.user.dto.UserDTO;
@@ -13,28 +15,30 @@ import com.bktech.user.vo.UserVO;
 public class UserMapper {
 
 	public static UserEntity mapToUser(UserDTO userDto) {
-		UserEntity user = new UserEntity();
+		return mapValues(new UserEntity(), userDto);
+	}
 
-		user.setEmail(userDto.getEmail());
-		user.setPassword(userDto.getPassword());
-		user.setUsername(userDto.getUsername());
-		user.setAge(userDto.getAge());
+	public static UserEntity mapValues(UserEntity target, UserDTO source) {
+		target.setEmail(source.getEmail());
+		PasswordEncoder passwordEncoder = Application.getSpringCtx().getBean(PasswordEncoder.class);
+		target.setPassword(passwordEncoder.encode(source.getPassword()));
+		target.setUsername(source.getUsername());
+		target.setAge(source.getAge());
 
-		if(!CollectionUtils.isEmpty(userDto.getRoles())) {
-			Set<Role> roles = userDto.getRoles().stream()
+		if(!CollectionUtils.isEmpty(source.getRoles())) {
+			Set<Role> roles = source.getRoles().stream()
 					.map(Role::new)
 					.collect(Collectors.toSet());
-			user.setRoles(roles);
+			target.getRoles().addAll(roles);
 		}
 
-		return user;
+		return target;
 	}
 
 	public static UserVO mapToUserVO(UserEntity user) {
 		UserVO userVO = new UserVO();
 
 		userVO.setEmail(user.getEmail());
-		userVO.setPassword(user.getPassword());
 		userVO.setUsername(user.getUsername());
 		userVO.setAge(user.getAge());
 		userVO.setEnabled(user.isEnabled());

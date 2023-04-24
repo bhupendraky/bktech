@@ -9,12 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @ConditionalOnProperty(name = "spring.security.type", havingValue = "IN-MEMORY")
 public class InMemorySecurityConfig extends WebSecurityConfigurerAdapter {
 
-	/**
-	 * Configure in memory data at runtime
-	 *
-	 * @param auth
-	 * @throws Exception
-	 */
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.inMemoryAuthentication()

@@ -15,7 +15,6 @@ public class UserVO extends AuditableEntity<String> {
 	private static final long serialVersionUID = -7064942908770052990L;
 
 	private String username;
-	private String password;
 	private String email;
 	private Integer age;
 	private transient boolean enabled = true;

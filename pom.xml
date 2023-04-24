@@ -24,6 +24,7 @@
 		<apache.poi.version>5.2.3</apache.poi.version>
 		<mapstruct.version>1.5.2.Final</mapstruct.version>
 		<guava.version>31.1-jre</guava.version>
+		<jwt.version>0.11.2</jwt.version>
 	</properties>
 
 	<modules>
@@ -124,6 +125,29 @@
 				<version>${revision}</version>
 				<classifier>client</classifier>
 				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt-api</artifactId>
+				<version>${jwt.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt-impl</artifactId>
+				<version>${jwt.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt-jackson</artifactId>
+				<version>${jwt.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt-gson</artifactId>
+				<version>${jwt.version}</version>
+				<scope>runtime</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
