@@ -6,20 +6,21 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import com.bktech.user.Application;
 import com.bktech.user.config.ErrorResourceConfig;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
+@RequiredArgsConstructor
 public class AppContext {
 
 	private static final Map<CacheKey, Object> contextMap = new HashMap<>();
 
-	@Autowired
-	private Environment env;
+	private final Environment env;
 
 	@PostConstruct
 	public void postConstruct() throws Exception {

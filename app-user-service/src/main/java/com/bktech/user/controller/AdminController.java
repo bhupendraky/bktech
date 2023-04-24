@@ -2,7 +2,6 @@ package com.bktech.user.controller;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,14 +17,15 @@ import com.bktech.user.service.UserService;
 import com.bktech.user.vo.UserVO;
 
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/admin")
 public class AdminController {
 
-	@Autowired
-	private UserService userService;
+	private final UserService userService;
 
 	@Traceble
 	@ApiOperation("Register admin user")

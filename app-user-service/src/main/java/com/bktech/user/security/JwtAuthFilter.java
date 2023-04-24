@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.HttpHeaders;
@@ -24,15 +23,15 @@ import com.bktech.user.ctx.ExecutionContext;
 import com.bktech.user.ctx.UserContext;
 import com.bktech.user.execp.AppException;
 
+import lombok.RequiredArgsConstructor;
+
 @Component
+@RequiredArgsConstructor
 @ConditionalOnProperty(name = "spring.security.type", havingValue = "JWT")
 public class JwtAuthFilter extends OncePerRequestFilter {
 
-	@Autowired
-	private UserDetailsService userDetailsService;
-
-	@Autowired
-	private JwtTokenHelper helper;
+	private final UserDetailsService userDetailsService;
+	private final JwtTokenHelper helper;
 
 	@Value("${spring.security.jwy.bearer-token}")
 	private boolean bearerToken;

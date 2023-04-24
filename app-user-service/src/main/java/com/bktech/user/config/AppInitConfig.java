@@ -1,6 +1,5 @@
 package com.bktech.user.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,20 +14,16 @@ import com.google.common.collect.Lists;
 import com.spring4all.swagger.SwaggerProperties;
 import com.spring4all.swagger.SwaggerProperties.GlobalOperationParameter;
 
+import lombok.RequiredArgsConstructor;
+
 @Configuration
+@RequiredArgsConstructor
 public class AppInitConfig implements CommandLineRunner {
 
-	@Autowired
-	private SwaggerProperties swaggerProperties;
-
-	@Autowired
-	private UserRepository userRepository;
-
-	@Autowired
-	private RoleRepository adminRepository;
-
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+	private final SwaggerProperties swaggerProperties;
+	private final UserRepository userRepository;
+	private final RoleRepository adminRepository;
+	private final PasswordEncoder passwordEncoder;
 
 	@Override
 	public void run(String... args) throws Exception {

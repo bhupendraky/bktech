@@ -1,6 +1,5 @@
 package com.bktech.user.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -15,21 +14,17 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.bktech.user.constants.RoleType;
 
+import lombok.RequiredArgsConstructor;
+
 @EnableWebSecurity
+@RequiredArgsConstructor
 @ConditionalOnProperty(name = "spring.security.type", havingValue = "JWT")
 public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private AuthEntryPoint authEntryPoint;
-
-	@Autowired
-	private JwtAuthFilter authFilter;
-
-	@Autowired
-	private UserDetailsService userDetailsService;
-
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+	private final AuthEntryPoint authEntryPoint;
+	private final JwtAuthFilter authFilter;
+	private final UserDetailsService userDetailsService;
+	private final PasswordEncoder passwordEncoder;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
