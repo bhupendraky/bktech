@@ -21,6 +21,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.bktech.user.ctx.ExecutionContext;
 import com.bktech.user.ctx.UserContext;
+import com.bktech.user.data.TokenRepository;
 import com.bktech.user.execp.AppException;
 
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,7 @@ import lombok.RequiredArgsConstructor;
 public class JwtAuthFilter extends OncePerRequestFilter {
 
 	private final UserDetailsService userDetailsService;
+	private final TokenRepository tokenRepository;
 	private final JwtTokenHelper helper;
 
 	@Value("${spring.security.jwy.bearer-token}")
@@ -40,24 +42,30 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		String token = request.getHeader(HttpHeaders.AUTHORIZATION);
-		if((!bearerToken || StringUtils.startsWith(token, "Bearer ")) &&
-				SecurityContextHolder.getContext().getAuthentication() == null) {
-			token = token.substring(7);
-			String username = helper.getUsernameFromToken(token);
-			if(username == null) {
-				throw new AppException("Authentication details required");
-			}
-			UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-			if(!helper.isValidToken(token, username)) {
-				throw new AppException("Invalid authorization token");
-			}
-			UsernamePasswordAuthenticationToken newToken = new UsernamePasswordAuthenticationToken(
-					userDetails, null, userDetails.getAuthorities()
-					);
-			newToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-			SecurityContextHolder.getContext().setAuthentication(newToken);
-			ExecutionContext.getUserContext().set(new UserContext(username));
+
+		if((bearerToken && !StringUtils.startsWith(token, "Bearer ")) ||
+				SecurityContextHolder.getContext().getAuthentication() != null){
+			filterChain.doFilter(request, response);
+			return;
 		}
+
+		token = token.substring(7);
+		// validate the token
+		String username = helper.getUsernameFromToken(token);
+		boolean isValid = tokenRepository.findByUserUsernameAndValueAndValid(username, token, true)
+				.isPresent();
+		if(!(isValid && helper.isValidToken(token, username))) {
+			throw new AppException("Invalid authorization token");
+		}
+		// Set security context
+		UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+		UsernamePasswordAuthenticationToken newToken = new UsernamePasswordAuthenticationToken(
+				userDetails, null, userDetails.getAuthorities());
+		newToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+		SecurityContextHolder.getContext().setAuthentication(newToken);
+		ExecutionContext.getUserContext().set(new UserContext(username));
+
+		// Delegate to next filter
 		filterChain.doFilter(request, response);
 	}
 

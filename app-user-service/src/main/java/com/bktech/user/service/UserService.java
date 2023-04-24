@@ -41,7 +41,7 @@ public class UserService {
 				.orElse(null);
 	}
 
-	private Optional<UserEntity> getUserEntity(String username) {
+	public Optional<UserEntity> getUserEntity(String username) {
 		UserEntity userEntity = userRepository.findByUsername(username)
 				.orElseThrow(() -> new AppException(ExceptionCode.USRSVC_0005, username));
 		return Optional.of(userEntity);

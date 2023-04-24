@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -36,6 +37,7 @@ public class UserEntity extends AuditableEntity<String> implements UserDetails {
 
 	@Id
 	@GeneratedValue
+	@Column(name = "ID")
 	private Long id;
 
 	@Column(name = "USER_NAME", nullable = false, unique = true)
@@ -60,6 +62,9 @@ public class UserEntity extends AuditableEntity<String> implements UserDetails {
 	joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"),
 	inverseJoinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID"))
 	private Set<Role> roles = new HashSet<>();
+
+	@OneToOne(mappedBy = "user")
+	private Token token;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
