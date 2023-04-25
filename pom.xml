@@ -25,6 +25,8 @@
 		<mapstruct.version>1.5.2.Final</mapstruct.version>
 		<guava.version>31.1-jre</guava.version>
 		<jwt.version>0.11.2</jwt.version>
+		<lombok.version>1.18.26</lombok.version>
+		<commons.validator.version>1.7</commons.validator.version>
 	</properties>
 
 	<modules>
@@ -106,12 +108,12 @@
 			<dependency>
 				<groupId>commons-validator</groupId>
 				<artifactId>commons-validator</artifactId>
-				<version>1.7</version>
+				<version>${commons.validator.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.projectlombok</groupId>
 				<artifactId>lombok</artifactId>
-				<version>1.18.26</version>
+				<version>${lombok.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.bktech</groupId>
