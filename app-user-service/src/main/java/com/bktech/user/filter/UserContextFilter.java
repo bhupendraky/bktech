@@ -1,4 +1,4 @@
-package com.bktech.user.ctx;
+package com.bktech.user.filter;
 
 import java.io.IOException;
 
@@ -13,6 +13,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import com.bktech.user.constants.Constants;
+import com.bktech.user.ctx.ExecutionContext;
+import com.bktech.user.ctx.UserContext;
 
 @Component
 @ConditionalOnProperty(name = "spring.security.type", havingValue = "NONE")

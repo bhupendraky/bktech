@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.bktech.user.constants.RoleType;
+import com.bktech.user.filter.BasicAuthFilter;
 
 import lombok.RequiredArgsConstructor;
 

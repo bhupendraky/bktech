@@ -1,4 +1,4 @@
-package com.bktech.user;
+package com.bktech.user.config;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bktech.user.Traceble;
+import com.bktech.user.config.Traceble;
 import com.bktech.user.service.UserService;
 import com.bktech.user.vo.UserVO;
 

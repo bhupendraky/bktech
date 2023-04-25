@@ -13,7 +13,7 @@ import com.bktech.user.domain.Token;
 import com.bktech.user.domain.UserEntity;
 import com.bktech.user.dto.LoginDTO;
 import com.bktech.user.execp.AppException;
-import com.bktech.user.security.JwtTokenHelper;
+import com.bktech.user.utils.JwtTokenUtil;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,13 +24,12 @@ public class JwtTokenService {
 
 	private final UserService userService;
 	private final TokenRepository tokenRepository;
-	private final JwtTokenHelper helper;
 	private final AuthenticationManager authenticationManager;
 
 	public String generateToken(LoginDTO loginDto) {
 
 		this.authenticate(loginDto.getUsername(), loginDto.getPassword());
-		String token = helper.generateToken(loginDto.getUsername());
+		String token = JwtTokenUtil.generateToken(loginDto.getUsername());
 
 		Optional<UserEntity> userEntity = userService.getUserEntity(loginDto.getUsername());
 		Token tokenEntity = userEntity.map(UserEntity::getToken).orElse(new Token());

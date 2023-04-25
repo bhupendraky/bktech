@@ -1,4 +1,4 @@
-package com.bktech.user.security;
+package com.bktech.user.filter;
 
 import java.io.IOException;
 
@@ -23,6 +23,7 @@ import com.bktech.user.ctx.ExecutionContext;
 import com.bktech.user.ctx.UserContext;
 import com.bktech.user.data.TokenRepository;
 import com.bktech.user.execp.AppException;
+import com.bktech.user.utils.JwtTokenUtil;
 
 import lombok.RequiredArgsConstructor;
 
@@ -33,7 +34,6 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
 	private final UserDetailsService userDetailsService;
 	private final TokenRepository tokenRepository;
-	private final JwtTokenHelper helper;
 
 	@Value("${spring.security.jwy.bearer-token}")
 	private boolean bearerToken;
@@ -51,10 +51,10 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
 		token = token.substring(7);
 		// validate the token
-		String username = helper.getUsernameFromToken(token);
+		String username = JwtTokenUtil.getUsernameFromToken(token);
 		boolean isValid = tokenRepository.findByUserUsernameAndValueAndValid(username, token, true)
 				.isPresent();
-		if(!(isValid && helper.isValidToken(token, username))) {
+		if(!(isValid && JwtTokenUtil.isValidToken(token, username))) {
 			throw new AppException("Invalid authorization token");
 		}
 		// Set security context

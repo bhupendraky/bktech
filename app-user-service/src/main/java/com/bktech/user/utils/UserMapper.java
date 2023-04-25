@@ -1,4 +1,4 @@
-package com.bktech.user.mapper;
+package com.bktech.user.utils;
 
 import java.util.Set;
 import java.util.stream.Collectors;

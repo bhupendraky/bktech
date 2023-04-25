@@ -22,7 +22,7 @@ import com.bktech.user.domain.UserEntity;
 import com.bktech.user.dto.UserDTO;
 import com.bktech.user.execp.AppException;
 import com.bktech.user.execp.ExceptionCode;
-import com.bktech.user.mapper.UserMapper;
+import com.bktech.user.utils.UserMapper;
 import com.bktech.user.vo.UserVO;
 
 import lombok.RequiredArgsConstructor;
