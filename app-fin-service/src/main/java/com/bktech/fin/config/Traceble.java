@@ -1,4 +1,4 @@
-package com.bktech.fin;
+package com.bktech.fin.config;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

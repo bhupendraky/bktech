@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bktech.url.Traceble;
+import com.bktech.url.config.Traceble;
 import com.bktech.url.service.ShortenUrlService;
 
 import io.swagger.annotations.ApiOperation;

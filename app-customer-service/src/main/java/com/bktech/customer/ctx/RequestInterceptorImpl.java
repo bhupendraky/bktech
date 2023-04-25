@@ -12,6 +12,6 @@ public class RequestInterceptorImpl implements RequestInterceptor {
 	@Override
 	public void apply(RequestTemplate template) {
 		Optional.ofNullable(ExecutionContext.getUserContext().get())
-		.ifPresent(ctx -> template.header(Constants.HTTP_HEADER_USER_ID, ctx.getUserId()));
+		.ifPresent(ctx -> template.header(Constants.REQ_HEADER_USER_ID, ctx.getUserId()));
 	}
 }

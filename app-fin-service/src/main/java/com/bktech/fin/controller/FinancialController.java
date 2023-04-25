@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bktech.fin.Traceble;
+import com.bktech.fin.config.Traceble;
 import com.bktech.fin.domain.UserAccount;
 import com.bktech.fin.service.FincialService;
 

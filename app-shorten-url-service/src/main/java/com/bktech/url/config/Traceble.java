@@ -1,4 +1,4 @@
-package com.bktech.customer;
+package com.bktech.url.config;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

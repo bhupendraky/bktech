@@ -23,7 +23,7 @@ public class UserContextFilter implements Filter {
 		try {
 			ExecutionContext.getUserContext()
 			.set(new UserContext(((HttpServletRequest) request)
-					.getHeader(Constants.HTTP_HEADER_USER_ID)));
+					.getHeader(Constants.REQ_HEADER_USER_ID)));
 			chain.doFilter(request, response);
 		} finally {
 			ExecutionContext.removeUserContext();

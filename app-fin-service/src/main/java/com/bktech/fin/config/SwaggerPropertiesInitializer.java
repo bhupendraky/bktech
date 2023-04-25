@@ -9,7 +9,7 @@ public class SwaggerPropertiesInitializer {
 
 	public static void configureSwaggerHeader(SwaggerProperties swaggerProperties) throws Exception {
 		GlobalOperationParameter userId = new GlobalOperationParameter();
-		userId.setName(Constants.HTTP_HEADER_USER_ID);
+		userId.setName(Constants.REQ_HEADER_USER_ID);
 		userId.setDescription("User ID");
 		userId.setParameterType("header");
 		userId.setModelRef("string");

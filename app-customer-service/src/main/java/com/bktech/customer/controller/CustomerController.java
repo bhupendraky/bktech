@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bktech.customer.Traceble;
+import com.bktech.customer.config.Traceble;
 import com.bktech.customer.domain.Customer;
 import com.bktech.customer.service.CustomerService;
 
