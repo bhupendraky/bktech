@@ -1,11 +1,13 @@
 package com.bktech.user.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.bktech.user.constants.Constants;
 import com.bktech.user.constants.RoleType;
+import com.bktech.user.constants.SecurityType;
 import com.bktech.user.data.RoleRepository;
 import com.bktech.user.data.UserRepository;
 import com.bktech.user.domain.Role;
@@ -25,6 +27,9 @@ public class AppInitConfig implements CommandLineRunner {
 	private final RoleRepository adminRepository;
 	private final PasswordEncoder passwordEncoder;
 
+	@Value("${spring.security.type}")
+	private SecurityType securityType;
+
 	@Override
 	public void run(String... args) throws Exception {
 
@@ -33,6 +38,7 @@ public class AppInitConfig implements CommandLineRunner {
 
 		// Create very first admin user
 		createAdminUser();
+
 	}
 
 

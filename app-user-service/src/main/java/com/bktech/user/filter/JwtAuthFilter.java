@@ -41,20 +41,20 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		String token = request.getHeader(HttpHeaders.AUTHORIZATION);
+		String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-		if((bearerToken && !StringUtils.startsWith(token, "Bearer ")) ||
+		if((bearerToken && !StringUtils.startsWith(authHeader, "Bearer ")) ||
 				SecurityContextHolder.getContext().getAuthentication() != null){
 			filterChain.doFilter(request, response);
 			return;
 		}
 
-		token = token.substring(7);
+		String token = authHeader.substring(7);
 		// validate the token
 		String username = JwtTokenUtil.getUsernameFromToken(token);
-		boolean isValid = tokenRepository.findByUserUsernameAndValueAndValid(username, token, true)
+		boolean isValidState = tokenRepository.findByUserUsernameAndValueAndValid(username, token, true)
 				.isPresent();
-		if(!(isValid && JwtTokenUtil.isValidToken(token, username))) {
+		if(!(isValidState && JwtTokenUtil.isValidToken(token, username))) {
 			throw new AppException("Invalid authorization token");
 		}
 		// Set security context

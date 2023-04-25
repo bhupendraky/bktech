@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping("/api/jwt/user")
 @ConditionalOnProperty(name = "spring.security.type", havingValue = "JWT")
-public class JwtLoginController {
+public class JwtSecureController {
 
 	private final JwtTokenService jwtTokenService;
 

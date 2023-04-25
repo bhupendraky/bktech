@@ -2,6 +2,8 @@ package com.bktech.user.config;
 
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
@@ -10,6 +12,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 
 import com.bktech.user.constants.Constants;
 import com.bktech.user.ctx.ExecutionContext;
@@ -60,6 +63,12 @@ public class AppConfig {
 		return username -> userRepository
 				.findByUsername(username)
 				.orElseThrow(() -> new AppException(ExceptionCode.USRSVC_0005, username));
+	}
+
+	@Bean
+	public AuthenticationEntryPoint authenticationEntryPoint() {
+		return (request, response, authentication) ->
+		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Access denied");
 	}
 
 }
