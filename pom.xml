@@ -33,9 +33,8 @@
 		<module>infra-eureka</module>
 		<module>infra-gateway</module>
 		<module>app-user-service</module>
-		<module>app-customer-service</module>
-		<module>app-fin-service</module>
 		<module>app-shorten-url-service</module>
+		<module>app-customer-service</module>
 	</modules>
 	<dependencies>
 		<dependency>
