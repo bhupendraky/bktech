@@ -14,10 +14,10 @@ import com.bktech.user.service.JwtTokenService;
 
 import lombok.RequiredArgsConstructor;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/jwt/user")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @ConditionalOnProperty(name = "spring.security.type", havingValue = "JWT")
 public class JwtSecureController {
 

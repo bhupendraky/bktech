@@ -31,8 +31,8 @@ import lombok.RequiredArgsConstructor;
 @ConditionalOnProperty(name = "spring.security.type", havingValue = "JWT")
 public class JwtAuthFilter extends OncePerRequestFilter {
 
-	private final UserDetailsService userDetailsService;
 	private final TokenRepository tokenRepository;
+	private final UserDetailsService userDetailsService;
 
 	@Value("${spring.security.jwy.bearer-token}")
 	private boolean bearerToken;
@@ -62,10 +62,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 				userDetails, null, userDetails.getAuthorities());
 		newToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 		SecurityContextHolder.getContext().setAuthentication(newToken);
-		ExecutionContext.getUserContext().set(new UserContext(username));
-
-		// Delegate to next filter
-		filterChain.doFilter(request, response);
+		try {
+			ExecutionContext.getUserContext().set(new UserContext(username));
+			// Delegate to next filter
+			filterChain.doFilter(request, response);
+		} finally {
+			ExecutionContext.removeUserContext();
+		}
 	}
 
 }

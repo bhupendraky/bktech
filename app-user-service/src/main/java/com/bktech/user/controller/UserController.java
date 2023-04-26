@@ -15,10 +15,10 @@ import com.bktech.user.vo.UserVO;
 
 import lombok.RequiredArgsConstructor;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/user")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 
 	private final UserService userService;

@@ -17,10 +17,10 @@ import com.bktech.user.vo.UserVO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/admin")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AdminController {
 
 	private final UserService userService;

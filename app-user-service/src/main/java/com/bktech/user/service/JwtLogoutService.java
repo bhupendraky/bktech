@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Service;
 
+import com.bktech.user.constants.Constants;
 import com.bktech.user.data.TokenRepository;
 import com.bktech.user.domain.Token;
 import com.bktech.user.execp.AppException;
@@ -29,7 +30,7 @@ public class JwtLogoutService implements LogoutHandler {
 	@Override
 	public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
 		String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
-		if((bearerToken && !StringUtils.startsWith(authHeader, "Bearer "))){
+		if((bearerToken && !StringUtils.startsWith(authHeader, Constants.BEARER_TOKEN_PREFIX))){
 			return;
 		}
 		String token = authHeader.substring(7);

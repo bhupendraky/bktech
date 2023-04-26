@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -48,7 +50,7 @@ public class AppConfig {
 	}
 
 	@Bean
-	public PasswordEncoder getPasswordEncoder() {
+	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
@@ -58,16 +60,23 @@ public class AppConfig {
 	}
 
 	@Bean
+	public AuthenticationEntryPoint authenticationEntryPoint() {
+		return (request, response, authentication) ->
+		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Access denied");
+	}
+
+	@Bean
 	public UserDetailsService userDetailsService() {
-		return username -> userRepository
-				.findByUsername(username)
+		return username -> userRepository.findByUsername(username)
 				.orElseThrow(() -> new AppException(ExceptionCode.USRSVC_0005, username));
 	}
 
 	@Bean
-	public AuthenticationEntryPoint authenticationEntryPoint() {
-		return (request, response, authentication) ->
-		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Access denied");
+	public AuthenticationProvider authenticationProvider() {
+		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+		authProvider.setUserDetailsService(userDetailsService());
+		authProvider.setPasswordEncoder(passwordEncoder());
+		return authProvider;
 	}
 
 }

@@ -37,8 +37,13 @@ public class BasicAuthFilter extends OncePerRequestFilter {
 		UsernamePasswordAuthenticationToken newToken = new UsernamePasswordAuthenticationToken(username, password);
 		newToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 		SecurityContextHolder.getContext().setAuthentication(newToken);
-		ExecutionContext.getUserContext().set(new UserContext(username));
-		filterChain.doFilter(request, response);
+		try {
+			ExecutionContext.getUserContext().set(new UserContext(username));
+			// Delegate to next filter
+			filterChain.doFilter(request, response);
+		} finally {
+			ExecutionContext.removeUserContext();
+		}
 	}
 
 }
