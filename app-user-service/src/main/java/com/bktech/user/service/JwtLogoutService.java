@@ -1,8 +1,5 @@
 package com.bktech.user.service;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -16,6 +13,8 @@ import com.bktech.user.execp.AppException;
 import com.bktech.user.execp.ExceptionCode;
 import com.bktech.user.utils.JwtTokenUtil;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
 @Service

@@ -3,13 +3,11 @@ package com.bktech.fin.security;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @EnableWebSecurity
 @ConditionalOnProperty(name = "spring.security.type", havingValue = "NONE")
-public class NoAuthSecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class NoAuthSecurityConfiguration {
 
-	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 		.authorizeRequests()

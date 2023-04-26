@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
-
 import org.apache.commons.validator.routines.UrlValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +16,8 @@ import com.bktech.url.domain.Counter;
 import com.bktech.url.domain.WebUrl;
 import com.bktech.url.execp.AppException;
 import com.bktech.url.execp.ExceptionCode;
+
+import jakarta.annotation.PostConstruct;
 
 @Service
 public class ShortenUrlService {

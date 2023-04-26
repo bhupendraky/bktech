@@ -6,7 +6,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -18,13 +17,12 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 @RequiredArgsConstructor
 @ConditionalOnProperty(name = "spring.security.type", havingValue = "JDBC")
-public class JdbcAuthSecurityConfig extends WebSecurityConfigurerAdapter {
+public class JdbcAuthSecurityConfig {
 
 	private final DataSource dataSource;
 	private final PasswordEncoder passwordEncoder;
 	private final AuthenticationEntryPoint authEntryPoint;
 
-	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.jdbcAuthentication()
 		.dataSource(dataSource)
@@ -37,13 +35,12 @@ public class JdbcAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 		;
 	}
 
-	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		.csrf().disable()
 		.authorizeRequests()
-		.antMatchers("/api/user/**").hasAuthority(RoleType.USER.name())
-		.antMatchers("/api/admin/**").hasAuthority(RoleType.ADMIN.name())
+		.requestMatchers("/api/user/**").hasAuthority(RoleType.USER.name())
+		.requestMatchers("/api/admin/**").hasAuthority(RoleType.ADMIN.name())
 		.anyRequest().authenticated()
 		.and()
 		.exceptionHandling()

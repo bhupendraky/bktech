@@ -3,15 +3,14 @@ package com.bktech.user.ctx;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 import com.bktech.user.Application;
 import com.bktech.user.config.ErrorResourceConfig;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
 import lombok.RequiredArgsConstructor;
 
 @Component

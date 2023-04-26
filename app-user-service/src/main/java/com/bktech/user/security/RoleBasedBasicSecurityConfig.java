@@ -6,7 +6,6 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,20 +20,19 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 @RequiredArgsConstructor
 @ConditionalOnProperty(name = "spring.security.type", havingValue = "BASIC")
-public class RoleBasedBasicSecurityConfig extends WebSecurityConfigurerAdapter {
+public class RoleBasedBasicSecurityConfig {
 
 	private final UserDetailsService userDetailsService;
 	private final PasswordEncoder passwordEncoder;
 	private final BasicAuthFilter authFilter;
 	private final AuthenticationEntryPoint authEntryPoint;
 
-	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		.csrf().disable()
 		.authorizeRequests()
-		.antMatchers("/api/user/**").hasAuthority(RoleType.USER.name())
-		.antMatchers("/api/admin/**").hasAuthority(RoleType.ADMIN.name())
+		.requestMatchers("/api/user/**").hasAuthority(RoleType.USER.name())
+		.requestMatchers("/api/admin/**").hasAuthority(RoleType.ADMIN.name())
 		.anyRequest().authenticated()
 		.and()
 		.exceptionHandling()

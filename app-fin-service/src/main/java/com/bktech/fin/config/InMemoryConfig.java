@@ -1,12 +1,13 @@
 package com.bktech.fin.config;
 
-import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
+
+import jakarta.annotation.PostConstruct;
 
 public class InMemoryConfig {
 

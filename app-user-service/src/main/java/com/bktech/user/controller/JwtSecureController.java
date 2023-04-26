@@ -12,7 +12,6 @@ import com.bktech.user.config.Traceble;
 import com.bktech.user.dto.LoginDTO;
 import com.bktech.user.service.JwtTokenService;
 
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -25,7 +24,6 @@ public class JwtSecureController {
 	private final JwtTokenService jwtTokenService;
 
 	@Traceble
-	@ApiOperation("Generate JWT Token")
 	@PostMapping("/login")
 	public String login (@Validated @RequestBody LoginDTO loginDto) {
 		return jwtTokenService.generateToken(loginDto);

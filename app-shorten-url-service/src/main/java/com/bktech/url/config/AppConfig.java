@@ -2,8 +2,6 @@ package com.bktech.url.config;
 
 import java.util.Optional;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
@@ -18,6 +16,7 @@ import com.bktech.url.ctx.ExecutionContext;
 import com.bktech.url.ctx.UserContext;
 
 import feign.RequestInterceptor;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 
 @Configuration

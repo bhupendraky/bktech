@@ -6,7 +6,6 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -23,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 @RequiredArgsConstructor
 @ConditionalOnProperty(name = "spring.security.type", havingValue = "JWT")
-public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
+public class JwtSecurityConfig {
 
 	private final AuthenticationEntryPoint authEntryPoint;
 	private final JwtAuthFilter authFilter;
@@ -31,13 +30,12 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
 	private final PasswordEncoder passwordEncoder;
 	private final LogoutHandler logoutHandler;
 
-	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 		.authorizeRequests()
-		.antMatchers("/api/jwt/user/login").permitAll()
-		.antMatchers("/api/user/**").hasAuthority(RoleType.USER.name())
-		.antMatchers("/api/admin/**").hasAuthority(RoleType.ADMIN.name())
+		.requestMatchers("/api/jwt/user/login").permitAll()
+		.requestMatchers("/api/user/**").hasAuthority(RoleType.USER.name())
+		.requestMatchers("/api/admin/**").hasAuthority(RoleType.ADMIN.name())
 		.anyRequest().authenticated()
 		.and()
 		.exceptionHandling()

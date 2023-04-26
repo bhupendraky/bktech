@@ -12,9 +12,6 @@ import com.bktech.user.data.RoleRepository;
 import com.bktech.user.data.UserRepository;
 import com.bktech.user.domain.Role;
 import com.bktech.user.domain.UserEntity;
-import com.google.common.collect.Lists;
-import com.spring4all.swagger.SwaggerProperties;
-import com.spring4all.swagger.SwaggerProperties.GlobalOperationParameter;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,7 +19,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AppInitConfig implements CommandLineRunner {
 
-	private final SwaggerProperties swaggerProperties;
 	private final UserRepository userRepository;
 	private final RoleRepository adminRepository;
 	private final PasswordEncoder passwordEncoder;
@@ -32,9 +28,6 @@ public class AppInitConfig implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
-		// Swagger setup
-		configureSwaggerHeader();
 
 		// Create very first admin user
 		createAdminUser();
@@ -65,22 +58,5 @@ public class AppInitConfig implements CommandLineRunner {
 
 		userRepository.save(adminUser);
 	}
-
-
-	private void configureSwaggerHeader() throws Exception {
-		GlobalOperationParameter userId = new GlobalOperationParameter();
-		userId.setName(Constants.REQ_HEADER_USER_ID);
-		userId.setDescription("User ID");
-		userId.setParameterType("header");
-		userId.setModelRef("string");
-		userId.setRequired("true");
-
-		if(swaggerProperties.getGlobalOperationParameters() == null){
-			swaggerProperties.setGlobalOperationParameters(Lists.newArrayList(userId));
-		} else {
-			swaggerProperties.getGlobalOperationParameters().add(userId);
-		}
-	}
-
 
 }
