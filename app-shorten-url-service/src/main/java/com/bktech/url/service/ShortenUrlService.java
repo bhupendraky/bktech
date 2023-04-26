@@ -5,7 +5,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.validator.routines.UrlValidator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,17 +17,16 @@ import com.bktech.url.execp.AppException;
 import com.bktech.url.execp.ExceptionCode;
 
 import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class ShortenUrlService {
 
 	private static String base62Alphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-	@Autowired
-	private WebUrlRepository webUrlRepository;
-
-	@Autowired
-	private CounterRepository counterRepository;
+	private final WebUrlRepository webUrlRepository;
+	private final CounterRepository counterRepository;
 
 	public String getUrl(String hashCode) {
 		return webUrlRepository.findByHashCode(hashCode)
