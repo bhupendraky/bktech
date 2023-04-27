@@ -1,4 +1,4 @@
-package com.bktech.url.domain;
+package com.bktech.url.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

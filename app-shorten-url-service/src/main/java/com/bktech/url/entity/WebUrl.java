@@ -1,4 +1,4 @@
-package com.bktech.url.domain;
+package com.bktech.url.entity;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 

@@ -1,4 +1,4 @@
-package com.bktech.url.domain;
+package com.bktech.customer.entity;
 
 import java.io.Serializable;
 import java.util.Date;

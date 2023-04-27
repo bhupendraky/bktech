@@ -17,9 +17,9 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import com.bktech.user.constants.Constants;
 import com.bktech.user.ctx.ExecutionContext;
 import com.bktech.user.ctx.UserContext;
-import com.bktech.user.data.UserRepository;
 import com.bktech.user.execp.AppException;
 import com.bktech.user.execp.ExceptionCode;
+import com.bktech.user.repository.UserRepository;
 
 import feign.RequestInterceptor;
 import jakarta.servlet.http.HttpServletResponse;

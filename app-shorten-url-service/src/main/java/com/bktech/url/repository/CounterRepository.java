@@ -1,11 +1,11 @@
-package com.bktech.url.data;
+package com.bktech.url.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.bktech.url.domain.Counter;
+import com.bktech.url.entity.Counter;
 
 @Repository
 public interface CounterRepository extends JpaRepository<Counter, Integer> {

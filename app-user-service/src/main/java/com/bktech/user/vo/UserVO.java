@@ -3,7 +3,7 @@ package com.bktech.user.vo;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.bktech.user.domain.AuditableEntity;
+import com.bktech.user.entity.AuditableEntity;
 
 import lombok.Getter;
 import lombok.Setter;

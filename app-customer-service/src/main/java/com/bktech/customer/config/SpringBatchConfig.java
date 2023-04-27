@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-import com.bktech.customer.domain.Customer;
+import com.bktech.customer.entity.Customer;
 
 //@Configuration
 //@EnableBatchProcessing

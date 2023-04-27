@@ -8,11 +8,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Service;
 
-import com.bktech.user.data.TokenRepository;
-import com.bktech.user.domain.Token;
-import com.bktech.user.domain.UserEntity;
 import com.bktech.user.dto.LoginDTO;
+import com.bktech.user.entity.Token;
+import com.bktech.user.entity.UserEntity;
 import com.bktech.user.execp.AppException;
+import com.bktech.user.repository.TokenRepository;
 import com.bktech.user.utils.JwtTokenUtil;
 
 import lombok.RequiredArgsConstructor;

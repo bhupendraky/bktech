@@ -13,13 +13,13 @@ import org.springframework.util.CollectionUtils;
 
 import com.bktech.user.constants.Constants;
 import com.bktech.user.constants.RoleType;
-import com.bktech.user.data.RoleRepository;
-import com.bktech.user.data.UserRepository;
-import com.bktech.user.domain.Role;
-import com.bktech.user.domain.UserEntity;
 import com.bktech.user.dto.UserDTO;
+import com.bktech.user.entity.Role;
+import com.bktech.user.entity.UserEntity;
 import com.bktech.user.execp.AppException;
 import com.bktech.user.execp.ExceptionCode;
+import com.bktech.user.repository.RoleRepository;
+import com.bktech.user.repository.UserRepository;
 import com.bktech.user.utils.UserMapper;
 import com.bktech.user.vo.UserVO;
 

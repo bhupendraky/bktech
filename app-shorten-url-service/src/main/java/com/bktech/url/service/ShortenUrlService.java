@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bktech.url.Constants;
-import com.bktech.url.data.CounterRepository;
-import com.bktech.url.data.WebUrlRepository;
-import com.bktech.url.domain.Counter;
-import com.bktech.url.domain.WebUrl;
+import com.bktech.url.entity.Counter;
+import com.bktech.url.entity.WebUrl;
 import com.bktech.url.execp.AppException;
 import com.bktech.url.execp.ExceptionCode;
+import com.bktech.url.repository.CounterRepository;
+import com.bktech.url.repository.WebUrlRepository;
 
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;

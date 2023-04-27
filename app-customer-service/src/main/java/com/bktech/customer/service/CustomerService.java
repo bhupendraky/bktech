@@ -14,11 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bktech.customer.Constants;
-import com.bktech.customer.data.CustomerRepository;
-import com.bktech.customer.domain.Customer;
+import com.bktech.customer.entity.Customer;
 import com.bktech.customer.execp.AppException;
 import com.bktech.customer.execp.ExceptionCode;
 import com.bktech.customer.proxy.UserServiceProxy;
+import com.bktech.customer.repository.CustomerRepository;
 import com.bktech.customer.vo.UserVO;
 
 @Service

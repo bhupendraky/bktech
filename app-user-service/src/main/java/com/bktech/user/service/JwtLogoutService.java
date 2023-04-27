@@ -8,10 +8,10 @@ import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Service;
 
 import com.bktech.user.constants.Constants;
-import com.bktech.user.data.TokenRepository;
-import com.bktech.user.domain.Token;
+import com.bktech.user.entity.Token;
 import com.bktech.user.execp.AppException;
 import com.bktech.user.execp.ExceptionCode;
+import com.bktech.user.repository.TokenRepository;
 import com.bktech.user.utils.JwtTokenUtil;
 
 import jakarta.servlet.http.HttpServletRequest;

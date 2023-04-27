@@ -1,6 +1,6 @@
 package com.bktech.customer.vo;
 
-import com.bktech.customer.domain.AuditableEntity;
+import com.bktech.customer.entity.AuditableEntity;
 
 import lombok.Getter;
 import lombok.Setter;

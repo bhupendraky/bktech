@@ -5,8 +5,8 @@ import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.bktech.customer.data.CustomerRepository;
-import com.bktech.customer.domain.Customer;
+import com.bktech.customer.entity.Customer;
+import com.bktech.customer.repository.CustomerRepository;
 
 @Component
 public class CustomerWriter implements ItemWriter<Customer> {

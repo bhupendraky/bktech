@@ -16,8 +16,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.bktech.user.ctx.ExecutionContext;
 import com.bktech.user.ctx.UserContext;
-import com.bktech.user.data.TokenRepository;
 import com.bktech.user.execp.AppException;
+import com.bktech.user.repository.TokenRepository;
 import com.bktech.user.utils.JwtTokenUtil;
 
 import jakarta.servlet.FilterChain;

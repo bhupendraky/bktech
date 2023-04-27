@@ -7,9 +7,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.CollectionUtils;
 
 import com.bktech.user.Application;
-import com.bktech.user.domain.Role;
-import com.bktech.user.domain.UserEntity;
 import com.bktech.user.dto.UserDTO;
+import com.bktech.user.entity.Role;
+import com.bktech.user.entity.UserEntity;
 import com.bktech.user.vo.TokenVO;
 import com.bktech.user.vo.UserVO;
 

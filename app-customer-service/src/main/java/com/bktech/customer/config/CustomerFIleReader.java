@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Component;
 
-import com.bktech.customer.domain.Customer;
+import com.bktech.customer.entity.Customer;
 
 @Component
 public class CustomerFIleReader extends FlatFileItemReader<Customer> implements InitializingBean{

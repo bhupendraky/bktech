@@ -8,10 +8,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.bktech.user.constants.Constants;
 import com.bktech.user.constants.RoleType;
 import com.bktech.user.constants.SecurityType;
-import com.bktech.user.data.RoleRepository;
-import com.bktech.user.data.UserRepository;
-import com.bktech.user.domain.Role;
-import com.bktech.user.domain.UserEntity;
+import com.bktech.user.entity.Role;
+import com.bktech.user.entity.UserEntity;
+import com.bktech.user.repository.RoleRepository;
+import com.bktech.user.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 

@@ -1,11 +1,11 @@
-package com.bktech.url.data;
+package com.bktech.url.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.bktech.url.domain.WebUrl;
+import com.bktech.url.entity.WebUrl;
 
 @Repository
 public interface WebUrlRepository extends JpaRepository<WebUrl, Long> {
