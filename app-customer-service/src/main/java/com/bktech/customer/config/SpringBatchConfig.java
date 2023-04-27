@@ -2,20 +2,18 @@ package com.bktech.customer.config;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import com.bktech.customer.domain.Customer;
 
-@Configuration
-@EnableBatchProcessing
+//@Configuration
+//@EnableBatchProcessing
 public class SpringBatchConfig {
 
 	@Autowired
@@ -26,16 +24,16 @@ public class SpringBatchConfig {
 
 	@Autowired
 	private CustomerWriter customerWriter;
-	
+
 	@Autowired
 	private CustomerProcessor customerProcessor;
-	
+
 	@Autowired
 	private CustomerFIleReader customerFIleReader;
-	
+
 	@Value("${customer.data.save.chunk.size}")
 	private Integer saveChunkSize;
-	
+
 	@Bean
 	public Step step() {
 		return stepBuilderFactory.get("step")

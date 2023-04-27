@@ -9,7 +9,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-@ConditionalOnProperty(name = "spring.security.type", havingValue = "NONE")
+@ConditionalOnProperty(name = "spring.security.type", havingValue = "NOAUTH")
 public class NoAuthSecurityConfiguration {
 
 	@Bean

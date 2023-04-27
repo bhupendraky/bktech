@@ -30,8 +30,8 @@ public class UserController {
 	}
 
 	@Traceble
-	@GetMapping("/get/{userName}")
-	public UserVO getUser(@PathVariable String username) {
+	@GetMapping("/get/{username}")
+	public UserVO getUserByUsername(@PathVariable String username) {
 		return userService.getUser(username);
 	}
 

@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Component
-@ConditionalOnProperty(name = "spring.security.type", havingValue = "NONE")
+@ConditionalOnProperty(name = "spring.security.type", havingValue = "NOAUTH")
 public class NoAuthFilter extends OncePerRequestFilter {
 
 	@Override

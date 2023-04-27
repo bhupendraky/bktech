@@ -10,6 +10,7 @@ import com.bktech.user.Application;
 import com.bktech.user.domain.Role;
 import com.bktech.user.domain.UserEntity;
 import com.bktech.user.dto.UserDTO;
+import com.bktech.user.vo.TokenVO;
 import com.bktech.user.vo.UserVO;
 
 public class UserMapper {
@@ -53,6 +54,13 @@ public class UserMapper {
 					.map(Role::getName)
 					.collect(Collectors.toSet());
 			userVO.setRoles(roles);
+		}
+
+		if(user.getToken() != null) {
+			TokenVO tokenVO = new TokenVO();
+			tokenVO.setValid(user.getToken().isValid());
+			tokenVO.setValue(user.getToken().getValue());
+			userVO.setToken(tokenVO);
 		}
 
 		return userVO;

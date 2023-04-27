@@ -18,6 +18,8 @@ import com.bktech.customer.data.CustomerRepository;
 import com.bktech.customer.domain.Customer;
 import com.bktech.customer.execp.AppException;
 import com.bktech.customer.execp.ExceptionCode;
+import com.bktech.customer.proxy.UserServiceProxy;
+import com.bktech.customer.vo.UserVO;
 
 @Service
 public class CustomerService {
@@ -25,11 +27,14 @@ public class CustomerService {
 	@Autowired
 	private CustomerRepository customerRepo;
 
-	@Autowired
+	//@Autowired
 	private JobLauncher jobLauncher;
 
-	@Autowired
+	//@Autowired
 	private Job job;
+
+	@Autowired
+	private UserServiceProxy userServiceProxy;
 
 	public List<Customer> getAllCustomers() {
 		return customerRepo.findAll();
@@ -52,6 +57,14 @@ public class CustomerService {
 			e.printStackTrace();
 		}
 		return Constants.SUCCESS;
+	}
+
+	public UserVO getUserByUserName(String username) {
+		return userServiceProxy.getUserByUsername(username);
+	}
+
+	public List<UserVO> getAllUser() {
+		return userServiceProxy.getAllUser();
 	}
 
 }

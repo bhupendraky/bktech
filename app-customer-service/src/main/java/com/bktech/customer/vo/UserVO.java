@@ -1,9 +1,9 @@
-package com.bktech.user.vo;
+package com.bktech.customer.vo;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import com.bktech.user.domain.AuditableEntity;
+import com.bktech.customer.domain.AuditableEntity;
 
 import lombok.Getter;
 import lombok.Setter;
