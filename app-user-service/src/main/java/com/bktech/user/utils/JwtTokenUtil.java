@@ -8,6 +8,7 @@ import java.util.function.Function;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
 public class JwtTokenUtil {
@@ -57,7 +58,8 @@ public class JwtTokenUtil {
 	}
 
 	private static Key getKey() {
-		return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+		byte[] secretBytes = Decoders.BASE64.decode(SECRET_KEY);
+		return Keys.hmacShaKeyFor(secretBytes);
 	}
 
 }
