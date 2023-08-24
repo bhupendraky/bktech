@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.bktech.fin.domain.UserAccount;
 
-@Repository
 public interface FinancialRepository extends JpaRepository<UserAccount, Long> {
 
 }

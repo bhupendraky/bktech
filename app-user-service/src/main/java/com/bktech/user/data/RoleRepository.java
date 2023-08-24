@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import com.bktech.user.domain.Role;
 
-@Repository
 public interface RoleRepository extends JpaRepository<Role, Long> {
 
 	boolean existsByName(String name);
