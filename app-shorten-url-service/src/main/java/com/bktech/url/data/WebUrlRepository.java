@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import com.bktech.url.domain.WebUrl;
 
-@Repository
 public interface WebUrlRepository extends JpaRepository<WebUrl, Long> {
 
 	Optional<WebUrl> findByHashCode(String hashCode);

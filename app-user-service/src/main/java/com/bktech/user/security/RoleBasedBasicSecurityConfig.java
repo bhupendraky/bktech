@@ -48,8 +48,8 @@ public class RoleBasedBasicSecurityConfig extends WebSecurityConfigurerAdapter {
 		.httpBasic();
 	}
 
-	@Bean
-	public AuthenticationProvider authenticationProvider() {
+    @Bean
+    AuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 		authProvider.setUserDetailsService(userDetailsService);
 		authProvider.setPasswordEncoder(passwordEncoder);

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 import com.bktech.url.domain.Counter;
 
-@Repository
 public interface CounterRepository extends JpaRepository<Counter, Integer> {
 
 	@Modifying
