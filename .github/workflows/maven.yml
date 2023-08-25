@@ -9,12 +9,15 @@
 name: Java CI with Maven
 
 on:
+
   push:
     branches: [ "develop", "master" ]
+
   pull_request:
     branches: [ "develop", "master" ]
 
 jobs:
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -27,8 +30,7 @@ jobs:
           cache: maven
       - name: Build with Maven
         run: mvn -B package --file pom.xml
-      - name: Run checkstyle check
-        run: mvn validate
+
   run-lint:
     runs-on: ubuntu-latest
     steps:
