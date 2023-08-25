@@ -30,7 +30,7 @@ public class JwtLogoutService implements LogoutHandler {
 	@Override
 	public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
 		String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
-		if((bearerToken && !StringUtils.startsWith(authHeader, "Bearer "))){
+		if(bearerToken && !StringUtils.startsWith(authHeader, "Bearer ")) {
 			return;
 		}
 		String token = authHeader.substring(7);

@@ -37,6 +37,6 @@ public class Token extends AuditableEntity<String> {
 	private boolean valid;
 
 	@OneToOne
-	@JoinColumn(name = "USER_ID", referencedColumnName = "ID" , nullable = false)
+	@JoinColumn(name = "USER_ID", referencedColumnName = "ID", nullable = false)
 	private UserEntity user;
 }

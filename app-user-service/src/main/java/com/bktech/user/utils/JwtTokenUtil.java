@@ -21,7 +21,7 @@ public class JwtTokenUtil {
 		return Jwts.builder().setClaims(new HashMap<>())
 				.setSubject(username)
 				.setIssuedAt(new Date(currentTime))
-				.setExpiration(new Date(currentTime+JWT_TOKEN_VALIDITY))
+				.setExpiration(new Date(currentTime + JWT_TOKEN_VALIDITY))
 				.signWith(getKey(), SignatureAlgorithm.HS256)
 				.compact();
 	}

@@ -41,7 +41,7 @@ public class UserController {
 	@Traceble
 	@ApiOperation("Fetch user details grouped by age")
 	@GetMapping("/grouped-by-age")
-	public Map<Integer, List<UserVO>> getUsersGroupedByAge () {
+	public Map<Integer, List<UserVO>> getUsersGroupedByAge() {
 		return userService.getUsersGroupedByAge();
 	}
 

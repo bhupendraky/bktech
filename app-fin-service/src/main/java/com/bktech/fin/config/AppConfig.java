@@ -24,8 +24,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AppConfig {
 
-	@Bean("auditorAwareImpl")
-	public AuditorAware<String> auditorAwareImpl() {
+    @Bean("auditorAwareImpl")
+    AuditorAware<String> auditorAwareImpl() {
 		return () -> {
 			String userId = Optional.ofNullable(ExecutionContext.getUserContext().get())
 					.map(UserContext::getUserId)
@@ -34,26 +34,26 @@ public class AppConfig {
 		};
 	}
 
-	@Bean
-	public RequestInterceptor requestInterceptor() {
+    @Bean
+    RequestInterceptor requestInterceptor() {
 		return template -> {
 			Optional.ofNullable(ExecutionContext.getUserContext().get())
 			.ifPresent(ctx -> template.header(Constants.REQ_HEADER_USER_ID, ctx.getUserId()));
 		};
 	}
 
-	@Bean
-	public PasswordEncoder getPasswordEncoder() {
+    @Bean
+    PasswordEncoder getPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
-	@Bean
-	public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+    @Bean
+    AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
 		return authConfig.getAuthenticationManager();
 	}
 
-	@Bean
-	public AuthenticationEntryPoint authenticationEntryPoint() {
+    @Bean
+    AuthenticationEntryPoint authenticationEntryPoint() {
 		return (request, response, authentication) ->
 		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Access denied");
 	}
