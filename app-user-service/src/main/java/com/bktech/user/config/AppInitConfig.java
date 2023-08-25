@@ -67,7 +67,7 @@ public class AppInitConfig implements CommandLineRunner {
 	}
 
 
-	private void configureSwaggerHeader() throws Exception {
+	private void configureSwaggerHeader() {
 		GlobalOperationParameter userId = new GlobalOperationParameter();
 		userId.setName(Constants.REQ_HEADER_USER_ID);
 		userId.setDescription("User ID");

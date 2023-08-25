@@ -12,7 +12,9 @@ import io.jsonwebtoken.security.Keys;
 
 public class JwtTokenUtil {
 
-	public static final long JWT_TOKEN_VALIDITY = 24*60*60*1000;
+	private JwtTokenUtil () {}
+
+	public static final long JWT_TOKEN_VALIDITY = 24*60*60*1000L;
 
 	private static final String SECRET_KEY="743777217A25432A462D4A614E645267556B58703272357538782F413F442847";
 
