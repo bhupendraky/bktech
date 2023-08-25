@@ -44,7 +44,7 @@ public class AppException extends RuntimeException {
 	 * @param message
 	 * @param args
 	 */
-	public AppException(String key, Throwable cause, Object... args) {
+	public AppException(String key, Throwable cause , Object... args) {
 		this(format(key, args), cause);
 	}
 
