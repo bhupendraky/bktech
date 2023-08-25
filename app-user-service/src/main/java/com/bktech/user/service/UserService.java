@@ -52,7 +52,7 @@ public class UserService {
 		UserEntity savedUser = userRepository.findByUsername(dto.getUsername())
 				.orElseThrow(() -> new AppException(ExceptionCode.USRSVC_0005, dto.getUsername()));
 		UserEntity updateUser = UserMapper.mapValues(savedUser, dto);
-		savedUser= userRepository.save(updateUser);
+		savedUser = userRepository.save(updateUser);
 		return UserMapper.mapToUserVO(savedUser);
 	}
 

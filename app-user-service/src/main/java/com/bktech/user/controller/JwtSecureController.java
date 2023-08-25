@@ -27,7 +27,7 @@ public class JwtSecureController {
 	@Traceble
 	@ApiOperation("Generate JWT Token")
 	@PostMapping("/login")
-	public String login (@Validated @RequestBody LoginDTO loginDto) {
+	public String login(@Validated @RequestBody LoginDTO loginDto) {
 		return jwtTokenService.generateToken(loginDto);
 	}
 

@@ -33,8 +33,7 @@ public class JdbcAuthSecurityConfig extends WebSecurityConfigurerAdapter {
 		.authoritiesByUsernameQuery("select u.user_name as username, r.name as authority "
 				+ " from users u, roles r, user_roles ur where r.id=ur.role_id "
 				+ " and u.id=ur.user_id and u.user_name=?")
-		.passwordEncoder(passwordEncoder)
-		;
+		.passwordEncoder(passwordEncoder);
 	}
 
 	@Override
