@@ -22,4 +22,5 @@
     <suppress checks="FileTabCharacterCheck" files="\.java"/>
     <suppress checks="IndentationCheck" files="\.java"/>
     <suppress checks="WhitespaceAfterCheck" files="\.java"/>
+    <suppress checks="JavadocPackage" files="\.java"/>
 </suppressions>
