@@ -8,13 +8,14 @@ public class AppException extends RuntimeException {
 
 	protected static final long serialVersionUID = 1L;
 
-	private IExceptionCode code;
+	private final transient IExceptionCode code;
 
 	/**
 	 * @param message
 	 */
 	public AppException(String message) {
 		super(message);
+		this.code = null;
 	}
 
 	/**
@@ -22,6 +23,7 @@ public class AppException extends RuntimeException {
 	 */
 	public AppException(Throwable cause) {
 		super(cause);
+		this.code = null;
 	}
 
 	/**
@@ -29,6 +31,15 @@ public class AppException extends RuntimeException {
 	 */
 	public AppException(String message, Throwable cause) {
 		super(message, cause);
+		this.code = null;
+	}
+
+	/**
+	 * @param message
+	 */
+	public AppException(String message, IExceptionCode code, Throwable cause) {
+		super(message, cause);
+		this.code = code;
 	}
 
 
@@ -61,8 +72,7 @@ public class AppException extends RuntimeException {
 	 * @param cause
 	 */
 	public AppException(IExceptionCode code, Throwable cause, Object... args) {
-		this(format(code.key(), args), cause);
-		this.code = code;
+		this(format(code.value(), args), code, cause);
 	}
 
 	private static String format(String key, Object... args) {
