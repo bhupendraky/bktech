@@ -46,7 +46,7 @@ public class ShortenUrlService {
 	@Transactional
 	public String shortenUrl(String url) {
 		UrlValidator urlValidator = new UrlValidator(new String[] { "http", "https" });
-		if(!urlValidator.isValid(url)) {
+		if (!urlValidator.isValid(url)) {
 			throw new AppException(ExceptionCode.URLSVC_0006);
 		}
 		Long nextCouterValue = getNextCounterValue();
@@ -58,8 +58,8 @@ public class ShortenUrlService {
 	}
 
 	private String generateBase62Hash(Long counter) {
-		StringBuffer hashStr = new StringBuffer();
-		while(counter > 0) {
+		StringBuilder hashStr = new StringBuilder();
+		while (counter > 0) {
 			long r = counter % 62;
 			hashStr.append(base62Alphabets.charAt((int)r));
 			counter = counter / 62;
@@ -83,7 +83,7 @@ public class ShortenUrlService {
 	@PostConstruct
 	public void postConstruct() {
 		Optional<Counter> counter = counterRepository.findById(1);
-		if(!counter.isPresent()) {
+		if (!counter.isPresent()) {
 			counterRepository.save(new Counter());
 		}
 	}

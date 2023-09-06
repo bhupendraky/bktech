@@ -43,7 +43,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-		if(bearerToken && !StringUtils.startsWith(authHeader, "Bearer ") ||
+		if (bearerToken && !StringUtils.startsWith(authHeader, "Bearer ") ||
 				SecurityContextHolder.getContext().getAuthentication() != null) {
 			filterChain.doFilter(request, response);
 			return;
@@ -54,7 +54,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 		String username = JwtTokenUtil.getUsernameFromToken(token);
 		boolean isValidState = tokenRepository.findByUserUsernameAndValueAndValid(username, token, true)
 				.isPresent();
-		if(!(isValidState && JwtTokenUtil.isValidToken(token, username))) {
+		if (!(isValidState && JwtTokenUtil.isValidToken(token, username))) {
 			throw new AppException("Invalid authorization token");
 		}
 		// Set security context
