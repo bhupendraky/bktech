@@ -78,7 +78,7 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 	protected final ResponseEntity<Object> handleProxyException(FeignException e, WebRequest request) {
 		Optional<HttpStatus> status = Optional.ofNullable(HttpStatus.resolve(e.status()));
 		AppException ex = null;
-		if(e.getCause() instanceof AppException) {
+		if (e.getCause() instanceof AppException) {
 			ex = (AppException)e.getCause();
 		} else {
 			ex = new AppException(ExceptionCode.FINSVC_0002, e);
@@ -97,7 +97,7 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 	 */
 	@ExceptionHandler(HystrixRuntimeException.class)
 	protected final ResponseEntity<Object> handleHystrixException(HystrixRuntimeException e, WebRequest request) {
-		if(e.getCause() instanceof FeignException) {
+		if (e.getCause() instanceof FeignException) {
 			return handleProxyException((FeignException)e.getCause(), request);
 		}
 		AppException ex = new AppException(ExceptionCode.FINSVC_0003, e);

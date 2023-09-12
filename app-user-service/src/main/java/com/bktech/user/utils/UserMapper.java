@@ -25,7 +25,7 @@ public class UserMapper {
 		target.setUsername(source.getUsername());
 		target.setAge(source.getAge());
 
-		if(!CollectionUtils.isEmpty(source.getRoles())) {
+		if (!CollectionUtils.isEmpty(source.getRoles())) {
 			Set<Role> roles = source.getRoles().stream()
 					.map(Role::new)
 					.collect(Collectors.toSet());
@@ -48,7 +48,7 @@ public class UserMapper {
 
 		userVO.setAuditFields(user);
 
-		if(!CollectionUtils.isEmpty(user.getRoles())) {
+		if (!CollectionUtils.isEmpty(user.getRoles())) {
 			Set<String> roles = user.getRoles().stream()
 					.map(Role::getName)
 					.collect(Collectors.toSet());

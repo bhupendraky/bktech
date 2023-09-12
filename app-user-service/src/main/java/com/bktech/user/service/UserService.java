@@ -65,7 +65,7 @@ public class UserService {
 
 	@Transactional
 	public String deleteUser(String username) {
-		if(!userRepository.existsByUsername(username)) {
+		if (!userRepository.existsByUsername(username)) {
 			throw new AppException(ExceptionCode.USRSVC_0005, username);
 		}
 		userRepository.deleteByUsername(username);
@@ -74,11 +74,11 @@ public class UserService {
 
 	@Transactional
 	public UserVO registerUser(UserDTO dto) {
-		if(userRepository.existsByUsername(dto.getUsername())) {
+		if (userRepository.existsByUsername(dto.getUsername())) {
 			throw new AppException(ExceptionCode.USRSVC_0007, dto.getUsername());
 		}
 		Set<Role> roles = null;
-		if(!CollectionUtils.isEmpty(dto.getRoles())) {
+		if (!CollectionUtils.isEmpty(dto.getRoles())) {
 			// Validate role
 			dto.getRoles().forEach(RoleType::valueOf);
 			// merge role

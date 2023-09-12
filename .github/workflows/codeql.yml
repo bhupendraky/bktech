@@ -80,3 +80,6 @@ jobs:
       uses: github/codeql-action/analyze@v2
       with:
         category: "/language:${{matrix.language}}"
+      env:
+          CODEQL_ACTION_FEATURE_SARIF_COMBINE: false
+          CODEQL_ACTION_FEATURE_WILL_UPLOAD: false
