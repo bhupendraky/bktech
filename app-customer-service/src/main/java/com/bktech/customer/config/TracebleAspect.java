@@ -19,7 +19,7 @@ public class TracebleAspect {
 
 	@Around("@annotation(com.bktech.customer.config.Traceble)")
 	public Object logExecutionTime(ProceedingJoinPoint pjp) throws Throwable {
-		if(!logger.isInfoEnabled()) {
+		if (!logger.isInfoEnabled()) {
 			return pjp.proceed();
 		}
 		Class<? extends Object> targetClass = pjp.getTarget().getClass();
@@ -31,7 +31,7 @@ public class TracebleAspect {
 		Object result = pjp.proceed();
 		long executionTime = System.currentTimeMillis() - start;
 		logger.info("TIME TAKEN BY {}#{}({}) is {} ms", targetClass, methodName, arguments, executionTime);
-		if(logger.isDebugEnabled()) {
+		if (logger.isDebugEnabled()) {
 			logger.debug("RESULT OF {}#{}({}) is {}", targetClass, methodName, arguments,
 					mapper.writeValueAsString(result));
 		}

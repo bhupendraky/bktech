@@ -41,16 +41,16 @@ public abstract class AuditableEntity<U> implements Serializable {
 
 	@JsonIgnore
 	public <T extends AuditableEntity<U>> void setAuditFields(T entity) {
-		if(entity.getCreatedBy() != null) {
+		if (entity.getCreatedBy() != null) {
 			this.setCreatedBy(entity.getCreatedBy());
 		}
-		if(entity.getCreatedDate() != null) {
+		if (entity.getCreatedDate() != null) {
 			this.setCreatedDate(entity.getCreatedDate());
 		}
-		if(entity.getLastModifiedBy() != null) {
+		if (entity.getLastModifiedBy() != null) {
 			this.setLastModifiedBy(entity.getLastModifiedBy());
 		}
-		if(entity.getLastModifiedDate() != null) {
+		if (entity.getLastModifiedDate() != null) {
 			this.setLastModifiedDate(entity.getLastModifiedDate());
 		}
 	}

@@ -67,7 +67,7 @@ public class AppInitConfig implements CommandLineRunner {
 	}
 
 
-	private void configureSwaggerHeader() throws Exception {
+	private void configureSwaggerHeader() {
 		GlobalOperationParameter userId = new GlobalOperationParameter();
 		userId.setName(Constants.REQ_HEADER_USER_ID);
 		userId.setDescription("User ID");
@@ -75,7 +75,7 @@ public class AppInitConfig implements CommandLineRunner {
 		userId.setModelRef("string");
 		userId.setRequired("true");
 
-		if(swaggerProperties.getGlobalOperationParameters() == null) {
+		if (swaggerProperties.getGlobalOperationParameters() == null) {
 			swaggerProperties.setGlobalOperationParameters(Lists.newArrayList(userId));
 		} else {
 			swaggerProperties.getGlobalOperationParameters().add(userId);

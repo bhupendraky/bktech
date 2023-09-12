@@ -15,7 +15,7 @@ public class SwaggerPropertiesInitializer {
 		userId.setModelRef("string");
 		userId.setRequired("true");
 
-		if(swaggerProperties.getGlobalOperationParameters() == null){
+		if (swaggerProperties.getGlobalOperationParameters() == null){
 			swaggerProperties.setGlobalOperationParameters(Lists.newArrayList(userId));
 		} else {
 			swaggerProperties.getGlobalOperationParameters().add(userId);
