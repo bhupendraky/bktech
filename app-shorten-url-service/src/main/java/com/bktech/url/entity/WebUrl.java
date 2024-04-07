@@ -8,11 +8,7 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "WEB_URL")
 @EntityListeners(AuditingEntityListener.class)
@@ -38,6 +34,30 @@ public class WebUrl extends AuditableEntity<String> {
 	public WebUrl(String hashCode, String url) {
 		super();
 		this.hashCode = hashCode;
+		this.url = url;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getHashCode() {
+		return hashCode;
+	}
+
+	public void setHashCode(String hashCode) {
+		this.hashCode = hashCode;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
 		this.url = url;
 	}
 

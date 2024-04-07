@@ -4,11 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "COUNTER")
 public class Counter {
@@ -19,5 +15,21 @@ public class Counter {
 
 	@Column(name = "VALUE", nullable = false)
 	private Long value = 1L;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Long getValue() {
+		return value;
+	}
+
+	public void setValue(Long value) {
+		this.value = value;
+	}
 
 }

@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.validator.routines.UrlValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,8 +26,10 @@ public class ShortenUrlService {
 
 	private static String base62Alphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-	private final WebUrlRepository webUrlRepository;
-	private final CounterRepository counterRepository;
+	@Autowired
+	private WebUrlRepository webUrlRepository;
+	@Autowired
+	private CounterRepository counterRepository;
 
 	public String getUrl(String hashCode) {
 		return webUrlRepository.findByHashCode(hashCode)
@@ -68,7 +71,9 @@ public class ShortenUrlService {
 	@Transactional
 	public Long getNextCounterValue() {
 		counterRepository.updateCounterValue();
-		return counterRepository.getOne(1).getValue();
+		return counterRepository.findById(1)
+				.map(Counter::getValue)
+				.orElse(1L);
 	}
 
 	@Transactional
