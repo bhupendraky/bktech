@@ -35,7 +35,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 	@Autowired
 	private UserDetailsService userDetailsService;
 
-	@Value("${spring.security.jwy.bearer-token}")
+	@Value("${spring.security.jwt.bearer-token}")
 	private boolean bearerToken;
 
 	@Override

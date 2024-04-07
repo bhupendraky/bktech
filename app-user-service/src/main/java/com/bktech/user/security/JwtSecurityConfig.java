@@ -31,31 +31,26 @@ public class JwtSecurityConfig {
 	@Autowired
 	private AuthenticationProvider authenticationProvider;
 
-    @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		return http.csrf().disable()
-				.authorizeHttpRequests()
-				.requestMatchers("/api/jwt/user/login").permitAll()
-				.requestMatchers("/api/user/**").hasAuthority(RoleType.USER.name())
-				.requestMatchers("/api/admin/**").hasAuthority(RoleType.ADMIN.name())
-				.anyRequest().authenticated()
-				.and()
-				.exceptionHandling()
-				.authenticationEntryPoint(authEntryPoint)
-				.and()
-				.sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-				.and()
+	@Bean
+	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		return http.csrf(csrf -> csrf.disable())
+				.authorizeHttpRequests(r -> r
+						.requestMatchers("/api/jwt/user/login").permitAll()
+						.requestMatchers("/api/user/**").hasAuthority(RoleType.USER.name())
+						.requestMatchers("/api/admin/**").hasAuthority(RoleType.ADMIN.name())
+						.anyRequest().authenticated()
+						)
+				.exceptionHandling(eh -> eh.authenticationEntryPoint(authEntryPoint))
+				.sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authenticationProvider(authenticationProvider)
 				.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
-				.logout()
-				.logoutUrl("/api/jwt/user/logout")
-				.addLogoutHandler(logoutHandler)
-				.logoutSuccessHandler(
-						(request, response, authentication) ->
-						SecurityContextHolder.clearContext()
-						)
-				.and()
+				.logout(logout -> logout
+						.logoutUrl("/api/jwt/user/logout")
+						.addLogoutHandler(logoutHandler)
+						.logoutSuccessHandler(
+								(request, response, authentication) ->
+								SecurityContextHolder.clearContext()
+								))
 				.build();
 	}
 

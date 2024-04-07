@@ -24,7 +24,7 @@ public class JwtLogoutService implements LogoutHandler {
 	@Autowired
 	private TokenRepository tokenRepository;
 
-	@Value("${spring.security.jwy.bearer-token}")
+	@Value("${spring.security.jwt.bearer-token}")
 	private boolean bearerToken;
 
 	@Override
