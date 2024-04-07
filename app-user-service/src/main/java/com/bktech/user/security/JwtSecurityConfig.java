@@ -34,7 +34,7 @@ public class JwtSecurityConfig {
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http.csrf(csrf -> csrf.disable())
-				.authorizeHttpRequests(r -> r
+				.authorizeHttpRequests(request -> request
 						.requestMatchers("/api/jwt/user/login").permitAll()
 						.requestMatchers("/api/user/**").hasAuthority(RoleType.USER.name())
 						.requestMatchers("/api/admin/**").hasAuthority(RoleType.ADMIN.name())

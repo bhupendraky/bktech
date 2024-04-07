@@ -27,24 +27,18 @@ public class RoleBasedBasicSecurityConfig {
 	@Autowired
 	private AuthenticationProvider authenticationProvider;
 
-    @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		return http.csrf().disable()
-				.authorizeHttpRequests()
-				.requestMatchers("/api/user/**").hasAuthority(RoleType.USER.name())
-				.requestMatchers("/api/admin/**").hasAuthority(RoleType.ADMIN.name())
-				.anyRequest().authenticated()
-				.and()
-				.exceptionHandling()
-				.authenticationEntryPoint(authEntryPoint)
-				.and()
-				.sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-				.and()
+	@Bean
+	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		return http.csrf(csrf -> csrf.disable())
+				.authorizeHttpRequests(request -> request
+						.requestMatchers("/api/user/**").hasAuthority(RoleType.USER.name())
+						.requestMatchers("/api/admin/**").hasAuthority(RoleType.ADMIN.name())
+						.anyRequest().authenticated())
+				.exceptionHandling(eh -> eh.authenticationEntryPoint(authEntryPoint))
+				.sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authenticationProvider(authenticationProvider)
 				.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class)
-				.httpBasic()
-				.and()
+				.httpBasic(c -> {})
 				.build();
 	}
 

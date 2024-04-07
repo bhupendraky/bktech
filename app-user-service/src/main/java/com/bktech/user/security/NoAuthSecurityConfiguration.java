@@ -15,7 +15,7 @@ public class NoAuthSecurityConfiguration {
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http.csrf(csrf -> csrf.disable())
-				.authorizeHttpRequests(r -> r.anyRequest().permitAll())
+				.authorizeHttpRequests(request -> request.anyRequest().permitAll())
 				.build();
 	}
 
