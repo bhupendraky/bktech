@@ -3,6 +3,7 @@ package com.bktech.user.filter;
 import java.io.IOException;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.HttpHeaders;
@@ -24,15 +25,15 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 
 @Component
-@RequiredArgsConstructor
 @ConditionalOnProperty(name = "spring.security.type", havingValue = "JWT")
 public class JwtAuthFilter extends OncePerRequestFilter {
 
-	private final TokenRepository tokenRepository;
-	private final UserDetailsService userDetailsService;
+	@Autowired
+	private TokenRepository tokenRepository;
+	@Autowired
+	private UserDetailsService userDetailsService;
 
 	@Value("${spring.security.jwy.bearer-token}")
 	private boolean bearerToken;

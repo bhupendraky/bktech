@@ -12,11 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
 @MappedSuperclass
 public abstract class AuditableEntity<U> implements Serializable {
 
@@ -52,6 +48,38 @@ public abstract class AuditableEntity<U> implements Serializable {
 		if(entity.getLastModifiedDate() != null) {
 			this.setLastModifiedDate(entity.getLastModifiedDate());
 		}
+	}
+
+	public U getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(U createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public U getLastModifiedBy() {
+		return lastModifiedBy;
+	}
+
+	public void setLastModifiedBy(U lastModifiedBy) {
+		this.lastModifiedBy = lastModifiedBy;
+	}
+
+	public Date getLastModifiedDate() {
+		return lastModifiedDate;
+	}
+
+	public void setLastModifiedDate(Date lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
 	}
 
 }

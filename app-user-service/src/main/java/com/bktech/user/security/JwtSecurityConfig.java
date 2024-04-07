@@ -1,5 +1,6 @@
 package com.bktech.user.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,21 +17,22 @@ import org.springframework.security.web.authentication.logout.LogoutHandler;
 import com.bktech.user.constants.RoleType;
 import com.bktech.user.filter.JwtAuthFilter;
 
-import lombok.RequiredArgsConstructor;
-
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
 @ConditionalOnProperty(name = "spring.security.type", havingValue = "JWT")
 public class JwtSecurityConfig {
 
-	private final AuthenticationEntryPoint authEntryPoint;
-	private final JwtAuthFilter authFilter;
-	private final LogoutHandler logoutHandler;
-	private final AuthenticationProvider authenticationProvider;
+	@Autowired
+	private AuthenticationEntryPoint authEntryPoint;
+	@Autowired
+	private JwtAuthFilter authFilter;
+	@Autowired
+	private LogoutHandler logoutHandler;
+	@Autowired
+	private AuthenticationProvider authenticationProvider;
 
-	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    @Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http.csrf().disable()
 				.authorizeHttpRequests()
 				.requestMatchers("/api/jwt/user/login").permitAll()

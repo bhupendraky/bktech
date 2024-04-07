@@ -34,8 +34,8 @@ public class SpringBatchConfig {
 	@Value("${customer.data.save.chunk.size}")
 	private Integer saveChunkSize;
 
-	@Bean
-	public Step step() {
+    @Bean
+    Step step() {
 		return stepBuilderFactory.get("step")
 				.<Customer, Customer>chunk(saveChunkSize)
 				.reader(customerFIleReader)
@@ -44,8 +44,8 @@ public class SpringBatchConfig {
 				.build();
 	}
 
-	@Bean
-	public Job runJob() {
+    @Bean
+    Job runJob() {
 		return jobBuilderFactory.get("CUSTOMER_LOAD_BATCH")
 				.flow(step())
 				.end()
@@ -53,8 +53,8 @@ public class SpringBatchConfig {
 
 	}
 
-	@Bean
-	public TaskExecutor taskExecutor() {
+    @Bean
+    TaskExecutor taskExecutor() {
 		ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
 		taskExecutor.setMaxPoolSize(4);
 		taskExecutor.setCorePoolSize(4);

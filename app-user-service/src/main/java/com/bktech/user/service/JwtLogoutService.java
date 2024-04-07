@@ -1,6 +1,7 @@
 package com.bktech.user.service;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
@@ -16,13 +17,12 @@ import com.bktech.user.utils.JwtTokenUtil;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
 public class JwtLogoutService implements LogoutHandler {
 
-	private final TokenRepository tokenRepository;
+	@Autowired
+	private TokenRepository tokenRepository;
 
 	@Value("${spring.security.jwy.bearer-token}")
 	private boolean bearerToken;

@@ -1,5 +1,6 @@
 package com.bktech.user.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,20 +15,20 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import com.bktech.user.constants.RoleType;
 import com.bktech.user.filter.BasicAuthFilter;
 
-import lombok.RequiredArgsConstructor;
-
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
 @ConditionalOnProperty(name = "spring.security.type", havingValue = "BASIC")
 public class RoleBasedBasicSecurityConfig {
 
-	private final BasicAuthFilter authFilter;
-	private final AuthenticationEntryPoint authEntryPoint;
-	private final AuthenticationProvider authenticationProvider;
+	@Autowired
+	private BasicAuthFilter authFilter;
+	@Autowired
+	private AuthenticationEntryPoint authEntryPoint;
+	@Autowired
+	private AuthenticationProvider authenticationProvider;
 
-	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    @Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http.csrf().disable()
 				.authorizeHttpRequests()
 				.requestMatchers("/api/user/**").hasAuthority(RoleType.USER.name())

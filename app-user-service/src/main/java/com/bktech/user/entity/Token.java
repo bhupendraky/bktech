@@ -10,12 +10,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
 @Entity
 @NoArgsConstructor
 @Table(name = "TOKENS")
@@ -36,6 +32,39 @@ public class Token extends AuditableEntity<String> {
 	private boolean valid;
 
 	@OneToOne
-	@JoinColumn(name = "USER_ID", referencedColumnName = "ID" , nullable = false)
+	@JoinColumn(name = "USER_ID", referencedColumnName = "ID", nullable = false)
 	private UserEntity user;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+	public boolean isValid() {
+		return valid;
+	}
+
+	public void setValid(boolean valid) {
+		this.valid = valid;
+	}
+
+	public UserEntity getUser() {
+		return user;
+	}
+
+	public void setUser(UserEntity user) {
+		this.user = user;
+	}
+
 }

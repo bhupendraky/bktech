@@ -1,5 +1,6 @@
 package com.bktech.user.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -13,15 +14,15 @@ import com.bktech.user.entity.UserEntity;
 import com.bktech.user.repository.RoleRepository;
 import com.bktech.user.repository.UserRepository;
 
-import lombok.RequiredArgsConstructor;
-
 @Configuration
-@RequiredArgsConstructor
 public class AppInitConfig implements CommandLineRunner {
 
-	private final UserRepository userRepository;
-	private final RoleRepository adminRepository;
-	private final PasswordEncoder passwordEncoder;
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+	private RoleRepository adminRepository;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Value("${spring.security.type}")
 	private SecurityType securityType;

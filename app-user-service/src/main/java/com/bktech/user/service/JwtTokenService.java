@@ -2,6 +2,7 @@ package com.bktech.user.service;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,16 +16,16 @@ import com.bktech.user.execp.AppException;
 import com.bktech.user.repository.TokenRepository;
 import com.bktech.user.utils.JwtTokenUtil;
 
-import lombok.RequiredArgsConstructor;
-
 @Service
-@RequiredArgsConstructor
 @ConditionalOnProperty(name = "spring.security.type", havingValue = "JWT")
 public class JwtTokenService {
 
-	private final UserService userService;
-	private final TokenRepository tokenRepository;
-	private final AuthenticationManager authenticationManager;
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private TokenRepository tokenRepository;
+	@Autowired
+	private AuthenticationManager authenticationManager;
 
 	public String generateToken(LoginDTO loginDto) {
 

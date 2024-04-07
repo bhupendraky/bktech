@@ -18,10 +18,8 @@ import com.bktech.url.repository.CounterRepository;
 import com.bktech.url.repository.WebUrlRepository;
 
 import jakarta.annotation.PostConstruct;
-import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
 public class ShortenUrlService {
 
 	private static String base62Alphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

@@ -3,6 +3,7 @@ package com.bktech.user.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,15 +14,13 @@ import com.bktech.user.config.Traceble;
 import com.bktech.user.service.UserService;
 import com.bktech.user.vo.UserVO;
 
-import lombok.RequiredArgsConstructor;
-
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api/user")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UserController {
 
-	private final UserService userService;
+	@Autowired
+	private UserService userService;
 
 	@Traceble
 	@GetMapping("/get-all")

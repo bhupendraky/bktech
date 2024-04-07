@@ -2,6 +2,7 @@ package com.bktech.user.config;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
@@ -23,16 +24,15 @@ import com.bktech.user.repository.UserRepository;
 
 import feign.RequestInterceptor;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 
 @Configuration
-@RequiredArgsConstructor
 public class AppConfig {
 
-	private final UserRepository userRepository;
+	@Autowired
+	private UserRepository userRepository;
 
 	@Bean("auditorAwareImpl")
-	public AuditorAware<String> auditorAwareImpl() {
+	AuditorAware<String> auditorAwareImpl() {
 		return () -> {
 			String userId = Optional.ofNullable(ExecutionContext.getUserContext().get())
 					.map(UserContext::getUserId)
@@ -42,7 +42,7 @@ public class AppConfig {
 	}
 
 	@Bean
-	public RequestInterceptor requestInterceptor() {
+	RequestInterceptor requestInterceptor() {
 		return template -> {
 			Optional.ofNullable(ExecutionContext.getUserContext().get())
 			.ifPresent(ctx -> template.header(Constants.REQ_HEADER_USER_ID, ctx.getUserId()));
@@ -50,29 +50,29 @@ public class AppConfig {
 	}
 
 	@Bean
-	public PasswordEncoder passwordEncoder() {
+	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
 	@Bean
-	public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+	AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
 		return authConfig.getAuthenticationManager();
 	}
 
 	@Bean
-	public AuthenticationEntryPoint authenticationEntryPoint() {
+	AuthenticationEntryPoint authenticationEntryPoint() {
 		return (request, response, authentication) ->
 		response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Access denied");
 	}
 
 	@Bean
-	public UserDetailsService userDetailsService() {
+	UserDetailsService userDetailsService() {
 		return username -> userRepository.findByUsername(username)
 				.orElseThrow(() -> new AppException(ExceptionCode.USRSVC_0005, username));
 	}
 
 	@Bean
-	public AuthenticationProvider authenticationProvider() {
+	AuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 		authProvider.setUserDetailsService(userDetailsService());
 		authProvider.setPasswordEncoder(passwordEncoder());
