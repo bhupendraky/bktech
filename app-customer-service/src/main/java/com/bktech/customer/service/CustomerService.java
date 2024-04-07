@@ -5,11 +5,7 @@ import java.util.List;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
-import org.springframework.batch.core.JobParametersInvalidException;
 import org.springframework.batch.core.launch.JobLauncher;
-import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
-import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
-import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,10 +23,10 @@ public class CustomerService {
 	@Autowired
 	private CustomerRepository customerRepo;
 
-	//@Autowired
+	@Autowired
 	private JobLauncher jobLauncher;
 
-	//@Autowired
+	@Autowired
 	private Job job;
 
 	@Autowired
@@ -47,13 +43,12 @@ public class CustomerService {
 
 	public String loadCustomerData() {
 		JobParameters jobParameters = new JobParametersBuilder()
-				.addLong("startAt", System.currentTimeMillis())
+				.addLong("START_AT", System.currentTimeMillis())
 				.toJobParameters();
 		customerRepo.deleteAll();
 		try {
 			jobLauncher.run(job, jobParameters);
-		} catch (JobExecutionAlreadyRunningException | JobRestartException | JobInstanceAlreadyCompleteException
-				| JobParametersInvalidException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return Constants.SUCCESS;

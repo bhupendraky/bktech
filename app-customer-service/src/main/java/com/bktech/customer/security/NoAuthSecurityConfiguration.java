@@ -12,12 +12,10 @@ import org.springframework.security.web.SecurityFilterChain;
 @ConditionalOnProperty(name = "spring.security.type", havingValue = "NOAUTH")
 public class NoAuthSecurityConfiguration {
 
-    @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		return http.csrf().disable()
-				.authorizeHttpRequests()
-				.anyRequest().permitAll()
-				.and()
+	@Bean
+	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		return http.csrf(csrf -> csrf.disable())
+				.authorizeHttpRequests(requests -> requests.anyRequest().permitAll())
 				.build();
 	}
 
