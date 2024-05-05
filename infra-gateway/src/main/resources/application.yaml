@@ -1,0 +1,20 @@
+
+server:
+  port: 8762
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${random.number}
+spring:
+  application:
+    name: infra-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: APP-USER-SERVICE
+          uri: lb://APP-USER-SERVICE
+          predicates:
+            - Path=/api/user/**, /api/admin/**
+

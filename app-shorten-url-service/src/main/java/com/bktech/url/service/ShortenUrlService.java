@@ -4,20 +4,20 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
-
 import org.apache.commons.validator.routines.UrlValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bktech.url.Constants;
-import com.bktech.url.data.CounterRepository;
-import com.bktech.url.data.WebUrlRepository;
-import com.bktech.url.domain.Counter;
-import com.bktech.url.domain.WebUrl;
+import com.bktech.url.entity.Counter;
+import com.bktech.url.entity.WebUrl;
 import com.bktech.url.execp.AppException;
 import com.bktech.url.execp.ExceptionCode;
+import com.bktech.url.repository.CounterRepository;
+import com.bktech.url.repository.WebUrlRepository;
+
+import jakarta.annotation.PostConstruct;
 
 @Service
 public class ShortenUrlService {
@@ -26,7 +26,6 @@ public class ShortenUrlService {
 
 	@Autowired
 	private WebUrlRepository webUrlRepository;
-
 	@Autowired
 	private CounterRepository counterRepository;
 
@@ -70,7 +69,9 @@ public class ShortenUrlService {
 	@Transactional
 	public Long getNextCounterValue() {
 		counterRepository.updateCounterValue();
-		return counterRepository.getOne(1).getValue();
+		return counterRepository.findById(1)
+				.map(Counter::getValue)
+				.orElse(1L);
 	}
 
 	@Transactional

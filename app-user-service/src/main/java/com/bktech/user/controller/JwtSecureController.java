@@ -1,5 +1,6 @@
 package com.bktech.user.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,20 +13,16 @@ import com.bktech.user.config.Traceble;
 import com.bktech.user.dto.LoginDTO;
 import com.bktech.user.service.JwtTokenService;
 
-import io.swagger.annotations.ApiOperation;
-import lombok.RequiredArgsConstructor;
-
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api/jwt/user")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @ConditionalOnProperty(name = "spring.security.type", havingValue = "JWT")
 public class JwtSecureController {
 
-	private final JwtTokenService jwtTokenService;
+	@Autowired
+	private JwtTokenService jwtTokenService;
 
 	@Traceble
-	@ApiOperation("Generate JWT Token")
 	@PostMapping("/login")
 	public String login(@Validated @RequestBody LoginDTO loginDto) {
 		return jwtTokenService.generateToken(loginDto);

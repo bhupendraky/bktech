@@ -3,11 +3,6 @@ package com.bktech.user.filter;
 import java.io.IOException;
 import java.util.Base64;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,6 +13,11 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.bktech.user.ctx.ExecutionContext;
 import com.bktech.user.ctx.UserContext;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 @ConditionalOnProperty(name = "spring.security.type", havingValue = "BASIC")
@@ -37,8 +37,13 @@ public class BasicAuthFilter extends OncePerRequestFilter {
 		UsernamePasswordAuthenticationToken newToken = new UsernamePasswordAuthenticationToken(username, password);
 		newToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 		SecurityContextHolder.getContext().setAuthentication(newToken);
-		ExecutionContext.getUserContext().set(new UserContext(username));
-		filterChain.doFilter(request, response);
+		try {
+			ExecutionContext.getUserContext().set(new UserContext(username));
+			// Delegate to next filter
+			filterChain.doFilter(request, response);
+		} finally {
+			ExecutionContext.removeUserContext();
+		}
 	}
 
 }

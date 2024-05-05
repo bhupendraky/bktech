@@ -2,12 +2,8 @@ package com.bktech.user.filter;
 
 import java.io.IOException;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.http.HttpHeaders;
@@ -21,21 +17,25 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.bktech.user.ctx.ExecutionContext;
 import com.bktech.user.ctx.UserContext;
-import com.bktech.user.data.TokenRepository;
 import com.bktech.user.execp.AppException;
+import com.bktech.user.repository.TokenRepository;
 import com.bktech.user.utils.JwtTokenUtil;
 
-import lombok.RequiredArgsConstructor;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Component
-@RequiredArgsConstructor
 @ConditionalOnProperty(name = "spring.security.type", havingValue = "JWT")
 public class JwtAuthFilter extends OncePerRequestFilter {
 
-	private final UserDetailsService userDetailsService;
-	private final TokenRepository tokenRepository;
+	@Autowired
+	private TokenRepository tokenRepository;
+	@Autowired
+	private UserDetailsService userDetailsService;
 
-	@Value("${spring.security.jwy.bearer-token}")
+	@Value("${spring.security.jwt.bearer-token}")
 	private boolean bearerToken;
 
 	@Override
@@ -63,10 +63,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 				userDetails, null, userDetails.getAuthorities());
 		newToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 		SecurityContextHolder.getContext().setAuthentication(newToken);
-		ExecutionContext.getUserContext().set(new UserContext(username));
-
-		// Delegate to next filter
-		filterChain.doFilter(request, response);
+		try {
+			ExecutionContext.getUserContext().set(new UserContext(username));
+			// Delegate to next filter
+			filterChain.doFilter(request, response);
+		} finally {
+			ExecutionContext.removeUserContext();
+		}
 	}
 
 }

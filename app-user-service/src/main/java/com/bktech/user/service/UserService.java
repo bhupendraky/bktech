@@ -7,33 +7,34 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.transaction.Transactional;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import com.bktech.user.constants.Constants;
 import com.bktech.user.constants.RoleType;
-import com.bktech.user.data.RoleRepository;
-import com.bktech.user.data.UserRepository;
-import com.bktech.user.domain.Role;
-import com.bktech.user.domain.UserEntity;
 import com.bktech.user.dto.UserDTO;
+import com.bktech.user.entity.Role;
+import com.bktech.user.entity.UserEntity;
 import com.bktech.user.execp.AppException;
 import com.bktech.user.execp.ExceptionCode;
+import com.bktech.user.repository.RoleRepository;
+import com.bktech.user.repository.UserRepository;
 import com.bktech.user.utils.UserMapper;
 import com.bktech.user.vo.UserVO;
 
-import lombok.RequiredArgsConstructor;
+import jakarta.transaction.Transactional;
 
 @Service
-@RequiredArgsConstructor
 public class UserService {
 
-	private final UserRepository userRepository;
-	private final RoleRepository roleRepository;
-	private final PasswordEncoder passwordEncoder;
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+	private RoleRepository roleRepository;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	public UserVO getUser(String userName) {
 		return getUserEntity(userName)

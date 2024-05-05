@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.15</version>
+		<version>3.0.6</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.bktech</groupId>
@@ -17,8 +15,8 @@
 	<description>BKY Tech Hub Project</description>
 
 	<properties>
-		<java.version>1.8</java.version>
-		<spring-cloud.version>Hoxton.SR1</spring-cloud.version>
+		<java.version>17</java.version>
+		<spring-cloud.version>2022.0.2</spring-cloud.version>
 		<maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
 		<revision>1.0.0</revision>
 		<swagger-ui-version>1.7.0.RELEASE</swagger-ui-version>
@@ -35,16 +33,10 @@
 		<module>infra-eureka</module>
 		<module>infra-gateway</module>
 		<module>app-user-service</module>
-		<module>app-customer-service</module>
-		<module>app-fin-service</module>
 		<module>app-shorten-url-service</module>
+		<module>app-customer-service</module>
 	</modules>
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-configuration-processor</artifactId>
-			<optional>true</optional>
-		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
@@ -63,12 +55,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 	</dependencies>
 
@@ -82,12 +68,6 @@
 				<scope>import</scope>
 			</dependency>
 			<dependency>
-				<groupId>com.spring4all</groupId>
-				<artifactId>swagger-spring-boot-starter</artifactId>
-				<version>${swagger-ui-version}</version>
-				<scope>compile</scope>
-			</dependency>
-			<dependency>
 				<groupId>org.apache.poi</groupId>
 				<artifactId>poi</artifactId>
 				<version>${apache.poi.version}</version>
@@ -98,11 +78,6 @@
 				<version>${apache.poi.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.mapstruct</groupId>
-				<artifactId>mapstruct</artifactId>
-				<version>${mapstruct.version}</version>
-			</dependency>
-			<dependency>
 				<groupId>com.google.guava</groupId>
 				<artifactId>guava</artifactId>
 				<version>${guava.version}</version>
@@ -111,17 +86,6 @@
 				<groupId>commons-validator</groupId>
 				<artifactId>commons-validator</artifactId>
 				<version>${commons.validator.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.projectlombok</groupId>
-				<artifactId>lombok</artifactId>
-				<version>${lombok.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.bktech</groupId>
-				<artifactId>infra-common</artifactId>
-				<version>${revision}</version>
-				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>com.bktech</groupId>
@@ -147,12 +111,6 @@
 				<version>${jwt.version}</version>
 				<scope>runtime</scope>
 			</dependency>
-			<dependency>
-				<groupId>io.jsonwebtoken</groupId>
-				<artifactId>jjwt-gson</artifactId>
-				<version>${jwt.version}</version>
-				<scope>runtime</scope>
-			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<build>
@@ -161,6 +119,7 @@
 				<plugin>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>3.0.6</version>
 					<configuration>
 						<excludes>
 							<exclude>
@@ -169,37 +128,6 @@
 							</exclude>
 						</excludes>
 					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<configuration>
-						<reuseForks>false</reuseForks>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-checkstyle-plugin</artifactId>
-					<version>3.2.0</version>
-					<configuration>
-						<consoleOutput>true</consoleOutput>
-						<includeTestSourceDirectory>true</includeTestSourceDirectory>
-						<failOnViolation>true</failOnViolation>
-						<failsOnError>true</failsOnError>
-						<enableRSS>false</enableRSS>
-						<configLocation>${basedir}/checkstyle.xml</configLocation>
-						<propertyExpansion>checkstyle.config.path=${basedir}</propertyExpansion>
-						<suppressionsFileExpression>suppressions.xml</suppressionsFileExpression>
-					</configuration>
-					<executions>
-						<execution>
-							<id>validate</id>
-							<phase>validate</phase>
-							<goals>
-								<goal>check</goal>
-							</goals>
-						</execution>
-					</executions>
 				</plugin>
 			</plugins>
 		</pluginManagement>

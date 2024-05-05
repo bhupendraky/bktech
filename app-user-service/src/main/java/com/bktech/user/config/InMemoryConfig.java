@@ -1,21 +1,22 @@
 package com.bktech.user.config;
 
-import javax.annotation.PostConstruct;
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.init.ScriptUtils;
 
-import lombok.RequiredArgsConstructor;
+import jakarta.annotation.PostConstruct;
 
-@RequiredArgsConstructor
 public class InMemoryConfig {
 
-	private final String startupData;
-
-	private final DataSource datasource;
-	private final ApplicationContext context;
+	@Autowired
+	private String startupData;
+	@Autowired
+	private DataSource datasource;
+	@Autowired
+	private ApplicationContext context;
 
 	@PostConstruct
 	public void loadIfInMemory() throws Exception {

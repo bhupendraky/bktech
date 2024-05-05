@@ -1,13 +1,12 @@
 package com.bktech.customer.config;
 
-import java.util.List;
-
+import org.springframework.batch.item.Chunk;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.bktech.customer.data.CustomerRepository;
-import com.bktech.customer.domain.Customer;
+import com.bktech.customer.entity.Customer;
+import com.bktech.customer.repository.CustomerRepository;
 
 @Component
 public class CustomerWriter implements ItemWriter<Customer> {
@@ -16,8 +15,8 @@ public class CustomerWriter implements ItemWriter<Customer> {
 	private CustomerRepository customerRepository;
 
 	@Override
-	public void write(List<? extends Customer> list) throws Exception {
+	public void write(Chunk<? extends Customer> chunk) throws Exception {
 		System.out.println("Thread Name : " + Thread.currentThread().getName());
-		customerRepository.saveAll(list);
+		customerRepository.saveAll(chunk);
 	}
 }

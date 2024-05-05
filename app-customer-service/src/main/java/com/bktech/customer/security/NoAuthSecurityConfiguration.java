@@ -1,20 +1,22 @@
 package com.bktech.customer.security;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.SecurityFilterChain;
 
+@Configuration
 @EnableWebSecurity
-@ConditionalOnProperty(name = "spring.security.type", havingValue = "NONE")
-public class NoAuthSecurityConfiguration extends WebSecurityConfigurerAdapter {
+@ConditionalOnProperty(name = "spring.security.type", havingValue = "NOAUTH")
+public class NoAuthSecurityConfiguration {
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception{
-		http.csrf().disable()
-		.authorizeRequests()
-		.anyRequest()
-		.permitAll();
+	@Bean
+	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		return http.csrf(csrf -> csrf.disable())
+				.authorizeHttpRequests(requests -> requests.anyRequest().permitAll())
+				.build();
 	}
 
 }

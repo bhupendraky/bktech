@@ -11,10 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bktech.customer.config.Traceble;
-import com.bktech.customer.domain.Customer;
+import com.bktech.customer.entity.Customer;
 import com.bktech.customer.service.CustomerService;
-
-import io.swagger.annotations.ApiOperation;
+import com.bktech.customer.vo.UserVO;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -25,23 +24,32 @@ public class CustomerController {
 	private CustomerService customerService;
 
 	@Traceble
-	@ApiOperation("Fetch all customers")
-	@GetMapping("/get-all")
+	@GetMapping("/get-all-customers")
 	public List<Customer> getAllCustomers() {
 		return customerService.getAllCustomers();
 	}
 
 	@Traceble
-	@ApiOperation("Get customer by id")
-	@GetMapping("/get/{customerId}")
+	@GetMapping("/get-customer/{customerId}")
 	public Customer getCustomer(@PathVariable Long customerId) {
 		return customerService.getCustomer(customerId);
 	}
 
 	@Traceble
-	@ApiOperation("Load customer data")
-	@PostMapping("/load")
+	@PostMapping("/load-customers")
 	public String loadCustomerData() {
 		return customerService.loadCustomerData();
+	}
+
+	@Traceble
+	@GetMapping("/get-user/{username}")
+	public UserVO getUserByUserName(@PathVariable String username) {
+		return customerService.getUserByUserName(username);
+	}
+
+	@Traceble
+	@GetMapping("/get-all-users")
+	public List<UserVO> getAllUser() {
+		return customerService.getAllUser();
 	}
 }
