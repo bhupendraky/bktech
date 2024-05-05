@@ -1,5 +1,7 @@
 package com.bktech.user.entity;
 
+import java.util.Objects;
+
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.Column;
@@ -8,17 +10,16 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 @Entity
-@EqualsAndHashCode(of = "name", callSuper = false)
-@NoArgsConstructor
 @Table(name = "ROLES")
 @EntityListeners(AuditingEntityListener.class)
 public class Role extends AuditableEntity<String> {
 
 	private static final long serialVersionUID = -3619515111023708280L;
+
+	public Role() {
+	}
 
 	public Role(String name) {
 		this.name = name;
@@ -31,6 +32,23 @@ public class Role extends AuditableEntity<String> {
 
 	@Column(name = "NAME", nullable = false)
 	private String name;
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(name);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Role other = (Role) obj;
+		return Objects.equals(name, other.name);
+	}
 
 	public Long getId() {
 		return id;

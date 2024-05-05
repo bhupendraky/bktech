@@ -25,7 +25,6 @@
 		<mapstruct.version>1.5.2.Final</mapstruct.version>
 		<guava.version>31.1-jre</guava.version>
 		<jwt.version>0.11.2</jwt.version>
-		<lombok.version>1.18.26</lombok.version>
 		<commons.validator.version>1.7</commons.validator.version>
 	</properties>
 
@@ -40,10 +39,6 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -120,14 +115,6 @@
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
 					<version>3.0.6</version>
-					<configuration>
-						<excludes>
-							<exclude>
-								<groupId>org.projectlombok</groupId>
-								<artifactId>lombok</artifactId>
-							</exclude>
-						</excludes>
-					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>

@@ -10,10 +10,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.NoArgsConstructor;
 
 @Entity
-@NoArgsConstructor
 @Table(name = "TOKENS")
 @EntityListeners(AuditingEntityListener.class)
 public class Token extends AuditableEntity<String> {
