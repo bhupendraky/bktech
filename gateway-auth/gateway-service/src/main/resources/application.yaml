@@ -1,0 +1,46 @@
+
+server:
+  port: 8762
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${random.number}
+
+spring:
+  application:
+    name: GATEWAY-SERVICE
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: USER-SERVICE
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/user/**, /api/admin/**
+          filters:
+            - GwyAuthFilter
+        - id: SHORTEN-URL-SERVICE
+          uri: lb://SHORTEN-URL-SERVICE
+          predicates:
+            - Path=/api/url/**
+          filters:
+            - GwyAuthFilter
+        - id: CUSTOMER-SERVICE
+          uri: lb://CUSTOMER-SERVICE
+          predicates:
+            - Path=/api/customer/**
+          filters:
+            - GwyAuthFilter
+  security:
+    # NONE, BASIC, JWT
+    type: BASIC
+logging:
+  level:
+    root: info
+  file:
+    name: ${java.io.tmpdir}/${spring.application.name}.log
+
