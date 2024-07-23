@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.bktech</groupId>
 	<artifactId>bktech</artifactId>
-	<version>${revision}</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>bktech-project</name>
 	<description>BKY Tech Hub Project</description>
@@ -20,7 +20,6 @@
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Hoxton.SR1</spring-cloud.version>
 		<maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
-		<revision>1.0.0</revision>
 		<swagger-ui-version>1.7.0.RELEASE</swagger-ui-version>
 		<main.basedir>${basedir}</main.basedir>
 		<apache.poi.version>5.2.3</apache.poi.version>
@@ -116,19 +115,6 @@
 				<groupId>org.projectlombok</groupId>
 				<artifactId>lombok</artifactId>
 				<version>${lombok.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.bktech</groupId>
-				<artifactId>infra-common</artifactId>
-				<version>${revision}</version>
-				<scope>compile</scope>
-			</dependency>
-			<dependency>
-				<groupId>com.bktech</groupId>
-				<artifactId>user-service</artifactId>
-				<version>${revision}</version>
-				<classifier>client</classifier>
-				<scope>compile</scope>
 			</dependency>
 			<dependency>
 				<groupId>io.jsonwebtoken</groupId>
