@@ -6,7 +6,7 @@ spring:
     type: NOAUTH
     jwt-bearer-token: true
   application:
-    name: app-user-service
+    name: USER-SERVICE
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/mysql_db
     username: root

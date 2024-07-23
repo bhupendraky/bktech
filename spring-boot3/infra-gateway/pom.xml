@@ -7,8 +7,8 @@
 		<version>${revision}</version>
 		<relativePath>../</relativePath>
 	</parent>
-	<artifactId>infra-gateway</artifactId>
-	<name>infra-gateway</name>
+	<artifactId>gateway-service</artifactId>
+	<name>gateway-service</name>
 	<description>BKTECH Infra Gateway Srvice</description>
 
 	<dependencies>

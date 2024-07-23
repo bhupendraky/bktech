@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: infra-eureka
+    name: EUREKA-SERVICE
 eureka:
   client:
     service-url:

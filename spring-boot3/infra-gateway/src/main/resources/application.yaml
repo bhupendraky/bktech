@@ -10,14 +10,23 @@ eureka:
 
 spring:
   application:
-    name: infra-gateway
+    name: GATEWAY-SERVICE
   cloud:
     gateway:
       routes:
-        - id: APP-USER-SERVICE
-          uri: lb://APP-USER-SERVICE
+        - id: USER-SERVICE
+          uri: lb://USER-SERVICE
           predicates:
             - Path=/api/user/**, /api/admin/**
+        - id: CUSTOMER-SERVICE
+          uri: lb://CUSTOMER-SERVICE
+          predicates:
+            - Path=/api/customer/**
+        - id: URL-SERVICE
+          uri: lb://URL-SERVICE
+          predicates:
+            - Path=/api/url/**
+
 
 logging:
   level:

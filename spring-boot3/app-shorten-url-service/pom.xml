@@ -7,8 +7,8 @@
 		<version>${revision}</version>
 		<relativePath>../</relativePath>
 	</parent>
-	<artifactId>app-shorten-url-service</artifactId>
-	<name>app-shorten-url-service</name>
+	<artifactId>url-service</artifactId>
+	<name>url-service</name>
 	<description>BKTECH App Shorten URL Srvice</description>
 
 	<dependencies>

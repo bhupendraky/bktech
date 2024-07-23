@@ -9,8 +9,8 @@
 		<version>${revision}</version>
 		<relativePath>../</relativePath>
 	</parent>
-	<artifactId>infra-eureka</artifactId>
-	<name>infra-eureka</name>
+	<artifactId>eureka-service</artifactId>
+	<name>eureka-service</name>
 	<description>BKTECH Infra Eureka Srvice</description>
 
 	<dependencies>

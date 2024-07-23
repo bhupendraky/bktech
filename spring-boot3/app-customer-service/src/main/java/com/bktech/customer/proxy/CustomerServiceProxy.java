@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.bktech.customer.entity.Customer;
 
-@FeignClient(name = "app-customer-service-proxy", url = "${infra.gateway.url}")
+@FeignClient(name = "customer-service-proxy", url = "${infra.gateway.url}")
 public interface CustomerServiceProxy {
 
-	@GetMapping(value = "/app-customer-service/customer/get/{customerId}")
+	@GetMapping(value = "/customer-service/customer/get/{customerId}")
 	Customer getCustomer(Long customerId);
 
 }

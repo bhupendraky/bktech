@@ -9,8 +9,8 @@
 		<version>${revision}</version>
 		<relativePath>../</relativePath>
 	</parent>
-	<artifactId>app-customer-service</artifactId>
-	<name>app-customer-service</name>
+	<artifactId>customer-service</artifactId>
+	<name>customer-service</name>
 	<description>BKTECH App Email Srvice</description>
 
 	<dependencies>
