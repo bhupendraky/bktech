@@ -32,12 +32,12 @@
 	</properties>
 
 	<modules>
-		<module>infra-eureka</module>
-		<module>infra-gateway</module>
-		<module>app-user-service</module>
-		<module>app-customer-service</module>
-		<module>app-fin-service</module>
-		<module>app-shorten-url-service</module>
+		<module>eureka-service</module>
+		<module>gateway-service</module>
+		<module>user-service</module>
+		<module>customer-service</module>
+		<module>fin-service</module>
+		<module>url-service</module>
 	</modules>
 	<dependencies>
 		<dependency>
@@ -125,7 +125,7 @@
 			</dependency>
 			<dependency>
 				<groupId>com.bktech</groupId>
-				<artifactId>app-user-service</artifactId>
+				<artifactId>user-service</artifactId>
 				<version>${revision}</version>
 				<classifier>client</classifier>
 				<scope>compile</scope>
