@@ -23,8 +23,8 @@ spring:
             - Path=/api/user/**, /api/admin/**
           filters:
             - GwyAuthFilter
-        - id: SHORTEN-URL-SERVICE
-          uri: lb://SHORTEN-URL-SERVICE
+        - id: URL-SERVICE
+          uri: lb://URL-SERVICE
           predicates:
             - Path=/api/url/**
           filters:

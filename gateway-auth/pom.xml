@@ -32,7 +32,7 @@
 		<module>eureka-service</module>
 		<module>gateway-service</module>
 		<module>user-service</module>
-		<module>shorten-url-service</module>
+		<module>url-service</module>
 		<module>customer-service</module>
 	</modules>
 	<dependencyManagement>

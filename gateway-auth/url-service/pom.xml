@@ -9,8 +9,8 @@
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
-	<artifactId>shorten-url-service</artifactId>
-	<name>shorten-url-service</name>
+	<artifactId>url-service</artifactId>
+	<name>url-service</name>
 	<description>BKTECH App Shorten URL Srvice</description>
 
 	<dependencies>
