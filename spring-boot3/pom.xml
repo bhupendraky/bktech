@@ -29,11 +29,11 @@
 	</properties>
 
 	<modules>
-		<module>infra-eureka</module>
-		<module>infra-gateway</module>
-		<module>app-user-service</module>
-		<module>app-shorten-url-service</module>
-		<module>app-customer-service</module>
+		<module>eureka-service</module>
+		<module>gateway-service</module>
+		<module>user-service</module>
+		<module>url-service</module>
+		<module>customer-service</module>
 	</modules>
 	<dependencies>
 		<dependency>
