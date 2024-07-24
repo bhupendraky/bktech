@@ -37,7 +37,7 @@ spring:
             - GwyAuthFilter
   security:
     # NONE, BASIC, JWT
-    type: BASIC
+    type: NONE
 logging:
   level:
     root: info
