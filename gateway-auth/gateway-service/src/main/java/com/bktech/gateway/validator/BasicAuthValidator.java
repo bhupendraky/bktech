@@ -14,7 +14,7 @@ import com.bktech.gateway.AuthConfig;
 import com.bktech.infra.constants.Globals;
 
 @Component
-@ConditionalOnProperty(name = "spring.security.type", havingValue = "BASIC")
+@ConditionalOnProperty(name = "infra.security.type", havingValue = "BASIC")
 public class BasicAuthValidator implements AuthValidator {
 
 	@Override
@@ -37,5 +37,6 @@ public class BasicAuthValidator implements AuthValidator {
 		//String password = pair.split(":")[1];
 		return Optional.of(username);
 	}
+
 
 }

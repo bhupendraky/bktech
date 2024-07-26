@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.bktech.user.vo.UserVO;
 
-@FeignClient(name = "user-service-proxy", url = "${infra.gateway.url}")
+
+@FeignClient(name = "user-service")
 public interface UserServiceProxy {
 
 	@GetMapping(value = "/api/user/get/{username}")

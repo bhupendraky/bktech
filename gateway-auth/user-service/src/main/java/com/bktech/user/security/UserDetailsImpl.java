@@ -1,4 +1,4 @@
-package com.bktech.app.security;
+package com.bktech.user.security;
 
 import java.util.Collection;
 import java.util.List;
@@ -8,7 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-public class AppUserDetails implements UserDetails {
+public class UserDetailsImpl implements UserDetails {
 
 	private static final long serialVersionUID = 7657093843522128049L;
 
@@ -21,12 +21,12 @@ public class AppUserDetails implements UserDetails {
 	private boolean accountNonLocked = true;
 	private boolean credentialsNonExpired = true;
 
-	public AppUserDetails(String username, String password) {
+	public UserDetailsImpl(String username, String password) {
 		this.username = username;
 		this.password = password;
 	}
 
-	public AppUserDetails() {
+	public UserDetailsImpl() {
 	}
 
 	private List<String> roles = List.of("ADMIN", "USER");

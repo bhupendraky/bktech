@@ -1,4 +1,4 @@
-package com.bktech.app.security;
+package com.bktech.user.security;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -9,7 +9,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-@ConditionalOnProperty(name = "spring.security.type", havingValue = "NONE")
+@ConditionalOnProperty(name = "infra.security.type", havingValue = "NONE")
 public class NoAuthSecurity {
 
 	@Bean

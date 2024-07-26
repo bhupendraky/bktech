@@ -14,14 +14,17 @@ import com.bktech.user.dto.LoginDTO;
 import com.bktech.user.entity.Token;
 import com.bktech.user.entity.UserEntity;
 import com.bktech.user.repository.TokenRepository;
+import com.bktech.user.repository.UserRepository;
 
 @Service
-public class JwtTokenService {
+public class AuthService {
 
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private TokenRepository tokenRepository;
+	@Autowired
+	private UserRepository userRepository;
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
@@ -47,5 +50,9 @@ public class JwtTokenService {
 		} catch (AuthenticationException e) {
 			throw new AppException(e.getMessage());
 		}
+	}
+
+	public String getPassword(String userId) {
+		return userRepository.getPasswordByUsername(userId);
 	}
 }

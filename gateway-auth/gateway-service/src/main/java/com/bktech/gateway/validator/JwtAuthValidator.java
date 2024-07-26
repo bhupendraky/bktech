@@ -14,7 +14,7 @@ import com.bktech.infra.constants.Globals;
 import com.bktech.infra.utils.JwtTokenUtil;
 
 @Component
-@ConditionalOnProperty(name = "spring.security.type", havingValue = "JWT")
+@ConditionalOnProperty(name = "infra.security.type", havingValue = "JWT")
 public class JwtAuthValidator implements AuthValidator {
 
 	@Override

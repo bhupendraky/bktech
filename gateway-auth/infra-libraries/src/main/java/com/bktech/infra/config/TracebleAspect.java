@@ -1,4 +1,4 @@
-package com.bktech.app.config;
+package com.bktech.infra.config;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

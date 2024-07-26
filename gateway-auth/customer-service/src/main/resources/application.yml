@@ -1,15 +1,11 @@
 server:
-  port: 55813
+  port: 0
 
 spring:
-  security:
-    # NONE, BASIC, JWT
-    type: NONE
-    jwt-bearer-token: true
   application:
     name: CUSTOMER-SERVICE
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/mysql_db
+    url: jdbc:mysql://localhost:3306/mysql_db
     username: root
     password: Bhupen15@mysql
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -23,16 +19,10 @@ spring:
     hibernate:
       ddl-auto: update
 
-infra:
-  gateway:
-    url: http://localhost:8762
-
 eureka:
   client:
     service-url:
-      default-zone: http://localhost:8761/eureka
-  instance:
-    instance-id: ${spring.cloud.client.hostname}:${random.number}
+      defaultZone: http://localhost:8071/eureka/
 
 logging:
   level:

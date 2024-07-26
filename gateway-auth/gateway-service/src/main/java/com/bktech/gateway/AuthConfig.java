@@ -6,9 +6,11 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 
 public class AuthConfig {
 
+
 	private static final List<String> openApiEndpoints = List.of(
 			"/eureka",
-			"/api/user/jwt/login"
+			"/api/auth/user/jwt/login",
+			"/api/auth/user/basic/login"
 			);
 
 	public boolean isSecured(ServerHttpRequest request) {

@@ -11,7 +11,7 @@ import com.bktech.gateway.AuthConfig;
 import com.bktech.infra.constants.Globals;
 
 @Component
-@ConditionalOnProperty(name = "spring.security.type", havingValue = "NONE")
+@ConditionalOnProperty(name = "infra.security.type", havingValue = "NONE")
 public class NoAuthValidator implements AuthValidator {
 
 	@Override
