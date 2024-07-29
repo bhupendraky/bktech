@@ -4,22 +4,17 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
 
 import com.bktech.infra.constants.Globals;
 import com.bktech.infra.execp.AppException;
-import com.bktech.user.constants.RoleType;
 import com.bktech.user.dto.UserDTO;
-import com.bktech.user.entity.Role;
 import com.bktech.user.entity.UserEntity;
 import com.bktech.user.execp.ExceptionCode;
-import com.bktech.user.repository.RoleRepository;
 import com.bktech.user.repository.UserRepository;
 import com.bktech.user.utils.UserMapper;
 import com.bktech.user.vo.UserVO;
@@ -31,8 +26,6 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
-	@Autowired
-	private RoleRepository roleRepository;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
@@ -78,20 +71,8 @@ public class UserService {
 		if (userRepository.existsByUsername(dto.getUsername())) {
 			throw new AppException(ExceptionCode.USRSVC_0007, dto.getUsername());
 		}
-		Set<Role> roles = null;
-		if (!CollectionUtils.isEmpty(dto.getRoles())) {
-			// Validate role
-			dto.getRoles().forEach(RoleType::valueOf);
-			// merge role
-			List<Role> validRoles = roleRepository.findAll();
-			roles = dto.getRoles().stream()
-					.filter(r -> validRoles.stream().anyMatch(sr -> sr.getName().equals(r)))
-					.map(Role::new)
-					.collect(Collectors.toSet());
-
-		}
 		UserEntity user = UserMapper.mapToUser(dto);
-		user.setRoles(roles);
+		user.setRole(dto.getRole());
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user = userRepository.save(user);
 		return UserMapper.mapToUserVO(user);

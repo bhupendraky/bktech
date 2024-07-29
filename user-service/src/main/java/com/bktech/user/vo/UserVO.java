@@ -1,8 +1,5 @@
 package com.bktech.user.vo;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.bktech.app.entity.AuditableEntity;
 
 public class UserVO extends AuditableEntity<String> {
@@ -12,12 +9,7 @@ public class UserVO extends AuditableEntity<String> {
 	private String username;
 	private String email;
 	private Integer age;
-	private transient boolean enabled = true;
-	private transient boolean accountNonExpired = true;
-	private transient boolean accountNonLocked = true;
-	private transient boolean credentialsNonExpired = true;
-	private Set<String> roles = new HashSet<>();
-	private TokenVO token;
+	private String role;
 
 	public String getUsername() {
 		return username;
@@ -43,52 +35,12 @@ public class UserVO extends AuditableEntity<String> {
 		this.age = age;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
+	public String getRole() {
+		return role;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-
-	public boolean isAccountNonExpired() {
-		return accountNonExpired;
-	}
-
-	public void setAccountNonExpired(boolean accountNonExpired) {
-		this.accountNonExpired = accountNonExpired;
-	}
-
-	public boolean isAccountNonLocked() {
-		return accountNonLocked;
-	}
-
-	public void setAccountNonLocked(boolean accountNonLocked) {
-		this.accountNonLocked = accountNonLocked;
-	}
-
-	public boolean isCredentialsNonExpired() {
-		return credentialsNonExpired;
-	}
-
-	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-		this.credentialsNonExpired = credentialsNonExpired;
-	}
-
-	public Set<String> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Set<String> roles) {
-		this.roles = roles;
-	}
-
-	public TokenVO getToken() {
-		return token;
-	}
-
-	public void setToken(TokenVO token) {
-		this.token = token;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 }

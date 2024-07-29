@@ -1,7 +1,5 @@
 package com.bktech.user.config;
 
-import java.util.stream.Stream;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -9,18 +7,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.bktech.infra.constants.Globals;
 import com.bktech.user.constants.RoleType;
-import com.bktech.user.entity.Role;
 import com.bktech.user.entity.UserEntity;
-import com.bktech.user.repository.RoleRepository;
 import com.bktech.user.repository.UserRepository;
+
+import jakarta.transaction.Transactional;
 
 @Configuration
 public class AppInitConfig implements CommandLineRunner {
 
 	@Autowired
 	private UserRepository userRepository;
-	@Autowired
-	private RoleRepository roleRepository;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
@@ -33,7 +29,8 @@ public class AppInitConfig implements CommandLineRunner {
 	}
 
 
-	private void createAdminUser() {
+	@Transactional
+	public void createAdminUser() {
 		String admin = RoleType.ADMIN.name();
 		if (userRepository.existsByUsername(admin)) {
 			return;
@@ -45,18 +42,7 @@ public class AppInitConfig implements CommandLineRunner {
 		adminUser.setPassword(passwordEncoder.encode(admin));
 		adminUser.setAge(100);
 		adminUser.setEmail(email);
-
-		Stream.of(RoleType.values())
-		.forEach(roleType -> {
-			roleRepository.findByName(roleType.name())
-			.ifPresentOrElse(
-					role -> adminUser.getRoles().add(role),
-					() -> {
-						Role role = roleRepository.save(new Role(roleType.name()));
-						adminUser.getRoles().add(role);
-					});
-		});
-
+		adminUser.setRole(admin);
 		userRepository.save(adminUser);
 	}
 

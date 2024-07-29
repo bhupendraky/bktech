@@ -1,8 +1,5 @@
 package com.bktech.user.dto;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -24,7 +21,7 @@ public class UserDTO {
 
 	private Integer age;
 
-	private Set<String> roles = new HashSet<>();
+	private String role;
 
 	public String getUsername() {
 		return username;
@@ -58,12 +55,12 @@ public class UserDTO {
 		this.age = age;
 	}
 
-	public Set<String> getRoles() {
-		return roles;
+	public String getRole() {
+		return role;
 	}
 
-	public void setRoles(Set<String> roles) {
-		this.roles = roles;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 }

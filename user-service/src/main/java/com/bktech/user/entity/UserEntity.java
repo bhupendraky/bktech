@@ -1,23 +1,14 @@
 package com.bktech.user.entity;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.bktech.app.entity.AuditableEntity;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -44,19 +35,8 @@ public class UserEntity extends AuditableEntity<String> {
 	@Column(name = "AGE")
 	private Integer age;
 
-	private transient boolean enabled = true;
-	private transient boolean accountNonExpired = true;
-	private transient boolean accountNonLocked = true;
-	private transient boolean credentialsNonExpired = true;
-
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-	@JoinTable(name = "USER_ROLES",
-	joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"),
-	inverseJoinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID"))
-	private Set<Role> roles = new HashSet<>();
-
-	@OneToOne(mappedBy = "user")
-	private Token token;
+	@Column(name = "ROLE")
+	private String role;
 
 	public Long getId() {
 		return id;
@@ -98,52 +78,12 @@ public class UserEntity extends AuditableEntity<String> {
 		this.age = age;
 	}
 
-	public boolean isEnabled() {
-		return enabled;
+	public String getRole() {
+		return role;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-
-	public boolean isAccountNonExpired() {
-		return accountNonExpired;
-	}
-
-	public void setAccountNonExpired(boolean accountNonExpired) {
-		this.accountNonExpired = accountNonExpired;
-	}
-
-	public boolean isAccountNonLocked() {
-		return accountNonLocked;
-	}
-
-	public void setAccountNonLocked(boolean accountNonLocked) {
-		this.accountNonLocked = accountNonLocked;
-	}
-
-	public boolean isCredentialsNonExpired() {
-		return credentialsNonExpired;
-	}
-
-	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
-		this.credentialsNonExpired = credentialsNonExpired;
-	}
-
-	public Set<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
-	}
-
-	public Token getToken() {
-		return token;
-	}
-
-	public void setToken(Token token) {
-		this.token = token;
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 }
