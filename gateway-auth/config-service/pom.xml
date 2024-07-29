@@ -9,26 +9,13 @@
 		<version>1.0.2-SNAPSHOT</version>
 		<relativePath>../</relativePath>
 	</parent>
-	<artifactId>app-libraries</artifactId>
-	<name>app-libraries</name>
+	<artifactId>config-service</artifactId>
+	<name>config-service</name>
 
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.bktech</groupId>
-			<artifactId>infra-libraries</artifactId>
-			<version>${project.version}</version>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-config-server</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -37,9 +24,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<skip>true</skip>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>

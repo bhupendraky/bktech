@@ -11,7 +11,6 @@
 	</parent>
 	<artifactId>user-service</artifactId>
 	<name>user-service</name>
-	<description>BKTECH App User Srvice</description>
 
 	<dependencies>
 		<dependency>
@@ -38,6 +37,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

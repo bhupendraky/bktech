@@ -1,12 +1,8 @@
-server:
-  port: 8071
-
 spring:
   application:
     name: EUREKA-SERVICE
-eureka:
-  client:
-    register-with-eureka: false
-    fetch-registry: false
-    service-url:
-      defaultZone: http://localhost:${server.port}/eureka/
+  config:
+    import: configserver:http://localhost:8070
+  profiles:
+    active:
+      - dev
