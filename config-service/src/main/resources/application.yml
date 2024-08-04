@@ -10,3 +10,13 @@ spring:
         git:
           uri: https://github.com/bhupendraky/bktech-config-server-properties.git
           refresh-rate: 1
+
+management:
+  endpoint:
+    metrics:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+

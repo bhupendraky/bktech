@@ -9,7 +9,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 
-import com.bktech.gateway.AuthConfig;
 import com.bktech.infra.constants.Globals;
 import com.bktech.infra.utils.JwtTokenUtil;
 
@@ -18,7 +17,7 @@ import com.bktech.infra.utils.JwtTokenUtil;
 public class JwtAuthValidator implements AuthValidator {
 
 	@Override
-	public Optional<String> validate(ServerWebExchange exchange, GatewayFilterChain chain, AuthConfig config) {
+	public Optional<String> validate(ServerWebExchange exchange, GatewayFilterChain chain) {
 		HttpHeaders headers = exchange.getRequest().getHeaders();
 		if (!headers.containsKey(HttpHeaders.AUTHORIZATION)) {
 			throw new RuntimeException("Missing authorization header");

@@ -6,7 +6,15 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8071/eureka/
-  
+
+management:
+  endpoint:
+    metrics:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 
 spring:
   application:
@@ -37,10 +45,16 @@ spring:
             - Path=/api/customer/**
           filters:
             - GwyAuthFilter
+
 infra:
   security:
     # NONE, BASIC, JWT
     type: NONE
+  openApiEndpoints:
+    - '/eureka'
+    - '/api/auth/user/jwt/login'
+    - '/api/auth/user/basic/login'
+
 logging:
   level:
     root: info
