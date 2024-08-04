@@ -1,0 +1,29 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: URL-SERVICE
+  cloud:
+    config:
+      enabled: false
+  datasource:
+    url: jdbc:mysql://localhost:3306/mysql_db
+    username: root
+    password: Bhupen15@mysql
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8071/eureka/
+
+logging:
+  level:
+    root: info
+  file:
+    name: ${java.io.tmpdir}/${spring.application.name}.log

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cmd=${1}
+sid=${2}
 
 cd "$(dirname $0)"
 
@@ -28,14 +29,22 @@ stopService () {
   fi
 }
 if [ "$cmd" = 'start' ]; then
-  startService config
-  sleep 30
-  startService eureka
-  startService gateway
+  if [ -n "$sid" ]; then
+    startService $sid
+  else
+    #startService config
+    #sleep 30
+    startService eureka
+    startService gateway
+  fi
 elif [ "$cmd" = 'stop' ]; then
-  stopService gateway
-  stopService eureka
-  stopService config
+  if [ -n "$sid" ]; then
+    stopService $sid
+  else
+    stopService gateway
+    stopService eureka
+    #stopService config
+  fi
 else
   jcmd | grep service-1.0.2-SNAPSHOT.jar
 fi

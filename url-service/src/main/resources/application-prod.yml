@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: URL-SERVICE
+  config:
+    import: configserver:http://localhost:8070

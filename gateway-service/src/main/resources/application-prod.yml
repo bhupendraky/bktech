@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: GATEWAY-SERVICE
+  config:
+    import: configserver:http://localhost:8070
