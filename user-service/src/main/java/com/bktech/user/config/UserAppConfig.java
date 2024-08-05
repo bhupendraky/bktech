@@ -29,7 +29,7 @@ public class UserAppConfig {
 	UserDetailsService userDetailsService() {
 		return username -> userRepository.findByUsername(username)
 				.map(userVO -> {
-					UserDetailsImpl userDetails = new UserDetailsImpl();
+					var userDetails = new UserDetailsImpl();
 					userDetails.setUsername(username);
 					userDetails.setPassword(userVO.getPassword());
 					return userDetails;
@@ -39,7 +39,7 @@ public class UserAppConfig {
 
 	@Bean
 	AuthenticationProvider authenticationProvider(UserDetailsService userDetailsService) {
-		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+		var authProvider = new DaoAuthenticationProvider();
 		authProvider.setUserDetailsService(userDetailsService);
 		authProvider.setPasswordEncoder(passwordEncoder());
 		return authProvider;

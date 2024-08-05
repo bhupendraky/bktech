@@ -53,7 +53,7 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 	 */
 	@ExceptionHandler(Exception.class)
 	protected final ResponseEntity<Object> unhandledExceptionHandler(Exception e, WebRequest request) {
-		AppException ex = new AppException(ExceptionCode.INFRA_0001, e);
+		var ex = new AppException(ExceptionCode.INFRA_0001, e);
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 				.body(createBody(ex, request));
 	}
@@ -79,7 +79,7 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 	 */
 	@ExceptionHandler(FeignException.class)
 	protected final ResponseEntity<Object> handleProxyException(FeignException e, WebRequest request) {
-		Optional<HttpStatus> status = Optional.ofNullable(HttpStatus.resolve(e.status()));
+		var status = Optional.ofNullable(HttpStatus.resolve(e.status()));
 		AppException ex = null;
 		if(e.getCause() instanceof AppException) {
 			ex = (AppException)e.getCause();
@@ -93,7 +93,7 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-		AppException e = new AppException(ExceptionCode.INFRA_0004, ex);
+		var e = new AppException(ExceptionCode.INFRA_0004, ex);
 		return ResponseEntity.status(status).body(createBody(e, request));
 	}
 

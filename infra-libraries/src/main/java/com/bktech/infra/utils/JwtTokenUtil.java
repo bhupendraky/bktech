@@ -20,7 +20,7 @@ public class JwtTokenUtil {
 	private static final String SECRET_KEY="743777217A25432A462D4A614E645267556B58703272357538782F413F442847";
 
 	public static String generateToken(String username) {
-		long currentTime = System.currentTimeMillis();
+		var currentTime = System.currentTimeMillis();
 		return Jwts.builder().setClaims(new HashMap<>())
 				.setSubject(username)
 				.setIssuedAt(new Date(currentTime))
@@ -30,7 +30,7 @@ public class JwtTokenUtil {
 	}
 
 	public static boolean isValidToken(String token, String username) {
-		String userNameFromToken = getUsernameFromToken(token);
+		var userNameFromToken = getUsernameFromToken(token);
 		return username.equals(userNameFromToken) &&
 				!isTokenExpired(token);
 	}
@@ -52,7 +52,7 @@ public class JwtTokenUtil {
 	}
 
 	private static <T> T getClaimsFromToken(String token, Function<Claims, T> claimResolver) {
-		Claims claims = getAllClaimsFromToken(token);
+		var claims = getAllClaimsFromToken(token);
 		return claimResolver.apply(claims);
 	}
 
@@ -64,7 +64,7 @@ public class JwtTokenUtil {
 	}
 
 	private static Key getKey() {
-		byte[] secretBytes = Decoders.BASE64.decode(SECRET_KEY);
+		var secretBytes = Decoders.BASE64.decode(SECRET_KEY);
 		return Keys.hmacShaKeyFor(secretBytes);
 	}
 

@@ -20,7 +20,7 @@ public class CustomerFIleReader extends FlatFileItemReader<Customer> implements 
 
 	@Value("${customer.data.file.header}")
 	private String[] customerDataHeaders;
-	
+
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		this.setResource(new FileSystemResource(customerDataFilePath));
@@ -29,16 +29,16 @@ public class CustomerFIleReader extends FlatFileItemReader<Customer> implements 
 		this.setLineMapper(lineMapper());
 		super.afterPropertiesSet();
 	}
-	
-	private LineMapper<Customer> lineMapper() {
-		DefaultLineMapper<Customer> lineMapper = new DefaultLineMapper<>();
 
-		DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
+	private LineMapper<Customer> lineMapper() {
+		var lineMapper = new DefaultLineMapper<Customer>();
+
+		var lineTokenizer = new DelimitedLineTokenizer();
 		lineTokenizer.setDelimiter(",");
 		lineTokenizer.setStrict(false);
 		lineTokenizer.setNames(customerDataHeaders);
 
-		BeanWrapperFieldSetMapper<Customer> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
+		var fieldSetMapper = new BeanWrapperFieldSetMapper<Customer>();
 		fieldSetMapper.setTargetType(Customer.class);
 
 		lineMapper.setLineTokenizer(lineTokenizer);

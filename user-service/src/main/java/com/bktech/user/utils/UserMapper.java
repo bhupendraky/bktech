@@ -15,7 +15,7 @@ public class UserMapper {
 
 	public static UserEntity mapValues(UserEntity target, UserDTO source) {
 		target.setEmail(source.getEmail());
-		PasswordEncoder passwordEncoder = Application.getSpringCtx().getBean(PasswordEncoder.class);
+		var passwordEncoder = Application.getSpringCtx().getBean(PasswordEncoder.class);
 		target.setPassword(passwordEncoder.encode(source.getPassword()));
 		target.setUsername(source.getUsername());
 		target.setAge(source.getAge());
@@ -25,7 +25,7 @@ public class UserMapper {
 	}
 
 	public static UserVO mapToUserVO(UserEntity user) {
-		UserVO userVO = new UserVO();
+		var userVO = new UserVO();
 
 		userVO.setEmail(user.getEmail());
 		userVO.setUsername(user.getUsername());

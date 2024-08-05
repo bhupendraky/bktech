@@ -22,14 +22,14 @@ public class TracebleAspect {
 		if (!logger.isInfoEnabled()) {
 			return pjp.proceed();
 		}
-		Class<? extends Object> targetClass = pjp.getTarget().getClass();
-		String methodName = pjp.getSignature().getName();
-		String arguments = mapper.writeValueAsString(pjp.getArgs());
+		var targetClass = pjp.getTarget().getClass();
+		var methodName = pjp.getSignature().getName();
+		var arguments = mapper.writeValueAsString(pjp.getArgs());
 
 		logger.info("START OF {}#{}({})", targetClass, methodName, arguments);
-		long start = System.currentTimeMillis();
-		Object result = pjp.proceed();
-		long executionTime = System.currentTimeMillis() - start;
+		var start = System.currentTimeMillis();
+		var result = pjp.proceed();
+		var executionTime = System.currentTimeMillis() - start;
 		logger.info("TIME TAKEN BY {}#{}({}) is {} ms", targetClass, methodName, arguments, executionTime);
 		if (logger.isDebugEnabled()) {
 			logger.debug("RESULT OF {}#{}({}) is {}", targetClass, methodName, arguments,

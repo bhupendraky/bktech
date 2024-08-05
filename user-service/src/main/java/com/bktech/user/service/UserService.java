@@ -36,16 +36,16 @@ public class UserService {
 	}
 
 	public Optional<UserEntity> getUserEntity(String username) {
-		UserEntity userEntity = userRepository.findByUsername(username)
+		var userEntity = userRepository.findByUsername(username)
 				.orElseThrow(() -> new AppException(ExceptionCode.USRSVC_0005, username));
 		return Optional.of(userEntity);
 	}
 
 	@Transactional
 	public UserVO updateUser(UserDTO dto) {
-		UserEntity savedUser = userRepository.findByUsername(dto.getUsername())
+		var savedUser = userRepository.findByUsername(dto.getUsername())
 				.orElseThrow(() -> new AppException(ExceptionCode.USRSVC_0005, dto.getUsername()));
-		UserEntity updateUser = UserMapper.mapValues(savedUser, dto);
+		var updateUser = UserMapper.mapValues(savedUser, dto);
 		savedUser = userRepository.save(updateUser);
 		return UserMapper.mapToUserVO(savedUser);
 	}
@@ -71,7 +71,7 @@ public class UserService {
 		if (userRepository.existsByUsername(dto.getUsername())) {
 			throw new AppException(ExceptionCode.USRSVC_0007, dto.getUsername());
 		}
-		UserEntity user = UserMapper.mapToUser(dto);
+		var user = UserMapper.mapToUser(dto);
 		user.setRole(dto.getRole());
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		user = userRepository.save(user);

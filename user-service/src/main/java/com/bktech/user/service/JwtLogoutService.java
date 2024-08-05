@@ -17,13 +17,13 @@ public class JwtLogoutService implements LogoutHandler {
 
 	@Override
 	public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
-		String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+		var authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
 		if(!StringUtils.startsWith(authHeader, Globals.JwtAuth.Prefix.TEXT)){
 			return;
 		}
-		String token = authHeader.substring(Globals.JwtAuth.Prefix.LENGTH);
+		var token = authHeader.substring(Globals.JwtAuth.Prefix.LENGTH);
 		// invalidate the token
-		String username = JwtTokenUtil.getUsernameFromToken(token);
+		var username = JwtTokenUtil.getUsernameFromToken(token);
 		System.out.println("Logout successfull for " + username);
 	}
 

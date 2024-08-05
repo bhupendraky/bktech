@@ -25,7 +25,7 @@ public class AuthService {
 	}
 
 	private void authenticate(String username, String password) {
-		UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
+		var token = new UsernamePasswordAuthenticationToken(username, password);
 		try {
 			authenticationManager.authenticate(token);
 		} catch (AuthenticationException e) {

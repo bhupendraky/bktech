@@ -31,13 +31,13 @@ public class AppInitConfig implements CommandLineRunner {
 
 	@Transactional
 	public void createAdminUser() {
-		String admin = RoleType.ADMIN.name();
+		var admin = RoleType.ADMIN.name();
 		if (userRepository.existsByUsername(admin)) {
 			return;
 		}
-		String email = admin + "@" + Globals.APP_DOMAIN + ".COM";
+		var email = admin + "@" + Globals.APP_DOMAIN + ".COM";
 
-		UserEntity adminUser = new UserEntity();
+		var adminUser = new UserEntity();
 		adminUser.setUsername(admin);
 		adminUser.setPassword(passwordEncoder.encode(admin));
 		adminUser.setAge(100);

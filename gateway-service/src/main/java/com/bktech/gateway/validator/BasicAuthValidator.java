@@ -18,11 +18,11 @@ public class BasicAuthValidator implements AuthValidator {
 
 	@Override
 	public Optional<String> validate(ServerWebExchange exchange, GatewayFilterChain chain) {
-		HttpHeaders headers = exchange.getRequest().getHeaders();
+		var headers = exchange.getRequest().getHeaders();
 		if (!headers.containsKey(HttpHeaders.AUTHORIZATION)) {
 			throw new RuntimeException("Missing authorization header");
 		}
-		String authHeader = headers.get(HttpHeaders.AUTHORIZATION).get(0);
+		var authHeader = headers.get(HttpHeaders.AUTHORIZATION).get(0);
 		if (StringUtils.isBlank(authHeader)) {
 			throw new RuntimeException("Missing authorization header");
 		}
@@ -30,9 +30,9 @@ public class BasicAuthValidator implements AuthValidator {
 			throw new RuntimeException("No a Basic token");
 		}
 		//TO-DO Basic auth
-		String authStr = authHeader.substring(Globals.BasicAuth.Prefix.LENGTH);
-		String pair = new String(Base64.getDecoder().decode(authStr));
-		String username = pair.split(":")[0];
+		var authStr = authHeader.substring(Globals.BasicAuth.Prefix.LENGTH);
+		var pair = new String(Base64.getDecoder().decode(authStr));
+		var username = pair.split(":")[0];
 		//String password = pair.split(":")[1];
 		return Optional.of(username);
 	}

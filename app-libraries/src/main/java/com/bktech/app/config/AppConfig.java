@@ -16,7 +16,7 @@ public class AppConfig {
 	@Bean("auditorAwareImpl")
 	AuditorAware<String> auditorAwareImpl() {
 		return () -> {
-			String auditor = Optional.ofNullable(ExecutionContext.getAuditContext().get())
+			var auditor = Optional.ofNullable(ExecutionContext.getAuditContext().get())
 					.map(ExecutionData::getUserId)
 					.orElse(Globals.APP_DOMAIN);
 			return Optional.of(auditor);

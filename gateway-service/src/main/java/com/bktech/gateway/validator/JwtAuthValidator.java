@@ -18,19 +18,19 @@ public class JwtAuthValidator implements AuthValidator {
 
 	@Override
 	public Optional<String> validate(ServerWebExchange exchange, GatewayFilterChain chain) {
-		HttpHeaders headers = exchange.getRequest().getHeaders();
+		var headers = exchange.getRequest().getHeaders();
 		if (!headers.containsKey(HttpHeaders.AUTHORIZATION)) {
 			throw new RuntimeException("Missing authorization header");
 		}
-		String authHeader = headers.get(HttpHeaders.AUTHORIZATION).get(0);
+		var authHeader = headers.get(HttpHeaders.AUTHORIZATION).get(0);
 		if (StringUtils.isBlank(authHeader)) {
 			throw new RuntimeException("Missing authorization header");
 		}
 		if (!authHeader.startsWith(Globals.JwtAuth.Prefix.TEXT)) {
 			throw new RuntimeException("No a Bearer tocken");
 		}
-		String token = authHeader.substring(Globals.JwtAuth.Prefix.LENGTH);
-		String userId = JwtTokenUtil.getUsernameFromToken(token);
+		var token = authHeader.substring(Globals.JwtAuth.Prefix.LENGTH);
+		var userId = JwtTokenUtil.getUsernameFromToken(token);
 		return Optional.of(userId);
 	}
 

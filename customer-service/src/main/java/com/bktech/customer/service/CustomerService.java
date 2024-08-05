@@ -3,7 +3,6 @@ package com.bktech.customer.service;
 import java.util.List;
 
 import org.springframework.batch.core.Job;
-import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +41,7 @@ public class CustomerService {
 	}
 
 	public String loadCustomerData() {
-		JobParameters jobParameters = new JobParametersBuilder()
+		var jobParameters = new JobParametersBuilder()
 				.addLong("START_AT", System.currentTimeMillis())
 				.toJobParameters();
 		customerRepo.deleteAll();

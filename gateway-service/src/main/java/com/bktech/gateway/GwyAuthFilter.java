@@ -30,7 +30,7 @@ public class GwyAuthFilter extends AbstractGatewayFilterFactory<Object> {
 	@Override
 	public GatewayFilter apply(Object config) {
 		return (exchange, chain) -> {
-			Optional<String> userId = Optional.empty();
+			var userId = Optional.<String>empty();
 			if (isSecured(exchange.getRequest())) {
 				userId = validator.validate(exchange, chain);
 			}

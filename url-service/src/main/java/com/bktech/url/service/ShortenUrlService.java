@@ -1,7 +1,6 @@
 package com.bktech.url.service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.validator.routines.UrlValidator;
@@ -44,22 +43,22 @@ public class ShortenUrlService {
 
 	@Transactional
 	public String shortenUrl(String url) {
-		UrlValidator urlValidator = new UrlValidator(new String[] { "http", "https" });
+		var urlValidator = new UrlValidator(new String[] { "http", "https" });
 		if (!urlValidator.isValid(url)) {
 			throw new AppException(ExceptionCode.URLSVC_0006);
 		}
-		Long nextCouterValue = getNextCounterValue();
-		String hashCode = generateBase62Hash(nextCouterValue);
-		WebUrl webUrl = new WebUrl(hashCode, url);
+		var nextCouterValue = getNextCounterValue();
+		var hashCode = generateBase62Hash(nextCouterValue);
+		var webUrl = new WebUrl(hashCode, url);
 		webUrlRepository.save(webUrl);
 
 		return hashCode;
 	}
 
 	private String generateBase62Hash(Long counter) {
-		StringBuilder hashStr = new StringBuilder();
+		var hashStr = new StringBuilder();
 		while (counter > 0) {
-			long r = counter % 62;
+			var r = counter % 62;
 			hashStr.append(base62Alphabets.charAt((int)r));
 			counter = counter / 62;
 		}
@@ -83,7 +82,7 @@ public class ShortenUrlService {
 
 	@PostConstruct
 	public void postConstruct() {
-		Optional<Counter> counter = counterRepository.findById(1);
+		var counter = counterRepository.findById(1);
 		if (!counter.isPresent()) {
 			counterRepository.save(new Counter());
 		}
