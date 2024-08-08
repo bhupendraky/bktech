@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bktech.infra.config.Traceble;
+import com.bktech.infra.config.Traceable;
 import com.bktech.user.service.UserService;
 import com.bktech.user.vo.UserVO;
 
@@ -22,19 +22,19 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@Traceble
+	@Traceable
 	@GetMapping("/get-all")
 	public List<UserVO> getAllUser() {
 		return userService.getAllUser();
 	}
 
-	@Traceble
+	@Traceable
 	@GetMapping("/get/{username}")
 	public UserVO getUserByUsername(@PathVariable String username) {
 		return userService.getUser(username);
 	}
 
-	@Traceble
+	@Traceable
 	@GetMapping("/grouped-by-age")
 	public Map<Integer, List<UserVO>> getUsersGroupedByAge() {
 		return userService.getUsersGroupedByAge();

@@ -2,8 +2,8 @@ package com.bktech.infra.ctx;
 
 public class ExecutionData {
 
-	private String userId;
-	private String authHeader;
+	private final String userId;
+	private final String authHeader;
 
 	public ExecutionData() {
 		this(null);

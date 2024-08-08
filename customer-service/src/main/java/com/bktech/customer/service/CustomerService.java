@@ -2,6 +2,8 @@ package com.bktech.customer.service;
 
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.launch.JobLauncher;
@@ -18,6 +20,8 @@ import com.bktech.user.vo.UserVO;
 
 @Service
 public class CustomerService {
+
+	private final static Log log = LogFactory.getLog(CustomerService.class);
 
 	@Autowired
 	private CustomerRepository customerRepo;
@@ -48,7 +52,7 @@ public class CustomerService {
 		try {
 			jobLauncher.run(job, jobParameters);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error(e);
 		}
 		return Globals.SUCCESS;
 	}

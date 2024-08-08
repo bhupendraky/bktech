@@ -24,7 +24,7 @@ public class JwtLogoutService implements LogoutHandler {
 		var token = authHeader.substring(Globals.JwtAuth.Prefix.LENGTH);
 		// invalidate the token
 		var username = JwtTokenUtil.getUsernameFromToken(token);
-		System.out.println("Logout successfull for " + username);
+		System.out.println("Logout successful for " + username);
 	}
 
 }

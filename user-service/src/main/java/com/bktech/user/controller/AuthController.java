@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bktech.infra.config.Traceble;
+import com.bktech.infra.config.Traceable;
 import com.bktech.user.dto.LoginDTO;
 import com.bktech.user.service.AuthService;
 
@@ -22,19 +22,19 @@ public class AuthController {
 	@Autowired
 	private AuthService authService;
 
-	@Traceble
+	@Traceable
 	@PostMapping("/jwt/login")
 	public String jwtLogin(@Validated @RequestBody LoginDTO loginDto) {
 		return authService.generateToken(loginDto);
 	}
 
-	@Traceble
+	@Traceable
 	@GetMapping("/basic/login/{userId}")
 	public String basicLogin(@PathVariable String userId) {
 		return authService.getPassword(userId);
 	}
 
-	@Traceble
+	@Traceable
 	@PostMapping("/jwt/logout")
 	public String jwtLogout() {
 		return null;

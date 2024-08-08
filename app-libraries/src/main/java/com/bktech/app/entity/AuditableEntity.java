@@ -1,5 +1,6 @@
 package com.bktech.app.entity;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,6 +17,7 @@ import jakarta.persistence.MappedSuperclass;
 @MappedSuperclass
 public abstract class AuditableEntity<U> implements Serializable {
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 	@CreatedBy

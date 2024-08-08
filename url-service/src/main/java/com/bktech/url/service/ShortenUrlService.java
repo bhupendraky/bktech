@@ -21,7 +21,7 @@ import jakarta.annotation.PostConstruct;
 @Service
 public class ShortenUrlService {
 
-	private static String base62Alphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	private static final String base62Alphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
 	@Autowired
 	private WebUrlRepository webUrlRepository;

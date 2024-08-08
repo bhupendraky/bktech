@@ -11,11 +11,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.io.Serial;
+
 @Entity
 @Table(name = "WEB_URL")
 @EntityListeners(AuditingEntityListener.class)
 public class WebUrl extends AuditableEntity<String> {
 
+	@Serial
 	private static final long serialVersionUID = 4279835589444017331L;
 
 	@Id

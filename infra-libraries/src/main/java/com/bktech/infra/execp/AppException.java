@@ -2,73 +2,47 @@ package com.bktech.infra.execp;
 
 import com.bktech.infra.InfraApp;
 
+import java.io.Serial;
+
 public class AppException extends RuntimeException {
 
-	protected static final long serialVersionUID = 1L;
+	@Serial
+	private static final long serialVersionUID = 1L;
 
 	private final transient IExceptionCode code;
 
-	/**
-	 * @param message
-	 */
 	public AppException(String message) {
 		super(message);
 		this.code = null;
 	}
 
-	/**
-	 * @param cause
-	 */
 	public AppException(Throwable cause) {
 		super(cause);
 		this.code = null;
 	}
 
-	/**
-	 * @param message
-	 */
 	public AppException(String message, Throwable cause) {
 		super(message, cause);
 		this.code = null;
 	}
 
-	/**
-	 * @param message
-	 */
 	public AppException(String message, IExceptionCode code, Throwable cause) {
 		super(message, cause);
 		this.code = code;
 	}
 
-
-	/**
-	 * @param key
-	 * @param args
-	 */
 	public AppException(String key, Object... args) {
 		this(key, null, args);
 	}
 
-	/**
-	 * @param message
-	 * @param args
-	 */
 	public AppException(String key, Throwable cause, Object... args) {
 		this(format(key, args), cause);
 	}
 
-	/**
-	 * @param code
-	 * @param args
-	 */
 	public AppException(IExceptionCode code, Object... args) {
 		this(code, null, args);
 	}
 
-	/**
-	 * @param code
-	 * @param cause
-	 */
 	public AppException(IExceptionCode code, Throwable cause, Object... args) {
 		this(format(code.key(), args), code, cause);
 	}

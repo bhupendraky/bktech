@@ -12,10 +12,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Aspect
 @Configuration
-public class TracebleAspect {
+public class TraceableAspect {
 
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	private ObjectMapper mapper = new ObjectMapper();
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	private final ObjectMapper mapper = new ObjectMapper();
 
 	@Around("@annotation(com.bktech.infra.config.Traceble)")
 	public Object logExecutionTime(ProceedingJoinPoint pjp) throws Throwable {

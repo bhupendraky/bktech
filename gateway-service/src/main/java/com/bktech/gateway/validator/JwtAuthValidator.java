@@ -1,5 +1,6 @@
 package com.bktech.gateway.validator;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
@@ -22,7 +23,7 @@ public class JwtAuthValidator implements AuthValidator {
 		if (!headers.containsKey(HttpHeaders.AUTHORIZATION)) {
 			throw new RuntimeException("Missing authorization header");
 		}
-		var authHeader = headers.get(HttpHeaders.AUTHORIZATION).get(0);
+		var authHeader = Objects.requireNonNull(headers.get(HttpHeaders.AUTHORIZATION)).get(0);
 		if (StringUtils.isBlank(authHeader)) {
 			throw new RuntimeException("Missing authorization header");
 		}

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bktech.customer.entity.Customer;
 import com.bktech.customer.service.CustomerService;
-import com.bktech.infra.config.Traceble;
+import com.bktech.infra.config.Traceable;
 import com.bktech.user.vo.UserVO;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -23,31 +23,31 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 
-	@Traceble
+	@Traceable
 	@GetMapping("/get-all-customers")
 	public List<Customer> getAllCustomers() {
 		return customerService.getAllCustomers();
 	}
 
-	@Traceble
+	@Traceable
 	@GetMapping("/get-customer/{customerId}")
 	public Customer getCustomer(@PathVariable Long customerId) {
 		return customerService.getCustomer(customerId);
 	}
 
-	@Traceble
+	@Traceable
 	@PostMapping("/load-customers")
 	public String loadCustomerData() {
 		return customerService.loadCustomerData();
 	}
 
-	@Traceble
+	@Traceable
 	@GetMapping("/get-user/{username}")
 	public UserVO getUserByUserName(@PathVariable String username) {
 		return customerService.getUserByUserName(username);
 	}
 
-	@Traceble
+	@Traceable
 	@GetMapping("/get-all-users")
 	public List<UserVO> getAllUser() {
 		return customerService.getAllUser();

@@ -3,6 +3,7 @@ package com.bktech.app.filter;
 import java.io.IOException;
 
 import org.springframework.http.HttpHeaders;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 import com.bktech.infra.constants.Globals;
@@ -18,7 +19,9 @@ import jakarta.servlet.http.HttpServletResponse;
 public class ExecutionContextFilter extends AppAuthFilter {
 
 	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+	protected void doFilterInternal(HttpServletRequest request,
+									@NonNull HttpServletResponse response,
+									FilterChain filterChain)
 			throws ServletException, IOException {
 		var userId = request.getHeader(Globals.REQ_HEADER_USER_ID);
 		var authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);

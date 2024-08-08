@@ -1,5 +1,6 @@
 package com.bktech.user.security;
 
+import java.io.Serial;
 import java.util.Collection;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import com.bktech.app.constants.RoleType;
 
 public class UserDetailsImpl implements UserDetails {
 
+	@Serial
 	private static final long serialVersionUID = 7657093843522128049L;
 
 	private String username;
@@ -45,26 +47,6 @@ public class UserDetailsImpl implements UserDetails {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
 	}
 
 }

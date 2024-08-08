@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bktech.infra.config.Traceble;
+import com.bktech.infra.config.Traceable;
 import com.bktech.user.dto.UserDTO;
 import com.bktech.user.service.UserService;
 import com.bktech.user.vo.UserVO;
@@ -25,19 +25,19 @@ public class AdminController {
 	@Autowired
 	private UserService userService;
 
-	@Traceble
+	@Traceable
 	@PostMapping("/register-user")
 	public UserVO registerUser(@Valid @RequestBody UserDTO dto) {
 		return userService.registerUser(dto);
 	}
 
-	@Traceble
+	@Traceable
 	@PutMapping("/update-user")
 	public UserVO updateUser(@Valid @RequestBody UserDTO dto) {
 		return userService.updateUser(dto);
 	}
 
-	@Traceble
+	@Traceable
 	@DeleteMapping("/deregister-user/{username}")
 	public String deleteUser(@PathVariable String username) {
 		return userService.deleteUser(username);

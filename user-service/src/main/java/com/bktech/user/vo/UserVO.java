@@ -2,8 +2,11 @@ package com.bktech.user.vo;
 
 import com.bktech.app.entity.AuditableEntity;
 
+import java.io.Serial;
+
 public class UserVO extends AuditableEntity<String> {
 
+	@Serial
 	private static final long serialVersionUID = -7064942908770052990L;
 
 	private String username;

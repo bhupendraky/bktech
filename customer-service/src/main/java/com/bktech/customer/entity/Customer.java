@@ -11,11 +11,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import java.io.Serial;
+
 @Entity
 @Table(name = "CUSTOMER")
 @EntityListeners(AuditingEntityListener.class)
 public class Customer extends AuditableEntity<String> {
 
+	@Serial
 	private static final long serialVersionUID = -7761789872746333319L;
 
 	@Id

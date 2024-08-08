@@ -6,7 +6,7 @@ public enum ExceptionCode implements IExceptionCode {
 	INFRA_0003("Unhandled hystrix exception"),
 	INFRA_0004("Method argument not valid");
 
-	private String key;
+	private final String key;
 
 	ExceptionCode(String key) {
 		this.key = key;
