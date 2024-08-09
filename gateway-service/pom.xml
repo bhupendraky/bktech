@@ -7,7 +7,7 @@
 		<groupId>com.bktech</groupId>
 		<artifactId>bktech</artifactId>
 		<version>1.0.2-SNAPSHOT</version>
-		<relativePath>../</relativePath>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>gateway-service</artifactId>
 	<name>gateway-service</name>

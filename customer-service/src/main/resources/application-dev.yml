@@ -34,7 +34,9 @@ management:
   endpoints:
     web:
       exposure:
-        include: '*'
+        include:
+          - info
+          - health
 
 logging:
   level:
